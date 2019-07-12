@@ -1,14 +1,16 @@
 import {
-    roundNumbers,
-    forEach,
-    reverseString,
+    bodyRouter,
     createNewEvent,
+    forEach,
+    isDisplayed,
+    query,
     requestAnimFrame,
     throttle,
-    query,
-    isDisplayed,
-    bodyRouter,
 } from './core';
+
+import { roundNumbers } from './math';
+
+import { reverseString } from './parsing';
 
 export default {
     roundNumbers,
