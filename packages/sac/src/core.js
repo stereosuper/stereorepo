@@ -1,23 +1,4 @@
-export const forEach = (arr, callback) => {
-    let i = 0;
-    const { length } = arr;
-    while (i < length) {
-        callback(arr[i], i);
-        i += 1;
-    }
-};
-
-export const roundNumbers = (number, decimalNumber) => {
-    const decimalsFactor = 10 ** decimalNumber;
-    return Math.round(number * decimalsFactor) / decimalsFactor;
-};
-
-export const reverseString = str =>
-    str
-        .split('')
-        .reverse()
-        .join('');
-
+// NOTE: Functions not calling any other functions.
 export const createNewEvent = () => {
     let newEvent;
     if (typeof window.CustomEvent === 'function') {
@@ -45,6 +26,45 @@ export const createNewEvent = () => {
     }
 
     return newEvent;
+};
+
+export const forEach = (arr, callback) => {
+    let i = 0;
+    const { length } = arr;
+    while (i < length) {
+        callback(arr[i], i);
+        i += 1;
+    }
+};
+
+/**
+ * @description get display state of one element
+ */
+export const isDisplayed = element =>
+    getComputedStyle(element).display !== 'none';
+
+export const query = ({ selector, ctx }) => {
+    const classes = selector.substr(1).replace(/\./g, ' ');
+
+    const context = ctx || document;
+    // Redirect simple selectors to the more performant function
+    if (/^(#?[\w-]+|\.[\w-.]+)$/.test(selector)) {
+        switch (selector.charAt(0)) {
+            case '#':
+                // Handle ID-based selectors
+                return [context.getElementById(selector.substr(1))];
+            case '.':
+                // Handle class-based selectors
+                // Query by multiple classes by converting the selector
+                // string into single spaced class names
+                return [...context.getElementsByClassName(classes)];
+            default:
+                // Handle tag-based selectors
+                return [...context.getElementsByTagName(selector)];
+        }
+    }
+    // Default to `querySelectorAll`
+    return [...context.querySelectorAll(selector)];
 };
 
 export const requestAnimFrame = callback => {
@@ -80,42 +100,13 @@ export const throttle = (callback, delay) => {
     };
 };
 
-export const query = ({ selector, ctx }) => {
-    const classes = selector.substr(1).replace(/\./g, ' ');
-
-    const context = ctx || document;
-    // Redirect simple selectors to the more performant function
-    if (/^(#?[\w-]+|\.[\w-.]+)$/.test(selector)) {
-        switch (selector.charAt(0)) {
-            case '#':
-                // Handle ID-based selectors
-                return [context.getElementById(selector.substr(1))];
-            case '.':
-                // Handle class-based selectors
-                // Query by multiple classes by converting the selector
-                // string into single spaced class names
-                return [...context.getElementsByClassName(classes)];
-            default:
-                // Handle tag-based selectors
-                return [...context.getElementsByTagName(selector)];
-        }
-    }
-    // Default to `querySelectorAll`
-    return [...context.querySelectorAll(selector)];
-};
-
+// NOTE: Functions calling functions defined above.
 /**
- * @description get display state of one element
- */
-export const isDisplayed = element =>
-    getComputedStyle(element).display !== 'none';
-
-export /**
  * @description calls a function if the selector exists
  * @param {*} { identifier, callback }
  * @returns
  */
-const bodyRouter = ({ identifier, callback }) => {
+export const bodyRouter = ({ identifier, callback }) => {
     if (!identifier) return;
     const [hasIdentifier] = query({ selector: identifier });
 
@@ -124,13 +115,11 @@ const bodyRouter = ({ identifier, callback }) => {
 };
 
 export default {
-    roundNumbers,
-    forEach,
-    reverseString,
+    bodyRouter,
     createNewEvent,
+    forEach,
+    isDisplayed,
+    query,
     requestAnimFrame,
     throttle,
-    query,
-    isDisplayed,
-    bodyRouter,
 };
