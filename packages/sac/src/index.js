@@ -8,9 +8,9 @@ import {
     throttle,
 } from './core';
 
-import { roundNumbers } from './math';
-
 import { reverseString } from './parsing';
+
+import { roundNumbers } from './math';
 
 export default {
     roundNumbers,
