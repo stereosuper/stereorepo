@@ -1,3 +1,5 @@
+import loadHandler from './load';
+
 import {
     bodyRouter,
     createNewEvent,
@@ -12,6 +14,8 @@ import {
 import { reverseString } from './parsing';
 
 import { roundNumbers } from './math';
+
+loadHandler.initializeLoad();
 
 export default {
     bodyRouter,
