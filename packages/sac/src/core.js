@@ -31,19 +31,12 @@ export const createNewEvent = () => {
         };
     } else {
         // ie 11
-        newEvent = (event, params) => {
-            params = params || {
-                bubbles: false,
-                cancelable: false,
-                detail: undefined,
-            };
+        newEvent = (
+            event,
+            { bubbles = false, cancelable = false, detail = false }
+        ) => {
             const evt = document.createEvent('CustomEvent');
-            evt.initCustomEvent(
-                event,
-                params.bubbles,
-                params.cancelable,
-                params.detail
-            );
+            evt.initCustomEvent(event, bubbles, cancelable, detail);
             return evt;
         };
 
