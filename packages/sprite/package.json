@@ -1,6 +1,6 @@
 {
-    "name": "@stereorepo/sac",
-    "version": "1.0.1",
+    "name": "@stereorepo/sprite",
+    "version": "1.0.0",
     "description": "",
     "main": "src/index.js",
     "publishConfig": {
@@ -11,18 +11,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/stereosuper/stereorepo/packages/sac"
+        "url": "https://github.com/stereosuper/stereorepo/packages/sprite"
     },
     "keywords": [
         "es6",
-        "utils",
-        "core"
+        "sprite"
     ],
     "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
     "license": "ISC",
-    "gitHead": "c62c236fe36ee005b1be43e5b7942984a9cca46a",
     "dependencies": {
-        "intersection-observer": "^0.7.0",
-        "whatwg-fetch": "^3.0.0"
+        "gsap": "^2.1.3"
     }
 }
