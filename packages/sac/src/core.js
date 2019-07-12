@@ -110,7 +110,12 @@ export const query = ({ selector, ctx }) => {
 export const isDisplayed = element =>
     getComputedStyle(element).display !== 'none';
 
-export const bodyRouter = ({ identifier, callback }) => {
+export /**
+ * @description calls a function if the selector exists
+ * @param {*} { identifier, callback }
+ * @returns
+ */
+const bodyRouter = ({ identifier, callback }) => {
     if (!identifier) return;
     const [hasIdentifier] = query({ selector: identifier });
 
