@@ -47,14 +47,14 @@ export const createNewEvent = () => {
     return newEvent;
 };
 
-export const requestAnimFrame = cb => {
+export const requestAnimFrame = callback => {
     const anim =
         window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame;
-    return anim(cb);
+    return anim(callback);
 };
 
 export const throttle = (callback, delay) => {
