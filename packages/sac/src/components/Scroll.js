@@ -1,78 +1,70 @@
-import { requestAnimFrame } from '.';
+import { requestAnimFrame } from '../core';
 
-function Scroll() {
-    this.scrollTop = null;
-    this.event = null;
-    this.timeoutScroll = null;
-    this.scrollEnd = true;
-    this.scrollFunctions = [];
-    this.endFunctions = [];
-}
-
-Scroll.prototype.scrollHandler = function scrollHandler() {
-    this.scrollTop = window.pageYOffset || window.scrollY;
-
-    if (this.scrollEnd) {
-        this.scrollEnd = false;
+class Scroll {
+    constructor() {
+        this.scrollTop = null;
+        this.event = null;
+        this.timeoutScroll = null;
+        this.scrollEnd = true;
+        this.scrollFunctions = [];
+        this.endFunctions = [];
     }
+    scrollHandler() {
+        this.scrollTop = window.pageYOffset || window.scrollY;
 
-    clearTimeout(this.timeoutScroll);
+        if (this.scrollEnd) {
+            this.scrollEnd = false;
+        }
 
-    this.timeoutScroll = setTimeout(() => {
-        this.onScrollEnd();
-    }, 66);
+        clearTimeout(this.timeoutScroll);
 
-    this.scrollFunctions.forEach(f => {
-        f();
-    });
-};
+        this.timeoutScroll = setTimeout(() => {
+            this.onScrollEnd();
+        }, 66);
 
-Scroll.prototype.launchScroll = function launchScroll(e) {
-    this.event = e;
+        this.scrollFunctions.forEach(scrollfunction => {
+            scrollfunction();
+        });
+    }
+    launchScroll(event) {
+        this.event = event;
 
-    requestAnimFrame(() => {
+        requestAnimFrame(() => {
+            this.scrollHandler();
+        });
+    }
+    initScroll() {
         this.scrollHandler();
-    });
-};
-
-Scroll.prototype.init = function initScroll() {
-    this.scrollHandler();
-    window.addEventListener(
-        'scroll',
-        () => {
-            this.launchScroll();
-        },
-        false
-    );
-};
-
-Scroll.prototype.destroyScroll = function destroyScroll() {
-    window.removeEventListener(
-        'scroll',
-        () => {
-            this.launchScroll();
-        },
-        false
-    );
-};
-
-Scroll.prototype.onScrollEnd = function onScrollEnd() {
-    this.scrollEnd = true;
-    this.endFunctions.forEach(f => {
-        f();
-    });
-};
-
-Scroll.prototype.addScrollFunction = function addScrollFunction(
-    f,
-    onEnd = false
-) {
-    this.scrollFunctions.push(f);
-    if (onEnd) this.endFunctions.push(f);
-};
-
-Scroll.prototype.addEndFunction = function addEndFunction(f) {
-    this.endFunctions.push(f);
-};
+        window.addEventListener(
+            'scroll',
+            () => {
+                this.launchScroll();
+            },
+            false
+        );
+    }
+    destroyScroll() {
+        window.removeEventListener(
+            'scroll',
+            () => {
+                this.launchScroll();
+            },
+            false
+        );
+    }
+    onScrollEnd() {
+        this.scrollEnd = true;
+        this.endFunctions.forEach(f => {
+            f();
+        });
+    }
+    addScrollFunction(scrollFunction, onEnd = false) {
+        this.scrollFunctions.push(scrollFunction);
+        if (onEnd) this.endFunctions.push(scrollFunction);
+    }
+    addEndFunction(endFunction) {
+        this.endFunctions.push(endFunction);
+    }
+}
 
 export default new Scroll();
