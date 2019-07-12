@@ -5,6 +5,7 @@ import {
     isDisplayed,
     query,
     requestAnimFrame,
+    supportsWebp,
     throttle,
 } from './core';
 
@@ -13,13 +14,14 @@ import { reverseString } from './parsing';
 import { roundNumbers } from './math';
 
 export default {
-    roundNumbers,
-    forEach,
-    reverseString,
-    createNewEvent,
-    requestAnimFrame,
-    throttle,
-    query,
-    isDisplayed,
     bodyRouter,
+    createNewEvent,
+    forEach,
+    isDisplayed,
+    query,
+    requestAnimFrame,
+    reverseString,
+    roundNumbers,
+    supportsWebp,
+    throttle,
 };
