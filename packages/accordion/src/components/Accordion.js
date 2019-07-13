@@ -13,7 +13,6 @@ class Accordion {
         scrollDelay = 300
     }) {
         this.accordions = [];
-        this.clickedElement = null;
 
         this.containerSelector = containerSelector;
         this.clickedSelector = clickedSelector;
@@ -24,9 +23,9 @@ class Accordion {
         this.ease = ease;
         this.scrollDelay = scrollDelay;
     }
-    clickHandler() {
-        if (!this.clickedElement) return;
-        const clickedElementParent = this.clickedElement.parentElement;
+    clickHandler(clickedElement) {
+        if (!clickedElement) return;
+        const clickedElementParent = clickedElement.parentElement;
         const contentWrapper = query({
             selector: this.contentWrapperSelector,
             ctx: this.clickedSelector.parentElement
@@ -67,8 +66,7 @@ class Accordion {
 
         setTimeout(() => {
             const offset =
-                this.clickedElement.getBoundingClientRect().top +
-                window.scrollY;
+                clickedElement.getBoundingClientRect().top + window.scrollY;
             TweenMax.to(window, 0.5, {
                 scrollTo: {
                     y: offset,
@@ -90,12 +88,11 @@ class Accordion {
                 selector: this.clickedSelector,
                 ctx: accordion
             });
-            this.clickedElement = clickedElement;
 
             clickedElement.addEventListener(
                 'click',
                 () => {
-                    this.clickHandler();
+                    this.clickHandler(clickedElement);
                 },
                 false
             );
