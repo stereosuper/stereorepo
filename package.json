@@ -1,7 +1,62 @@
 {
-  "name": "root",
-  "private": true,
-  "devDependencies": {
-    "lerna": "^3.15.0"
-  }
+    "name": "stereorepo",
+    "private": true,
+    "description": "",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "dependencies": {
+        "@stereorepo/accordion": "^1.0.14",
+        "@stereorepo/sac": "^1.0.13",
+        "@stereorepo/sprite": "^1.0.2",
+        "webpack": "^4.35.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.5.4",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/preset-env": "^7.5.4",
+        "babel-eslint": "^10.0.2",
+        "babel-loader": "^8.0.6",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^3.0.0",
+        "cssnano": "^4.1.10",
+        "eslint": "^6.0.1",
+        "eslint-config-prettier": "^6.0.0",
+        "eslint-loader": "^2.2.1",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-vue": "^5.2.3",
+        "html-webpack-plugin": "^3.2.0",
+        "lerna": "^3.15.0",
+        "node-sass": "^4.12.0",
+        "postcss-import": "^12.0.1",
+        "postcss-loader": "^3.0.0",
+        "postcss-nested": "^4.1.2",
+        "postcss-preset-env": "^6.7.0",
+        "prettier": "^1.18.2",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack-cli": "^3.3.5",
+        "webpack-dev-server": "^3.7.2"
+    },
+    "scripts": {
+        "dev": "webpack-dev-server --mode development --open",
+        "build": "webpack --mode production",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://Alphability@github.com/stereosuper/stereorepo.git"
+    },
+    "keywords": [
+        "es6",
+        "webpack",
+        "@stereorepo/accordion",
+        "@stereorepo/sac",
+        "@stereorepo/sprite"
+    ],
+    "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/stereosuper/stereorepo/issues"
+    },
+    "homepage": "https://github.com/stereosuper/stereorepo#readme"
 }

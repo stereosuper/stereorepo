@@ -1,0 +1,38 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "ecmaVersion": 6
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended",
+        "prettier/vue",
+        "plugin:prettier/recommended"
+    ],
+    // required to lint *.vue files
+    "plugins": ["vue"],
+    // add your custom rules here
+    "rules": {
+        "no-console": "off",
+        "no-unused-vars": 1,
+        "no-useless-escape": "off",
+        "vue/component-name-in-template-casing": ["error", "PascalCase"],
+        "vue/max-attributes-per-line": "off",
+        "vue/html-indent": 0,
+        "vue/html-self-closing": [
+            "error",
+            {
+                "html": {
+                    "void": "always",
+                    "normal": "always"
+                }
+            }
+        ]
+    }
+}
