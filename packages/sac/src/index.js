@@ -3,6 +3,12 @@ import parsing from './parsing';
 import math from './math';
 import loadHandlerComponent from './load';
 
+// Components imports
+import fallback from './components/Fallback';
+import scroll from './components/Scroll';
+import snif from './components/Snif';
+import win from './components/Window';
+
 export const { bodyRouter } = core;
 export const { createNewEvent } = core;
 export const { forEach } = core;
@@ -18,6 +24,12 @@ export const { roundNumbers } = math;
 
 export const loadHandler = loadHandlerComponent;
 
+// Components exports
+export const fallbackComponent = fallback;
+export const scrollComponent = scroll;
+export const snifComponent = snif;
+export const windowComponent = win;
+
 export default {
     bodyRouter,
     createNewEvent,
@@ -29,5 +41,5 @@ export default {
     reverseString,
     roundNumbers,
     supportsWebp,
-    throttle,
+    throttle
 };

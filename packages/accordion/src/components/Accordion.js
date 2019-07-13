@@ -4,10 +4,10 @@ import { TweenMax, Power1 } from 'gsap';
 
 class Accordion {
     constructor({
-        containerSelector = '.accordion',
-        clickedSelector = '.clicked-element',
-        contentSelector = '.content-element',
-        contentWrapperSelector = '.content-element',
+        containerSelector = '.js-accordion',
+        clickedSelector = '.js-clicked-element',
+        contentSelector = '.js-content-element',
+        contentWrapperSelector = '.js-content-element',
         offsetY = 0,
         ease = Power1.easeInOut,
         scrollDelay = 300
