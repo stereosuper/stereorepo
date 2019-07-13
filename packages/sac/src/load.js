@@ -37,9 +37,9 @@ class LoadHandler {
         }
     }
     initializeLoad({
-        preloadCallback,
-        loadCallback,
-        animationsLoadCallback,
+        preloadCallback = null,
+        loadCallback = null,
+        animationsLoadCallback = null,
         noTransElementsClass = '.element-without-transition-on-resize',
     }) {
         this.callbacks.preloadCallback = preloadCallback;
