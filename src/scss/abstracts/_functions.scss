@@ -1,0 +1,17 @@
+/* Functions */
+@function calc-font-size($lvl) {
+    $font-size: $base-size * 0.1 + ($golden-thread * 0.1em * $lvl);
+    @return $font-size;
+}
+
+@function calc-line-height($i) {
+    $fspx: calc-font-size($i) / 1em * 10;
+    $i: $i + $line-height-offset;
+    $line-height: ($fspx + $golden-thread * $i) / $fspx;
+    @return $line-height;
+}
+
+@function calc-margins($i) {
+    $lh: $line-height * 0.5 * $i;
+    @return $lh;
+}

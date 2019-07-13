@@ -1,5 +1,17 @@
+html {
+    font-size: 62.5%; /* sets the base font to 10px for easier math */
+}
+
 body {
+    font: #{$base-size * 0.1}em / 1.4 sans-serif;
     background: $white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    max-width: $desktop-xxl;
+    margin: 0 auto;
 }
 
 .main-header {
@@ -9,7 +21,29 @@ body {
 }
 
 .section {
-    max-width: $desktop-xxl;
-    padding: $line-height * 5 0;
-    margin: 0 auto;
+    padding: $line-height * 2 0;
+}
+
+h1 {
+    font-size: calc-font-size(4);
+    line-height: calc-line-height(4);
+    margin: 0 0 calc-margins(4);
+}
+
+h2 {
+    font-size: calc-font-size(3);
+    line-height: calc-line-height(3);
+    margin: 0 0 calc-margins(3);
+}
+
+h3 {
+    font-size: calc-font-size(2);
+    line-height: calc-line-height(2);
+    margin: 0 0 calc-margins(2);
+}
+
+h4 {
+    font-size: calc-font-size(1);
+    line-height: calc-line-height(1);
+    margin: 0 0 calc-margins(1);
 }
