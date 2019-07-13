@@ -6,15 +6,16 @@
     "main": "src/index.js",
     "scripts": {
         "dev": "webpack-dev-server --mode development --open",
-        "install-stereorepo": "npm i @stereorepo/sac @stereorepo/accordion @stereorepo/sprite",
-        "remove-stereorepo": "npm un @stereorepo/sac @stereorepo/accordion @stereorepo/sprite",
+        "install-stereorepo": "npm i @stereorepo/sac @stereorepo/accordion @stereorepo/sprite @stereorepo/burger",
+        "remove-stereorepo": "npm un @stereorepo/sac @stereorepo/accordion @stereorepo/sprite @stereorepo/burger",
         "update-stereorepo": "npm run remove-stereorepo && npm run install-stereorepo",
         "publish-then-test": "lerna publish && npm run update-stereorepo && npm run dev",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "@stereorepo/accordion": "^1.1.7",
-        "@stereorepo/sac": "^1.1.0",
+        "@stereorepo/accordion": "^1.2.0",
+        "@stereorepo/burger": "^1.2.0",
+        "@stereorepo/sac": "^1.2.0",
         "@stereorepo/sprite": "^1.0.2",
         "webpack": "^4.35.3"
     },

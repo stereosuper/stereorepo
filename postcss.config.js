@@ -3,10 +3,10 @@ module.exports = ({ file, env, map }) => ({
     map: env === 'development' ? map : false,
     plugins: {
         'postcss-preset-env': {
-            browsers: 'last 2 versions',
+            browsers: 'last 2 versions'
         },
         'postcss-import': {},
         'postcss-nested': {},
-        cssnano: env === 'production' ? {} : false,
-    },
+        cssnano: env === 'production' ? {} : false
+    }
 });

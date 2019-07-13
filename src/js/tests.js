@@ -1,4 +1,5 @@
 import { Accordion } from '@stereorepo/accordion';
+import { Burger } from '@stereorepo/burger';
 
 const testAccordion = () => {
     const accordion = new Accordion({
@@ -14,8 +15,18 @@ const testAccordion = () => {
     accordion.initializeAccordions();
 };
 
+const testBurger = () => {
+    const burger = new Burger({
+        burgerSelector: '.js-burger',
+        mainNavigationSelector: '.js-main-navigation'
+    });
+
+    burger.bigMacOrWhopper();
+};
+
 export const launchFuckingTests = () => {
     testAccordion();
+    testBurger();
 };
 
 export default {
