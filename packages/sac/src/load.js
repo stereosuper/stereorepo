@@ -8,7 +8,13 @@ class LoadHandler {
         this.state = {
             preloaded: false,
             loaded: false,
-            animationsLoaded: false,
+            animationsLaunched: false,
+        };
+
+        this.callbacks = {
+            preloadCallback: false,
+            loadCallback: false,
+            animationsCallback: false,
         };
     }
     preload(callback) {
@@ -30,21 +36,21 @@ class LoadHandler {
         if (callback) {
             callback();
 
-            if (this.callbacks.animationsLoadCallback) {
-                this.state.animationsLoaded = true;
-                this.callbacks.animationsLoadCallback();
+            if (this.callbacks.animationsCallback) {
+                this.state.animationsLaunched = true;
+                this.callbacks.animationsCallback();
             }
         }
     }
     initializeLoad({
         preloadCallback = null,
         loadCallback = null,
-        animationsLoadCallback = null,
+        animationsCallback = null,
         noTransElementsClass = '.element-without-transition-on-resize',
     }) {
         this.callbacks.preloadCallback = preloadCallback;
         this.callbacks.loadCallback = loadCallback;
-        this.callbacks.animationsLoadCallback = animationsLoadCallback;
+        this.callbacks.animationsCallback = animationsCallback;
 
         const noTransElem = query({
             selector: noTransElementsClass,
