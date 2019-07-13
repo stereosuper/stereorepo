@@ -87,7 +87,7 @@ class Accordion {
 
         forEach(this.accordions, accordion => {
             const [clickedElement] = query({
-                selector: this.clickedElement,
+                selector: this.clickedSelector,
                 ctx: accordion,
             });
             this.clickedElement = clickedElement;
