@@ -28,7 +28,7 @@ class Accordion {
         const clickedElementParent = clickedElement.parentElement;
         const contentWrapper = query({
             selector: this.contentWrapperSelector,
-            ctx: this.clickedSelector.parentElement
+            ctx: clickedElementParent
         });
         const alreadyActivated = clickedElementParent.classList.contains(
             'activated'
