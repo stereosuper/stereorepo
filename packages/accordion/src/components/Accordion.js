@@ -92,7 +92,13 @@ class Accordion {
             });
             this.clickedElement = clickedElement;
 
-            clickedElement.addEventListener('click', this.clickHandler, false);
+            clickedElement.addEventListener(
+                'click',
+                () => {
+                    this.clickHandler();
+                },
+                false
+            );
         });
     }
 }
