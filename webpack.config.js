@@ -14,7 +14,7 @@ const config = (env, options) => {
             // Public path is important for dynamic imports. It'll help webpack to retrieve bundles by name and not by ids
             publicPath: '/',
             sourceMapFilename: '[file].map?[contenthash]',
-            chunkFilename: '[name].js',
+            chunkFilename: '[name].js'
         },
         devServer: {
             contentBase: path.join(__dirname, 'src'),
@@ -23,25 +23,20 @@ const config = (env, options) => {
             host: process.env.HOST || '0.0.0.0',
             port: process.env.PORT || 3000,
             headers: {
-                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*'
             },
-            compress: true,
+            compress: true
         },
         module: {
             rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: 'babel-loader',
-                },
                 {
                     test: /\.(js|vue)$/,
                     enforce: 'pre',
                     loader: 'eslint-loader',
                     exclude: /(node_modules)/,
                     options: {
-                        sourceMap: true,
-                    },
+                        sourceMap: true
+                    }
                 },
                 {
                     test: /\.(css|sass|scss)$/,
@@ -51,17 +46,17 @@ const config = (env, options) => {
                             loader: 'css-loader',
                             options: {
                                 importLoaders: 1,
-                                sourceMap: true,
-                            },
+                                sourceMap: true
+                            }
                         },
                         'postcss-loader',
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: true,
-                            },
-                        },
-                    ],
+                                sourceMap: true
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(png|jpg|gif|svg|ttf|otf|woff|woff2)$/,
@@ -71,26 +66,26 @@ const config = (env, options) => {
                             options: {
                                 publicPath: '/',
                                 name: '[path][name].[ext]',
-                                emitFile: false,
-                            },
-                        },
-                    ],
-                },
-            ],
+                                emitFile: false
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         node: {
-            fs: 'empty', // avoids error messages
+            fs: 'empty' // avoids error messages
         },
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 title: 'Stéréorepo',
-                template: './src/index.html',
+                template: './src/index.html'
             }),
-            new webpack.HotModuleReplacementPlugin(),
+            new webpack.HotModuleReplacementPlugin()
         ],
         watch: devMode,
-        devtool: devMode ? 'source-map' : '',
+        devtool: devMode ? 'source-map' : ''
     };
 };
 
