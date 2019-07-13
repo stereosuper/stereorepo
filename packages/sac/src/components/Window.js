@@ -1,5 +1,5 @@
 import { requestAnimFrame, forEach } from '../core';
-import io from './Io';
+// import io from './Io';
 
 class Window {
     constructor() {
@@ -62,9 +62,9 @@ class Window {
             }, this.delta);
         }
     }
-    ioResize() {
-        if (!this.io.resized) this.io.resized = true;
-    }
+    // ioResize() {
+    //     if (!this.io.resized) this.io.resized = true;
+    // }
     setBreakpoints() {
         let currentBreakpoint = '';
         forEach(Object.entries(this.breakpoints.horizontal), breakpoint => {
