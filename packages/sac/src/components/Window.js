@@ -11,12 +11,12 @@ class Window {
                 m: 580,
                 l: 780,
                 xl: 960,
-                xxl: 1100,
+                xxl: 1100
             },
             vertical: {
                 xs: 550,
-                xxl: 960,
-            },
+                xxl: 960
+            }
         };
         this.w = null;
         this.h = null;
@@ -98,39 +98,6 @@ class Window {
     }
     addResizeFunction(resizeFunction) {
         this.resizeEndFunctions.push(resizeFunction);
-    }
-    toggleNoScroll({ transitionElement, noScroll }) {
-        const removeScroll = () => {
-            document.documentElement.style.top = `${-window.scrollY}px`;
-            document.documentElement.classList.add('no-scroll');
-
-            transitionElement.removeEventListener(
-                'transitionend',
-                removeScroll,
-                false
-            );
-        };
-
-        if (noScroll) {
-            transitionElement.addEventListener(
-                'transitionend',
-                removeScroll,
-                false
-            );
-        } else {
-            const scrollY = Math.abs(
-                parseInt(
-                    document.documentElement.style.top.replace('px', ''),
-                    10
-                )
-            );
-            document.documentElement.style.top = '';
-            document.documentElement.classList.remove('no-scroll');
-
-            setTimeout(() => {
-                window.scrollTo(0, scrollY);
-            }, 0);
-        }
     }
     launchWindow() {
         requestAnimFrame(() => {

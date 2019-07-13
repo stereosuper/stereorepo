@@ -1,0 +1,18 @@
+.main-navigation {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    background: fuchsia;
+    z-index: 1;
+    &.activated {
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+.burger {
+    width: 30px;
+    height: 30px;
+    background: red;
+}

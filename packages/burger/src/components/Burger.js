@@ -12,6 +12,39 @@ class Burger {
         this.burgerSelector = burgerSelector;
         this.mainNavigationSelector = mainNavigationSelector;
     }
+    toggleNoScroll({ transitionElement, noScroll }) {
+        const removeScroll = () => {
+            document.documentElement.style.top = `${-window.scrollY}px`;
+            document.documentElement.classList.add('no-scroll');
+
+            transitionElement.removeEventListener(
+                'transitionend',
+                removeScroll,
+                false
+            );
+        };
+
+        if (noScroll) {
+            transitionElement.addEventListener(
+                'transitionend',
+                removeScroll,
+                false
+            );
+        } else {
+            const scrollY = Math.abs(
+                parseInt(
+                    document.documentElement.style.top.replace('px', ''),
+                    10
+                )
+            );
+            document.documentElement.style.top = '';
+            document.documentElement.classList.remove('no-scroll');
+
+            setTimeout(() => {
+                window.scrollTo(0, scrollY);
+            }, 0);
+        }
+    }
     makeTheDamnBurger() {
         this.state.burgerActivated = !this.state.burgerActivated;
         const [mainNav] = query({ selector: this.mainNavigationSelector });
@@ -20,7 +53,7 @@ class Burger {
         mainNav.classList.toggle('activated');
 
         mainNav.setAttribute('aria-expanded', this.state.burgerActivated);
-        windowComponent.toggleNoScroll({
+        this.toggleNoScroll({
             transitionElement: mainNav,
             noScroll: this.state.burgerActivated
         });
