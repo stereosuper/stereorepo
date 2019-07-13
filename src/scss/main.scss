@@ -1,10 +1,9 @@
-$white: #fff;
-$black: #000;
+@charset 'utf-8';
 
-$line-height: 25px;
+@import 'abstracts/variables';
 
-body {
-    background: $white;
-}
+@import 'base/reset', 'base/fonts', 'base/base';
+
+@import 'abstracts/placeholders';
 
 @import 'components/accordion';
