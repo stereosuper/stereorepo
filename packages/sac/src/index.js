@@ -1,19 +1,22 @@
-import loadHandler from './load';
+import core from './core';
+import parsing from './parsing';
+import math from './math';
+import loadHandlerComponent from './load';
 
-import {
-    bodyRouter,
-    createNewEvent,
-    forEach,
-    isDisplayed,
-    query,
-    requestAnimFrame,
-    supportsWebp,
-    throttle,
-} from './core';
+export const { bodyRouter } = core;
+export const { createNewEvent } = core;
+export const { forEach } = core;
+export const { isDisplayed } = core;
+export const { query } = core;
+export const { requestAnimFrame } = core;
+export const { supportsWebp } = core;
+export const { throttle } = core;
 
-import { reverseString } from './parsing';
+export const { reverseString } = parsing;
 
-import { roundNumbers } from './math';
+export const { roundNumbers } = math;
+
+export const loadHandler = loadHandlerComponent;
 
 export default {
     bodyRouter,
