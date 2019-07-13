@@ -15,13 +15,12 @@ import { reverseString } from './parsing';
 
 import { roundNumbers } from './math';
 
-loadHandler.initializeLoad();
-
 export default {
     bodyRouter,
     createNewEvent,
     forEach,
     isDisplayed,
+    loadHandler,
     query,
     requestAnimFrame,
     reverseString,
