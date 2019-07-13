@@ -3,33 +3,26 @@ import 'gsap/ScrollToPlugin';
 import { TweenMax } from 'gsap';
 
 class Accordion {
-    constructor() {
+    constructor({
+        containerSelector = '.accordion',
+        clickedSelector = '.clicked-element',
+        contentSelector = '.content-element',
+        contentWrapperSelector = '.content-element',
+        offsetY = 0,
+        ease = null,
+        scrollDelay = 300,
+    }) {
         this.accordions = [];
         this.clickedElement = null;
-        this.containerSelector = '.accordion';
-        this.clickedSelector = '.clicked-element';
-        this.contentSelector = '.content-element';
-        this.contentWrapperSelector = '.content-element';
 
-        this.offsetY = 0;
-        this.ease = null;
-        this.scrollDuration = 300;
-    }
-    setSelectors({
-        containerSelector,
-        clickedSelector,
-        contentSelector,
-        contentWrapperSelector,
-    }) {
         this.containerSelector = containerSelector;
         this.clickedSelector = clickedSelector;
         this.contentSelector = contentSelector;
         this.contentWrapperSelector = contentWrapperSelector;
-    }
-    setParameters({ offsetY = 0, ease = null, scrollDuration = 300 }) {
+
         this.offsetY = offsetY;
         this.ease = ease;
-        this.scrollDuration = scrollDuration;
+        this.scrollDelay = scrollDelay;
     }
     clickHandler() {
         if (!this.clickedElement) return;
@@ -83,9 +76,9 @@ class Accordion {
                 },
                 ease: this.ease,
             });
-        }, this.scrollDuration);
+        }, this.scrollDelay);
     }
-    findAllAccordions() {
+    initializeAccordions() {
         this.accordions = query({
             selector: this.containerSelector,
         });
