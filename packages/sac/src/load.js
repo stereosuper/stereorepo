@@ -56,10 +56,10 @@ class LoadHandler {
             selector: noTransElementsClass,
         });
 
-        scrollComponent.init();
+        scrollComponent.initializeScroll();
         windowComponent.setNoTransitionElts(noTransElem);
-        windowComponent.init();
-        fallbackComponent.init();
+        windowComponent.initializeWindow();
+        fallbackComponent.initializeFallbacks();
 
         this.preload(this.callbacks.preloadCallback);
         this.load(this.callbacks.loadCallback);

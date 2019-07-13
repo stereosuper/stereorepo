@@ -137,7 +137,7 @@ class Window {
             this.resizeHandler();
         });
     }
-    initWindow() {
+    initializeWindow() {
         this.resizeHandler();
         window.addEventListener(
             'resize',

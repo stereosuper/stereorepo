@@ -10,7 +10,7 @@ class Fallback {
 
         this.html = document.documentElement;
     }
-    initFallbacks() {
+    initializeFallbacks() {
         if (!this.state.fallbacksInitiated) {
             if (snif.isMobile()) {
                 this.html.classList.add('is-touch');
@@ -64,7 +64,7 @@ class Fallback {
             this.state.fallbacksInitiated = true;
         }
     }
-    initPolyfills() {
+    initializePolyfills() {
         if (!this.state.polyfillsInitiated) {
             if (!window.IntersectionObserver) {
                 require('intersection-observer');
@@ -72,7 +72,7 @@ class Fallback {
             this.state.polyfillsInitiated = true;
         }
     }
-    initWindowApiTests() {
+    initializeWindowApiTests() {
         if (!this.state.windowApiTestsInitiated) {
             window.AudioContext =
                 window.AudioContext || window.webkitAudioContext;

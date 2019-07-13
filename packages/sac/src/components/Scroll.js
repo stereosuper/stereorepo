@@ -33,7 +33,7 @@ class Scroll {
             this.scrollHandler();
         });
     }
-    initScroll() {
+    initializeScroll() {
         this.scrollHandler();
         window.addEventListener(
             'scroll',
