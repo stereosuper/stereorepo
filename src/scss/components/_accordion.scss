@@ -4,12 +4,8 @@
     max-width: 500px;
     margin: $line-height 0;
     border: 1px solid $black;
+    @extend %accordion;
     .click-element {
         cursor: pointer;
-    }
-    .content-wrapper {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
     }
 }
