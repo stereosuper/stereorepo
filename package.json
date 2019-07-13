@@ -4,9 +4,17 @@
     "description": "",
     "version": "1.0.0",
     "main": "src/index.js",
+    "scripts": {
+        "dev": "webpack-dev-server --mode development --open",
+        "build": "webpack --mode production",
+        "install-stereorepo": "npm i @stereorepo/sac @stereorepo/accordion @stereorepo/sprite",
+        "remove-stereorepo": "npm un @stereorepo/sac @stereorepo/accordion @stereorepo/sprite",
+        "update-stereorepo": "npm run remove-stereorepo && npm run install-stereorepo",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
     "dependencies": {
-        "@stereorepo/accordion": "^1.0.14",
-        "@stereorepo/sac": "^1.0.13",
+        "@stereorepo/accordion": "^1.1.0",
+        "@stereorepo/sac": "^1.1.0",
         "@stereorepo/sprite": "^1.0.2",
         "webpack": "^4.35.3"
     },
@@ -36,11 +44,6 @@
         "style-loader": "^0.23.1",
         "webpack-cli": "^3.3.5",
         "webpack-dev-server": "^3.7.2"
-    },
-    "scripts": {
-        "dev": "webpack-dev-server --mode development --open",
-        "build": "webpack --mode production",
-        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",

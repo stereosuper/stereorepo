@@ -1,6 +1,7 @@
 import { query, loadHandler } from '@stereorepo/sac';
-import { Accordion } from '@stereorepo/accordion';
 // import { Sprite } from '@stereorepo/sprite';
+
+import { launchFuckingTests } from './tests';
 
 const checkLoadingState = ({ section, sectionState, loadText }) => {
     const [preloadSectionElement] = query({ selector: section });
@@ -19,7 +20,7 @@ const preloadCallback = () => {
         loadText: '✅ Preload done'
     });
 
-    lauchFuckingTests();
+    launchFuckingTests();
 };
 
 const loadCallback = () => {
