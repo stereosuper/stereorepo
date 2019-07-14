@@ -11,6 +11,8 @@ class Burger {
 
         this.burgerSelector = burgerSelector;
         this.mainNavigationSelector = mainNavigationSelector;
+
+        this.transitionElementDuration = null;
     }
     toggleNoScroll({ transitionElement, noScroll }) {
         const removeScroll = () => {
@@ -25,11 +27,24 @@ class Burger {
         };
 
         if (noScroll) {
-            transitionElement.addEventListener(
-                'transitionend',
-                removeScroll,
-                false
-            );
+            if (
+                !this.transitionElementDuration ||
+                this.transitionElementDuration === '0s'
+            ) {
+                this.transitionElementDuration = getComputedStyle(
+                    transitionElement
+                ).getPropertyValue('transition-duration');
+            }
+
+            if (this.transitionElementDuration !== '0s') {
+                transitionElement.addEventListener(
+                    'transitionend',
+                    removeScroll,
+                    false
+                );
+            } else {
+                removeScroll();
+            }
         } else {
             const scrollY = Math.abs(
                 parseInt(

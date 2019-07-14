@@ -13,9 +13,9 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "@stereorepo/accordion": "^1.2.0",
-        "@stereorepo/burger": "^1.2.1",
-        "@stereorepo/sac": "^1.2.0",
+        "@stereorepo/accordion": "^1.2.2",
+        "@stereorepo/burger": "^1.2.2",
+        "@stereorepo/sac": "^1.2.2",
         "@stereorepo/sprite": "^1.0.2",
         "webpack": "^4.35.3"
     },
