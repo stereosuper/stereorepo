@@ -6,10 +6,6 @@
     "main": "src/index.js",
     "scripts": {
         "dev": "webpack-dev-server --mode development --open",
-        "install-stereorepo": "npm i @stereorepo/sac @stereorepo/accordion @stereorepo/sprite @stereorepo/burger",
-        "remove-stereorepo": "npm un @stereorepo/sac @stereorepo/accordion @stereorepo/sprite @stereorepo/burger",
-        "update-stereorepo": "npm run remove-stereorepo && npm run install-stereorepo",
-        "publish-then-test": "lerna publish && npm run update-stereorepo && npm run dev",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {

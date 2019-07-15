@@ -1,7 +1,7 @@
-import windowComponent from './components/Window';
-import scrollComponent from './components/Scroll';
-import fallbackComponent from './components/Fallback';
-import { query } from './core';
+import windowComponent from './Window';
+import scrollComponent from './Scroll';
+import fallbackComponent from './Fallback';
+import { query } from '../core';
 
 class LoadHandler {
     constructor() {
