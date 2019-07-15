@@ -97,7 +97,11 @@ class Window {
         this.noTransition();
     }
     addResizeFunction(resizeFunction) {
-        this.resizeEndFunctions.push(resizeFunction);
+        this.resizeFunctions.push(resizeFunction);
+    }
+    addResizeEndFunction(resizeEndFunction){
+        this.resizeEndFunctions.push(resizeEndFunction);
+
     }
     launchWindow() {
         requestAnimFrame(() => {
