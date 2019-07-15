@@ -5,18 +5,8 @@ class Window {
     constructor() {
         this.currentBreakpoint = '';
         this.breakpoints = {
-            horizontal: {
-                xs: 0,
-                s: 400,
-                m: 580,
-                l: 780,
-                xl: 960,
-                xxl: 1100
-            },
-            vertical: {
-                xs: 550,
-                xxl: 960
-            }
+            horizontal: null,
+            vertical: null
         };
         this.w = null;
         this.h = null;
@@ -65,7 +55,9 @@ class Window {
     // ioResize() {
     //     if (!this.io.resized) this.io.resized = true;
     // }
-    setBreakpoints() {
+    setBreakpointsToDOM() {
+        if (!this.breakpoints.horizontal) return;
+        
         let currentBreakpoint = '';
         forEach(Object.entries(this.breakpoints.horizontal), breakpoint => {
             const [name, value] = breakpoint;
@@ -84,6 +76,10 @@ class Window {
             );
         }
     }
+    setBreakpoints({horizontal, vertical}){
+        this.breakpoints.horizontal = {...horizontal};
+        this.breakpoints.vertical = {...vertical};
+    }
     resizeHandler() {
         this.w = window.innerWidth;
         this.h = window.innerHeight;
@@ -92,7 +88,7 @@ class Window {
             f();
         });
 
-        this.setBreakpoints();
+        this.setBreakpointsToDOM();
 
         this.noTransition();
     }

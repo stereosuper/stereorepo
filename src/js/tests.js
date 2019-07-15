@@ -1,4 +1,9 @@
-import { createCrossBrowserEvent, query } from '@stereorepo/sac';
+import {
+    createCrossBrowserEvent,
+    query,
+    forEach,
+    superWindow
+} from '@stereorepo/sac';
 import { Accordion } from '@stereorepo/accordion';
 import { Burger } from '@stereorepo/burger';
 
@@ -19,6 +24,28 @@ const testCreateNewEvent = () => {
         false
     );
     document.dispatchEvent(newEvent);
+};
+
+const testForEach = () => {
+    const [forEachSection] = query({ selector: '#foreach-section' });
+    if (!forEachSection) return;
+    const [foreachText] = query({
+        selector: '.foreach-text',
+        ctx: forEachSection
+    });
+
+    if (foreachText) {
+        foreachText.innerText = '✅ forEach emojis list display';
+    }
+
+    const emojisArray = ['🦄', '💪', '🔥'];
+
+    let element = null;
+    forEach(emojisArray, emoji => {
+        element = document.createElement('p');
+        element.innerText = emoji;
+        forEachSection.appendChild(element);
+    });
 };
 
 const testQuery = () => {
@@ -51,6 +78,24 @@ const testQuery = () => {
     nestedSelector.innerText = '✅ nested selector';
 };
 
+// Sac inner components tests
+const testSuperWindow = () => {
+    superWindow.setBreakpoints({
+        horizontal: {
+            xs: 0,
+            s: 400,
+            m: 580,
+            l: 780,
+            xl: 960,
+            xxl: 1100
+        },
+        vertical: {
+            xs: 550,
+            xxl: 960
+        }
+    });
+};
+
 // Components tests
 const testAccordion = () => {
     const accordion = new Accordion({
@@ -78,7 +123,11 @@ const testBurger = () => {
 export const launchFuckingTests = () => {
     // sac
     testCreateNewEvent();
+    testForEach();
     testQuery();
+
+    // sac inner components
+    testSuperWindow();
 
     // components
     testAccordion();
