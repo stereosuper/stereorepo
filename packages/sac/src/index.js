@@ -35,7 +35,6 @@ export default {
     createNewEvent,
     forEach,
     isDisplayed,
-    loadHandler,
     query,
     requestAnimFrame,
     reverseString,
