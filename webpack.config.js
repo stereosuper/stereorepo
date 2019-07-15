@@ -21,7 +21,7 @@ const config = (env, options) => {
             watchContentBase: true,
             hot: true,
             host: process.env.HOST || '0.0.0.0',
-            port: process.env.PORT || 3000,
+            port: process.env.PORT || 5555,
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },

@@ -79,6 +79,7 @@ class Window {
     setBreakpoints({horizontal, vertical}){
         this.breakpoints.horizontal = {...horizontal};
         this.breakpoints.vertical = {...vertical};
+        this.setBreakpointsToDOM();
     }
     resizeHandler() {
         this.w = window.innerWidth;
