@@ -8,7 +8,9 @@
     </head>
     <body>
         <header class="main-header">
-            <button class="burger js-burger" type="button"></button>
+            <button class="burger js-burger" type="button">
+                <span></span>
+            </button>
         </header>
         <nav class="main-navigation js-main-navigation"></nav>
         <main>
@@ -26,7 +28,22 @@
                     <span class="js-loading-state">Will animate</span>
                 </div>
             </section>
-            <h2>Les tests de composants</h2>
+            <section id="cross-browser-compatible-events" class="section">
+                <h3>Création d'événements compatibles IE11</h3>
+                <span class="event-text"
+                    >Cross browser event creation pending</span
+                >
+            </section>
+            <section id="query-elements" class="section">
+                <h3>Test de DOM query optimisées</h3>
+                <span>❌element selector</span>
+                <p id="id-selector">❌id selector</p>
+                <p class="class-selector">❌class selector</p>
+                <p class="nested-selector">
+                    <span class="child">❌nested selector</span>
+                </p>
+            </section>
+            <h2>Les tests des composants indépendants</h2>
             <section id="accordions" class="section">
                 <h3>Les tests d'accordéons</h3>
                 <div class="accordion js-accordion">

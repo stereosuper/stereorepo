@@ -12,7 +12,36 @@
 }
 
 .burger {
-    width: 30px;
+    width: 25px;
     height: 30px;
-    background: red;
+    border: 0;
+    position: relative;
+    > span {
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 3px;
+        color: $black;
+        background: currentColor;
+        transform: translate(-50%, -50%);
+        &::before,
+        &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 3px;
+            background: currentColor;
+        }
+        &::before {
+            top: -8px;
+            left: 0;
+        }
+        &::after {
+            left: 0;
+            bottom: -8px;
+        }
+    }
 }

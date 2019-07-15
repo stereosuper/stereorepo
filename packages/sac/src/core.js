@@ -1,8 +1,8 @@
 // NOTE: Functions not calling any other functions.
-export const createNewEvent = () => {
-    let newEvent;
+export const createCrossBrowserEvent = (name) => {
+    let crossBrowserEvent;
     if (typeof window.CustomEvent === 'function') {
-        newEvent = eventName => {
+        crossBrowserEvent = eventName => {
             let e = new Event(eventName);
             if (typeof Event !== 'function') {
                 e = document.createEvent('Event');
@@ -12,20 +12,26 @@ export const createNewEvent = () => {
         };
     } else {
         // ie 11
-        newEvent = (
-            event,
-            { bubbles = false, cancelable = false, detail = false }
-        ) => {
+        crossBrowserEvent = (event, params) => {
+            params = params || {
+                bubbles: false,
+                cancelable: false,
+                detail: undefined,
+            };
             const evt = document.createEvent('CustomEvent');
-            evt.initCustomEvent(event, bubbles, cancelable, detail);
+            evt.initCustomEvent(
+                event,
+                params.bubbles,
+                params.cancelable,
+                params.detail
+            );
             return evt;
         };
 
-        newEvent.prototype = window.Event.prototype;
-        window.CustomEvent = newEvent;
+        crossBrowserEvent.prototype = window.Event.prototype;
+        window.CustomEvent = crossBrowserEvent;
     }
-
-    return newEvent;
+    return crossBrowserEvent(name);
 };
 
 export const forEach = (arr, callback) => {
@@ -125,7 +131,7 @@ export const bodyRouter = ({ identifier, callback }) => {
 
 export default {
     bodyRouter,
-    createNewEvent,
+    createCrossBrowserEvent,
     forEach,
     isDisplayed,
     query,

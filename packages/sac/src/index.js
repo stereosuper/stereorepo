@@ -10,7 +10,7 @@ import snifComponent from './components/Snif';
 import winComponent from './components/Window';
 
 export const { bodyRouter } = core;
-export const { createNewEvent } = core;
+export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
 export const { isDisplayed } = core;
 export const { query } = core;
@@ -32,7 +32,7 @@ export const superWindow = winComponent;
 
 export default {
     bodyRouter,
-    createNewEvent,
+    createCrossBrowserEvent,
     forEach,
     isDisplayed,
     query,
