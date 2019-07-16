@@ -23,7 +23,7 @@ class Snif {
                 window.CSS.supports('mix-blend-mode', 'multiply'),
             isMobileAndroid: /android.*mobile/.test(uA),
             safari: uA.match(/version\/[\d\.]+.*safari/),
-            isChrome: !!window.chrome && !!window.chrome.webstore,
+            isChrome: !!window.chrome && !!window.chrome.webstore
         };
 
         this.snifTests.isAndroid =

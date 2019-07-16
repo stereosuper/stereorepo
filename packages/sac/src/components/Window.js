@@ -57,7 +57,7 @@ class Window {
     // }
     setBreakpointsToDOM() {
         if (!this.breakpoints.horizontal) return;
-        
+
         let currentBreakpoint = '';
         forEach(Object.entries(this.breakpoints.horizontal), breakpoint => {
             const [name, value] = breakpoint;
@@ -76,9 +76,9 @@ class Window {
             );
         }
     }
-    setBreakpoints({horizontal, vertical}){
-        this.breakpoints.horizontal = {...horizontal};
-        this.breakpoints.vertical = {...vertical};
+    setBreakpoints({ horizontal, vertical }) {
+        this.breakpoints.horizontal = { ...horizontal };
+        this.breakpoints.vertical = { ...vertical };
         this.setBreakpointsToDOM();
     }
     resizeHandler() {
@@ -96,9 +96,8 @@ class Window {
     addResizeFunction(resizeFunction) {
         this.resizeFunctions.push(resizeFunction);
     }
-    addResizeEndFunction(resizeEndFunction){
+    addResizeEndFunction(resizeEndFunction) {
         this.resizeEndFunctions.push(resizeEndFunction);
-
     }
     launchWindow() {
         requestAnimFrame(() => {

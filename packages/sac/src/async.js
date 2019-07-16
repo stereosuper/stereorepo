@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 const fetchDataFactory = () => {
     const fetchSomeData = ({
         url,
@@ -7,16 +5,16 @@ const fetchDataFactory = () => {
         fetchParams = {},
         headersContent = {},
         data = {},
-        cb,
+        cb
     }) => {
         const headers = new Headers({
-            ...headersContent,
+            ...headersContent
         });
 
         const params = {
             method,
             ...fetchParams,
-            headers,
+            headers
         };
 
         if (method === 'POST' || method === 'PUT') {
@@ -32,7 +30,7 @@ const fetchDataFactory = () => {
             });
     };
     return Object.freeze({
-        fetch: fetchSomeData,
+        fetch: fetchSomeData
     });
 };
 

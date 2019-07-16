@@ -4,8 +4,7 @@ class Fallback {
     constructor() {
         this.state = {
             fallbacksInitiated: false,
-            windowApiTestsInitiated: false,
-            polyfillsInitiated: false,
+            webAudioApiInitiated: false
         };
 
         this.html = document.documentElement;
@@ -30,7 +29,7 @@ class Fallback {
 
             if (snif.isIe11()) this.html.classList.add('is-ie');
 
-            // IE11 polyfills
+            // IE11 fallbacks
             if (!Element.prototype.matches) {
                 Element.prototype.matches =
                     Element.prototype.msMatchesSelector ||
@@ -64,23 +63,12 @@ class Fallback {
             this.state.fallbacksInitiated = true;
         }
     }
-    initializePolyfills() {
-        if (!this.state.polyfillsInitiated) {
-            if (!window.IntersectionObserver) {
-                require('intersection-observer');
-            }
-            this.state.polyfillsInitiated = true;
-        }
-    }
-    initializeWindowApiTests() {
-        if (!this.state.windowApiTestsInitiated) {
+    initializeWebAudioApi() {
+        if (!this.state.webAudioApiInitiated) {
             window.AudioContext =
                 window.AudioContext || window.webkitAudioContext;
 
-            this.$store.commit('window/testAudioContext', {
-                hasAudioContext: !!window.AudioContext,
-            });
-            this.state.windowApiTestsInitiated = true;
+            this.state.webAudioApiInitiated = true;
         }
     }
 }
