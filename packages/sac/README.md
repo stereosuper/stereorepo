@@ -6,8 +6,6 @@ Create a small package that bring together all of our best dark magic art ! 🔮
 
 **_Sac à choses_** is born !
 
-\*Since, well, the beginning of time 😂
-
 ## Installation
 
 ```sh
@@ -36,3 +34,6 @@ If you wanna know more about the different functions inside this marvelous packa
 <br>and...
 
 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src)... [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) and also [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👌
+
+
+\*Since, well, the beginning of time 😂
