@@ -32,7 +32,7 @@ import { query, superWindow } from '@stereosuper/sac';
 ```
 
 If you wanna know more about the different functions inside this marvelous package you can click...
-<br> 👉 here 👈
+<br> 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈
 <br>and...
 
-here... here and also here 👌
+[here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src)... [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) and also [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👌
