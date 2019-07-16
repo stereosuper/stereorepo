@@ -15,3 +15,24 @@ npm i -S @stereorepo/sac
 ```
 
 ## Usage
+
+Sac is composed of two major type of things :
+
+-   Useful functions
+-   Components used in every projects
+
+Thus you can import the package in two different ways :
+
+```js
+// Using the default import you'll get only the cute useful functions like: query, camelize, supportsWebp, forEach, etc
+import sac from '@stereosuper/sac';
+
+// or you can deconstruct sac to get our superComponents
+import { query, superWindow } from '@stereosuper/sac';
+```
+
+If you wanna know more about the different functions inside this marvelous package you can click...
+<br> 👉 here 👈
+<br>and...
+
+here... here and also here 👌
