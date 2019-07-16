@@ -1,5 +1,5 @@
 // NOTE: Functions not calling any other functions.
-export const createCrossBrowserEvent = (name) => {
+export const createCrossBrowserEvent = name => {
     let crossBrowserEvent;
     if (typeof window.CustomEvent === 'function') {
         crossBrowserEvent = eventName => {
@@ -16,7 +16,7 @@ export const createCrossBrowserEvent = (name) => {
             params = params || {
                 bubbles: false,
                 cancelable: false,
-                detail: undefined,
+                detail: undefined
             };
             const evt = document.createEvent('CustomEvent');
             evt.initCustomEvent(
@@ -137,5 +137,5 @@ export default {
     query,
     requestAnimFrame,
     supportsWebp,
-    throttle,
+    throttle
 };

@@ -4,5 +4,5 @@ export const roundNumbers = (number, decimalNumber) => {
 };
 
 export default {
-    roundNumbers,
+    roundNumbers
 };

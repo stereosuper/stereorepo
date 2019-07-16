@@ -17,7 +17,7 @@ const config = (env, options) => {
             chunkFilename: '[name].js'
         },
         devServer: {
-            contentBase: path.join(__dirname, 'src'),
+            contentBase: path.join(__dirname),
             watchContentBase: true,
             hot: true,
             host: process.env.HOST || '0.0.0.0',
