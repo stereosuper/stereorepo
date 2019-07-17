@@ -40,6 +40,8 @@ class Accordion {
             selector: this.contentSelector,
             ctx: this.clickedSelector.parentElement
         });
+
+        if (!contentWrapper || !content) return;
         const maxHeight = content.getBoundingClientRect().height;
 
         forEach(this.accordions, resetParent => {
