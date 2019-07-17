@@ -1,4 +1,4 @@
-# <center>🔮 Sac 🔮</center>
+# 🔮 Sac 🔮
 
 [Alban 🔥] Ever since _jQuery died in hour hearts\*_ we had an idea.
 
@@ -30,10 +30,8 @@ import { query, superWindow } from '@stereosuper/sac';
 ```
 
 If you wanna know more about the different functions inside this marvelous package you can click...
-<br> 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈
-<br>and...
+<br> 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈 and...
 
 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src)... [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) and also [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👌
-
 
 \*Since, well, the beginning of time 😂

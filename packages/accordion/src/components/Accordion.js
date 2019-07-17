@@ -1,6 +1,9 @@
 import { forEach, query } from '@stereorepo/sac';
-import 'gsap/ScrollToPlugin';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { TweenMax, Power1 } from 'gsap';
+
+// NOTE: We need to use ScrollToPlugin in order to ensure that the plugin won't be tree-shaked
+const ensureScrollTo = ScrollToPlugin;
 
 class Accordion {
     constructor({
