@@ -4,7 +4,7 @@
     $i: 1;
     @each $property, $object in $list {
         $has-timing-function: false;
-        // @if type_of($object) == 'list' {
+
         $transition: $transition + ' ' + $property;
         @each $objectValues in $object {
             @if str-index($objectValues, 'ease') or
