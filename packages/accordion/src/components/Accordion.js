@@ -14,7 +14,8 @@ class Accordion {
         contentWrapperSelector = '.js-content-element',
         offsetY = 0,
         ease = Power1.easeInOut,
-        scrollDelay = 300
+        scrollDelay = 300,
+        noScroll = false
     }) {
         this.accordions = [];
 
@@ -26,6 +27,7 @@ class Accordion {
         this.offsetY = offsetY;
         this.ease = ease;
         this.scrollDelay = scrollDelay;
+        this.noScroll = noScroll;
     }
     clickHandler(clickedElement) {
         const clickedElementParent = clickedElement.parentElement;
@@ -80,17 +82,19 @@ class Accordion {
         });
         clickedElementParent.classList.add('activated');
 
-        setTimeout(() => {
-            const offset =
-                clickedElement.getBoundingClientRect().top + window.scrollY;
-            TweenMax.to(window, 0.5, {
-                scrollTo: {
-                    y: offset,
-                    offsetY: this.offsetY
-                },
-                ease: this.ease
-            });
-        }, this.scrollDelay);
+        if (this.noScroll) {
+            setTimeout(() => {
+                const offset =
+                    clickedElement.getBoundingClientRect().top + window.scrollY;
+                TweenMax.to(window, 0.5, {
+                    scrollTo: {
+                        y: offset,
+                        offsetY: this.offsetY
+                    },
+                    ease: this.ease
+                });
+            }, this.scrollDelay);
+        }
     }
     initializeAccordions() {
         this.accordions = query({
