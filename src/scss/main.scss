@@ -2,10 +2,11 @@
 
 @import 'abstracts/variables';
 
-@import 'abstracts/functions';
+@import 'abstracts/functions', 'abstracts/animations';
 
 @import 'base/reset', 'base/fonts', 'base/base';
 
 @import 'abstracts/placeholders';
 
-@import 'components/accordion', 'components/burger';
+@import 'components/accordion', 'components/burger',
+    'components/tests-transitions';

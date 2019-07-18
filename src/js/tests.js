@@ -78,6 +78,28 @@ const testQuery = () => {
     nestedSelector.innerText = '✅ nested selector';
 };
 
+const testScssTransition = () => {
+    const [sectionScssTransition] = query({ selector: '#scss-transition' });
+    const [element] = query({
+        selector: '.js-element',
+        ctx: sectionScssTransition
+    });
+    const [toggleButton] = query({
+        selector: '.js-toggle-transition',
+        ctx: sectionScssTransition
+    });
+
+    if (!element || !toggleButton) return;
+
+    toggleButton.addEventListener(
+        'click',
+        () => {
+            element.classList.toggle('activated');
+        },
+        false
+    );
+};
+
 // Sac inner components tests
 const testSuperWindow = () => {
     superWindow.setBreakpoints({
@@ -125,6 +147,9 @@ export const launchFuckingTests = () => {
     testCreateNewEvent();
     testForEach();
     testQuery();
+
+    // sac scss
+    testScssTransition();
 
     // sac inner components
     testSuperWindow();

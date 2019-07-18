@@ -1,0 +1,28 @@
+#scss-transition {
+    > span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        transition: transition(
+            (
+                transform: (
+                    '0.3s',
+                    '0.5s',
+                    ease-out
+                ),
+                opacity: '1s'
+            ),
+            ease-in
+        );
+        &.activated {
+            transform: translate3d(50vw, 0, 0);
+            opacity: 0.5;
+        }
+    }
+    > button {
+        margin-top: $line-height;
+    }
+}
