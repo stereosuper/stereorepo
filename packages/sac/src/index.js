@@ -2,7 +2,10 @@ import core from './core';
 import parsing from './parsing';
 import math from './math';
 
-// Components imports
+// Components classes imports
+import ErrorComponent from './components/Error';
+
+// Components instances imports
 import fallbackComponent from './components/Fallback';
 import loadHandlerComponent from './components/LoadHandler';
 import polyfillComponent from './components/Polyfill';
@@ -24,7 +27,10 @@ export const { reverseString } = parsing;
 
 export const { roundNumbers } = math;
 
-// Components exports
+// Components classes exports
+export const SuperError = ErrorComponent;
+
+// Components instances exports
 export const superFallback = fallbackComponent;
 export const superLoad = loadHandlerComponent;
 export const superPolyfill = polyfillComponent;

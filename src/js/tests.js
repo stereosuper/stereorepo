@@ -2,7 +2,8 @@ import {
     createCrossBrowserEvent,
     query,
     forEach,
-    superWindow
+    superWindow,
+    SuperError
 } from '@stereorepo/sac';
 import { Accordion } from '@stereorepo/accordion';
 import { Burger } from '@stereorepo/burger';

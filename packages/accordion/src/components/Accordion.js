@@ -1,4 +1,5 @@
 import { forEach, query } from '@stereorepo/sac';
+import AccordionError from './Error';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { TweenMax, Power1 } from 'gsap';
 
@@ -86,7 +87,9 @@ class Accordion {
             selector: this.containerSelector
         });
 
-        if (!this.accordions.length) return;
+        if (!this.accordions.length) {
+            throw new AccordionError('test');
+        }
 
         forEach(this.accordions, accordion => {
             const [clickedElement] = query({
@@ -94,13 +97,15 @@ class Accordion {
                 ctx: accordion
             });
 
-            clickedElement.addEventListener(
-                'click',
-                () => {
-                    this.clickHandler(clickedElement);
-                },
-                false
-            );
+            if (clickedElement) {
+                clickedElement.addEventListener(
+                    'click',
+                    () => {
+                        this.clickHandler(clickedElement);
+                    },
+                    false
+                );
+            }
         });
     }
 }
