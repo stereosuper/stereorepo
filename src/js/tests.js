@@ -99,7 +99,7 @@ const testSuperWindow = () => {
 // Components tests
 const testAccordion = () => {
     const accordion = new Accordion({
-        containerSelector: '.js-accgfhjklordion',
+        containerSelector: '.js-accordion',
         clickedSelector: '.js-click-element',
         contentWrapperSelector: '.js-content-wrapper',
         contentSelector: '.js-content',
