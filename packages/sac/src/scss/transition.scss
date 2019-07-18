@@ -2,20 +2,21 @@
 @function transition($list, $timing-function) {
     $transition: '';
     $i: 1;
-    @each $property, $value in $list {
-        @if type_of($value) == 'list' {
-            $transition: $transition + ' ' + $property;
-            @each $subValue in $value {
-                $transition: $transition + ' ' + $subValue;
+    @each $property, $object in $list {
+        $has-timing-function: false;
+        // @if type_of($object) == 'list' {
+        $transition: $transition + ' ' + $property;
+        @each $objectValues in $object {
+            @if str-index($objectValues, 'ease') or
+                str-index($objectValues, 'linear')
+            {
+                $has-timing-function: true;
             }
-        } @else {
-            $transition: $transition +
-                ' ' +
-                $property +
-                ' ' +
-                $value +
-                ' ' +
-                $timing-function;
+            $transition: $transition + ' ' + $objectValues;
+        }
+
+        @if not $has-timing-function {
+            $transition: $transition + ' ' + $timing-function;
         }
 
         @if ($i != length($list)) {
