@@ -28,9 +28,8 @@ class Accordion {
         this.scrollDelay = scrollDelay;
     }
     clickHandler(clickedElement) {
-        if (!clickedElement) return;
         const clickedElementParent = clickedElement.parentElement;
-        const contentWrapper = query({
+        const [contentWrapper] = query({
             selector: this.contentWrapperSelector,
             ctx: clickedElementParent
         });
@@ -42,7 +41,18 @@ class Accordion {
             ctx: this.clickedSelector.parentElement
         });
 
-        if (!contentWrapper || !content) return;
+        if (!contentWrapper) {
+            throw new AccordionError(
+                'No accordion content wrapper found, try changing the contentWrapperSelector value in the Accordion declaration'
+            );
+        }
+
+        if (!content) {
+            throw new AccordionError(
+                'No accordion content found, try changing the contentSelector value in the Accordion declaration'
+            );
+        }
+
         const maxHeight = content.getBoundingClientRect().height;
 
         forEach(this.accordions, resetParent => {
@@ -88,7 +98,9 @@ class Accordion {
         });
 
         if (!this.accordions.length) {
-            throw new AccordionError('test');
+            throw new AccordionError(
+                'No accordion found, try changing the containerSelector value in the Accordion declaration'
+            );
         }
 
         forEach(this.accordions, accordion => {
@@ -104,6 +116,10 @@ class Accordion {
                         this.clickHandler(clickedElement);
                     },
                     false
+                );
+            } else {
+                throw new AccordionError(
+                    'No element to click on found, try changing the clickedSelector value in the Accordion declaration'
                 );
             }
         });
