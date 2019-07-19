@@ -4,6 +4,7 @@
 48 error  ! [remote rejected] master -> master (failure)
 48 error  ! [remote rejected] v1.3.10 -> v1.3.10 (failure)
 48 error  ! [remote rejected] v1.3.11 -> v1.3.11 (failure)
+48 error  ! [remote rejected] v1.4.0 -> v1.4.0 (failure)
 48 error error: impossible de pousser des références vers 'https://Alphability@github.com/stereosuper/stereorepo.git'
 48 error
 48 error     at makeError (/Users/albanmezino/Documents/www/stereosuper/stereorepo/node_modules/execa/index.js:174:9)
