@@ -62,6 +62,11 @@ class Accordion {
             ctx: clickedElementParent.parentElement
         });
 
+        if (contentWrapper.style.maxHeight === 'none') {
+            TweenMax.set(contentWrapper, { clearProps: 'maxHeight' });
+            TweenMax.set(contentWrapper, { maxHeight: maxHeight });
+        }
+
         forEach(sameLevelAccordions, resetParent => {
             resetParent.classList.remove('activated');
 
@@ -84,7 +89,10 @@ class Accordion {
         TweenMax.to(contentWrapper, 0.3, {
             maxHeight,
             opacity: 1,
-            ease: this.ease
+            ease: this.ease,
+            onComplete: () => {
+                TweenMax.set(contentWrapper, { maxHeight: 'none' });
+            }
         });
         clickedElementParent.classList.add('activated');
 
