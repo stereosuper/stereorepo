@@ -64,7 +64,6 @@ class Accordion {
 
         forEach(sameLevelAccordions, resetParent => {
             resetParent.classList.remove('activated');
-
             TweenMax.to(
                 query({
                     selector: this.contentWrapperSelector,
