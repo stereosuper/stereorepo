@@ -57,7 +57,12 @@ class Accordion {
 
         const maxHeight = content.getBoundingClientRect().height;
 
-        forEach(this.accordions, resetParent => {
+        const sameLevelAccordions = query({
+            selector: '.js-accordion',
+            ctx: clickedElementParent.parentElement
+        });
+
+        forEach(sameLevelAccordions, resetParent => {
             resetParent.classList.remove('activated');
             TweenMax.to(
                 query({
