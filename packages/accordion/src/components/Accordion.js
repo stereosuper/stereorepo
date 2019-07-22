@@ -96,7 +96,7 @@ class Accordion {
         });
         clickedElementParent.classList.add('activated');
 
-        if (this.noScroll) {
+        if (!this.noScroll) {
             setTimeout(() => {
                 const offset =
                     clickedElement.getBoundingClientRect().top + window.scrollY;
