@@ -17,6 +17,7 @@ export const { bodyRouter } = core;
 export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
 export const { isDisplayed } = core;
+export const { nodeIndex } = core;
 export const { query } = core;
 export const { requestAnimFrame } = core;
 export const { supportsWebp } = core;
@@ -44,6 +45,7 @@ export default {
     createCrossBrowserEvent,
     forEach,
     isDisplayed,
+    nodeIndex,
     query,
     requestAnimFrame,
     reverseString,

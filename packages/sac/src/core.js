@@ -49,6 +49,8 @@ export const forEach = (arr, callback) => {
 export const isDisplayed = element =>
     getComputedStyle(element).display !== 'none';
 
+export const nodeIndex = node => [...node.parentNode.children].indexOf(node);
+
 export const query = ({ selector, ctx }) => {
     const classes = selector.substr(1).replace(/\./g, ' ');
 
@@ -134,6 +136,7 @@ export default {
     createCrossBrowserEvent,
     forEach,
     isDisplayed,
+    nodeIndex,
     query,
     requestAnimFrame,
     supportsWebp,
