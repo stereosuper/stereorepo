@@ -15,7 +15,8 @@ class Accordion {
         offsetY = 0,
         ease = Power1.easeInOut,
         scrollDelay = 300,
-        noScroll = false
+        noScroll = false,
+        silent = false
     }) {
         this.accordions = [];
 
@@ -28,6 +29,8 @@ class Accordion {
         this.ease = ease;
         this.scrollDelay = scrollDelay;
         this.noScroll = noScroll;
+
+        this.silent = silent;
     }
     clickHandler(clickedElement) {
         const clickedElementParent = clickedElement.parentElement;
@@ -43,13 +46,13 @@ class Accordion {
             ctx: this.clickedSelector.parentElement
         });
 
-        if (!contentWrapper) {
+        if (!contentWrapper && !this.silent) {
             throw new AccordionError(
                 'No accordion content wrapper found, try changing the contentWrapperSelector value in the Accordion declaration'
             );
         }
 
-        if (!content) {
+        if (!content && !this.silent) {
             throw new AccordionError(
                 'No accordion content found, try changing the contentSelector value in the Accordion declaration'
             );
@@ -115,7 +118,7 @@ class Accordion {
             selector: this.containerSelector
         });
 
-        if (!this.accordions.length) {
+        if (!this.accordions.length && !this.silent) {
             throw new AccordionError(
                 'No accordion found, try changing the containerSelector value in the Accordion declaration'
             );
@@ -135,7 +138,7 @@ class Accordion {
                     },
                     false
                 );
-            } else {
+            } else if (!this.silent) {
                 throw new AccordionError(
                     'No element to click on found, try changing the clickedSelector value in the Accordion declaration'
                 );
