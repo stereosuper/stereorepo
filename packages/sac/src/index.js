@@ -14,7 +14,7 @@ import scrollComponent from './components/Scroll';
 import snifComponent from './components/Snif';
 import windowComponent from './components/Window';
 
-export const { fetchData } = core;
+export const { fetchData } = async;
 
 export const { bodyRouter } = core;
 export const { createCrossBrowserEvent } = core;
