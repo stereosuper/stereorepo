@@ -34,6 +34,6 @@ const fetchDataFactory = () => {
     });
 };
 
-const fetchData = fetchDataFactory();
+export const fetchData = fetchDataFactory();
 
 export default fetchData;
