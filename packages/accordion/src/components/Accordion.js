@@ -61,7 +61,7 @@ class Accordion {
         const maxHeight = content.getBoundingClientRect().height;
 
         const sameLevelAccordions = query({
-            selector: '.js-accordion',
+            selector: this.containerSelector,
             ctx: clickedElementParent.parentElement
         });
 
