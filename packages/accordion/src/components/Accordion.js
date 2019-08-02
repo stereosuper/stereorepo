@@ -19,6 +19,7 @@ class Accordion {
         silent = false
     }) {
         this.accordions = [];
+        this.clickedElementsList = [];
 
         this.containerSelector = containerSelector;
         this.clickedSelector = clickedSelector;
@@ -131,19 +132,34 @@ class Accordion {
             });
 
             if (clickedElement) {
+                const clickHandlerBuffer = () => {
+                    this.clickHandler(clickedElement);
+                };
                 clickedElement.addEventListener(
                     'click',
-                    () => {
-                        this.clickHandler(clickedElement);
-                    },
+                    clickHandlerBuffer,
                     false
                 );
+                this.clickedElementsList = [
+                    ...this.clickedElementsList,
+                    { clickedElement, clickHandlerBuffer }
+                ];
             } else if (!this.silent) {
                 throw new AccordionError(
                     'No element to click on found, try changing the clickedSelector value in the Accordion declaration'
                 );
             }
         });
+    }
+    destroyAccordions() {
+        forEach(
+            this.clickedElementsList,
+            ({ clickedElement, clickHandlerBuffer }) => {
+                clickedElement.removeEventListener('click', clickHandlerBuffer);
+            }
+        );
+
+        this.accordions = [];
     }
 }
 
