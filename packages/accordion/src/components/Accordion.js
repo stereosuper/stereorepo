@@ -155,7 +155,16 @@ class Accordion {
         forEach(
             this.clickedElementsList,
             ({ clickedElement, clickHandlerBuffer }) => {
+                const clickedElementParent = clickedElement.parentElement;
+                const [contentWrapper] = query({
+                    selector: this.contentWrapperSelector,
+                    ctx: clickedElementParent
+                });
+
+                clickedElementParent.classList.remove('activated');
+
                 clickedElement.removeEventListener('click', clickHandlerBuffer);
+                TweenMax.set(contentWrapper, { clearProps: 'all' });
             }
         );
 
