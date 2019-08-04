@@ -37,9 +37,9 @@ We need a _content container_ to **know the height of our actual content**.
 
 ```html
 <!-- ... -->
-<div class="js-accordion">
+<div class="my-accordion js-accordion">
     <p class="js-accordion-title">My title</p>
-    <div class="js-accordion-content-wrapper">
+    <div class="ph-content-wrapper js-accordion-content-wrapper">
         <div class="js-accordion-content">
             <!-- Inside put your content -->
         </div>
@@ -72,7 +72,7 @@ const accordions = new Accordion({
 accordions.initializeAccordions();
 ```
 
-### The properties
+### initializeAccordions
 
 _containerSelector_, _clickedSelector_, _contentWrapperSelector_, and _contentSelector_ are the four main elements composing our accordion (see 👆 there).
 
@@ -91,3 +91,16 @@ You can deactivate the scroll with you want... much less **SWAG**, but still coo
 #### silent
 
 You can deactivate the console's errors if you want (for example if you don't use [_bodyRouter_](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src))
+
+### The scss placeholder
+
+To easily add the css properties you need for the accordions to work you can use the `%stereorepo-accordion` scss placeholder.
+
+```scss
+@import '~@stereorepo/accordion/src/accordion';
+
+// It will search for the any .ph-content-wrapper class inside your accordion and add to this element only the properties needed
+.my-accordion {
+    @extend %stereorepo-accordion;
+}
+```
