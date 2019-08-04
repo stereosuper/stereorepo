@@ -4,7 +4,40 @@
 
 If you wanna learn more about how to import these components it's all in [there](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 😉.
 
-## superLoad
+## ✨ superError
+
+SuperError is not auto-instanciated. This class will help you to build cool custom errors.
+
+For instance this components helps us to build the errors for all the @stereorepo 👌
+
+To use it you'll have to import it the extend your class with it 🔥
+
+Example:
+
+```js
+import { SuperError } from '@stereorepo/sac';
+
+class MyNewErrorClass extends SuperError {
+    constructor(message) {
+        super(message);
+        this.name = '@stereorepo/my-new-package';
+    }
+}
+```
+
+## ✨ superFallback
+
+superFallback contains a global method which concerns all the browsers fallbacks (hope IE will die one day 👌). This method is _initializeFallbacks_. All the other methods are more specific ones.
+
+### initializeFallbacks
+
+This will add classes on the body according to the browser you're using. It will also fix some method for you like _Object.entries_.
+
+### initializeWebAudioApi
+
+If you need to use the web audio API, this method will help you to make it compatible with your browser.
+
+## ✨ superLoad
 
 Here's our loadHandler. With it you'll be able to prioritize the different functions calls that you are doing in your project.
 
@@ -51,3 +84,36 @@ superLoad.initializeLoadingShit({
         '.here-you-can-give-your-custom-element-without-transition-on-resize-class'
 });
 ```
+
+## ✨ superPolyfill
+
+This component is used to require all the polyfills that we use frequently.
+
+### initializeIntersectionObserver
+
+This will add the intersection observer polyfill 👌
+
+### initializeWhatwgFetch
+
+This will add the fetch polyfill 👌
+
+## ✨ superScroll
+
+## ✨ superSnif
+
+This component constructor will initialize _this.snifTests_ with all the tests to detect your browser. Then all the other methods will allow you to test things about your browser.
+
+### The methods list
+
+-   isIOS
+-   isAndroid
+-   isChrome
+-   isMobile
+-   isChromeAndroid
+-   isSafari
+-   isFF
+-   isMS
+-   mixBlendModeSupport
+-   isIe11
+
+## ✨ superWindow
