@@ -94,7 +94,7 @@ export async function supportsWebp() {
     return createImageBitmap(blob).then(() => true, () => false);
 }
 
-export const throttle = (callback, delay) => {
+export const throttle = ({ callback, delay }) => {
     let last;
     let timer;
 

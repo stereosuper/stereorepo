@@ -28,7 +28,7 @@ import { query, superWindow } from '@stereosuper/sac';
 
 ### Functions
 
-**createCrossBrowserEvent()**
+**createCrossBrowserEvent**
 
 This function will help you to make cross browser events (I hope internet explorer will die one day...).
 
@@ -48,7 +48,7 @@ document.addEventListener(
 document.dispatchEvent(newEvent);
 ```
 
-**forEach()**
+**forEach**
 
 A cool while loop running under the hood to increase the native forEach's performances.
 
@@ -63,8 +63,157 @@ forEach(emojisArray, (item, index) => {
 });
 ```
 
+**isDisplayed**
+
+_isDisplayed_ will allow you to test if your html element is in _display: none_ mode.
+
+Example:
+
+```js
+const testingDisplay = isDisplayed(myElement);
+
+if (testingDisplay) {
+    // My element is displayed 💪
+}
+```
+
+**nodeIndex**
+
+With this function you'll be able to know the index of your html element position amongst his siblings.
+
+Example:
+
+```js
+const index = nodeIndex(myElement);
+```
+
+**query**
+
+_query_ will allow you to get any html element you want with performances you can only dream of !
+_getElementById_, _getElementsByClassName_, _getElementsByTagName_, _querySelectorAll_... you don't need to choose anymore, it'll do it for you 😏
+
+Example:
+
+```js
+const [byId] = query({ selector: '#my-id' });
+const [byClass] = query({ selector: '.my-class' });
+const [myNestedElement] = query({
+    selector: '.the-ancestor .my-nested-element'
+});
+const allTheClasses = query({
+    selector: '.my-classes'
+});
+const withContext = query({ selector: '.my-class', ctx: myContextualElement });
+```
+
+**requestAnimFrame**
+
+A requestAnimationFrame method for every browsers... yes that exists.
+
+Example:
+
+```js
+const animationFrameId = requestAnimFrame(() => {});
+
+// The better, you can cancel it 😱
+cancelAnimationFrame(animationFrameId);
+```
+
+**supportsWebp**
+
+To handle webp support correctly... test it in a simple way.
+
+Example:
+
+```js
+// In your async function:
+const isWebpSupported = await supportsWebp();
+
+if (isWebpSupported) {
+    // YEAH WEBP IS COMING IN BABY ! 🔥
+} else {
+    // OKAY LET'S USE IMAGES THE OLD FASHION WAY
+}
+```
+
+**throttle**
+
+_throttle_ has been redisigned.
+
+Example:
+
+```js
+throttle({
+    callback: () => {
+        // Do whatever you want to
+    },
+    delay: 100
+});
+```
+
+**bodyRouter**
+
+_bodyRouter_ will allow you to execute whatever javascript piece of code... on the specific page you want, not the others. One more thing, it uses _query_ under the hood 😏
+
+Example:
+
+```js
+bodyRouter({
+    identifier: '.page-template-contact',
+    callback: () => {
+        // Dynamically load your imports for example 💪
+    }
+});
+```
+
 ## Async
+
+### Functions
+
+Nothing except a possibly cool fetch function for now.
 
 ## Math
 
+### Functions
+
+**roundNumbers**
+
+Rounding numbers could be a bit boring sometimes. Now rounding numbers became pretty easy.
+
+Example:
+
+```js
+const myNumber = roundNumbers({ number: 10.123456789, decimalOffset: 2 });
+
+// myNumber = 10.12 now
+```
+
 ## Parsing
+
+### Functions
+
+**camalize**
+
+Just read the title.
+
+Example:
+
+```js
+const mySlug = 'test-slug';
+
+const camalizedSlug = camalize(mySlug);
+// camalizedSlug = testSlug now.
+```
+
+**reverseString**
+
+Just read the title.
+
+Example:
+
+```js
+const myString = 'emosewa';
+
+const reversedString = reverseString(myString);
+// myString = awesome now.
+```

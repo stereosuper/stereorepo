@@ -29,9 +29,11 @@ import sac from '@stereosuper/sac';
 import { query, superWindow } from '@stereosuper/sac';
 ```
 
-If you wanna know more about the different functions inside this marvelous package you can click...
+If you wanna know more about the different **functions** inside this marvelous package you can click...
 <br> 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈 and...
 
 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src)... [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) and also [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👌
+
+[Click here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components) for the **components**.
 
 \*Since, well, the beginning of time 😂
