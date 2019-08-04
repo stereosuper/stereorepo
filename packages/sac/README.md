@@ -1,6 +1,6 @@
 # 🔮 Sac 🔮
 
-[Alban 🔥] Ever since _jQuery died in hour hearts\*_ we had an idea.
+[Alban 🔥] Ever since **jQuery died in hour hearts** we had an idea.
 
 Create a small package that bring together all of our best dark magic art ! 🔮
 
