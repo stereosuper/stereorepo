@@ -7,8 +7,8 @@ class Window {
             horizontal: null,
             vertical: null
         };
-        this.w = null;
-        this.h = null;
+        this.windowWidth = null;
+        this.windowHeight = null;
         this.rtime = null;
         this.timeoutWindow = false;
         this.delta = 500;
@@ -59,7 +59,7 @@ class Window {
         let currentBreakpoint = '';
         forEach(Object.entries(this.breakpoints.horizontal), breakpoint => {
             const [name, value] = breakpoint;
-            if (this.w > value) {
+            if (this.windowWidth > value) {
                 currentBreakpoint = name;
             }
         });
@@ -80,8 +80,8 @@ class Window {
         this.setBreakpointsToDOM();
     }
     resizeHandler() {
-        this.w = window.innerWidth;
-        this.h = window.innerHeight;
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
 
         forEach(this.resizeFunctions, f => {
             if (f) {
