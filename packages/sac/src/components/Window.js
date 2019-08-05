@@ -1,5 +1,4 @@
 import { requestAnimFrame, forEach } from '../core';
-// import io from './Io';
 
 class Window {
     constructor() {
@@ -32,7 +31,9 @@ class Window {
                 return el;
             });
             forEach(this.resizeEndFunctions, f => {
-                f();
+                if (f) {
+                    f();
+                }
             });
         }
     }
@@ -52,9 +53,6 @@ class Window {
             }, this.delta);
         }
     }
-    // ioResize() {
-    //     if (!this.io.resized) this.io.resized = true;
-    // }
     setBreakpointsToDOM() {
         if (!this.breakpoints.horizontal) return;
 
@@ -86,7 +84,9 @@ class Window {
         this.h = window.innerHeight;
 
         forEach(this.resizeFunctions, f => {
-            f();
+            if (f) {
+                f();
+            }
         });
 
         this.setBreakpointsToDOM();
@@ -102,10 +102,10 @@ class Window {
         return this.resizeEndFunctions.length - 1;
     }
     removeResizeFunction(id) {
-        this.resizeFunctions.splice(id, 1);
+        this.resizeFunctions[id] = null;
     }
     removeResizeEndFunction(id) {
-        this.resizeEndFunctions.splice(id, 1);
+        this.resizeEndFunctions[id] = null;
     }
     launchWindow() {
         requestAnimFrame(() => {

@@ -22,8 +22,10 @@ class Scroll {
             this.onScrollEnd();
         }, 66);
 
-        this.scrollFunctions.forEach(scrollfunction => {
-            scrollfunction();
+        this.scrollFunctions.forEach(scrollFunction => {
+            if (scrollFunction) {
+                scrollFunction();
+            }
         });
     }
     launchScroll(event) {
@@ -55,7 +57,9 @@ class Scroll {
     onScrollEnd() {
         this.scrollEnd = true;
         this.endFunctions.forEach(f => {
-            f();
+            if (f) {
+                f();
+            }
         });
     }
     addScrollFunction(scrollFunction, onEnd = false) {
@@ -70,10 +74,10 @@ class Scroll {
         return this.endFunctions.length - 1;
     }
     removeScrollFunction(id) {
-        this.scrollFunctions.splice(id, 1);
+        this.scrollFunctions[id] = null;
     }
     removeEndFunction(id) {
-        this.endFunctions.splice(id, 1);
+        this.endFunctions[id] = null;
     }
 }
 
