@@ -1,6 +1,6 @@
 {
     "name": "@stereorepo/burger",
-    "version": "1.4.10",
+    "version": "1.4.13",
     "description": "",
     "main": "src/index.js",
     "publishConfig": {
@@ -23,6 +23,6 @@
     "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
     "license": "ISC",
     "dependencies": {
-        "@stereorepo/sac": "^1.4.10"
+        "@stereorepo/sac": "^1.4.13"
     }
 }
