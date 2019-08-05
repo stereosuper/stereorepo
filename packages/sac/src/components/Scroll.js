@@ -60,10 +60,20 @@ class Scroll {
     }
     addScrollFunction(scrollFunction, onEnd = false) {
         this.scrollFunctions.push(scrollFunction);
-        if (onEnd) this.endFunctions.push(scrollFunction);
+        if (onEnd) {
+            this.endFunctions.push(scrollFunction);
+        }
+        return this.scrollFunctions.length - 1;
     }
     addEndFunction(endFunction) {
         this.endFunctions.push(endFunction);
+        return this.endFunctions.length - 1;
+    }
+    removeScrollFunction(id) {
+        this.scrollFunctions.splice(id, 1);
+    }
+    removeEndFunction(id) {
+        this.endFunctions.splice(id, 1);
     }
 }
 
