@@ -60,7 +60,7 @@ export const query = ({ selector, ctx }) => {
         switch (selector.charAt(0)) {
             case '#':
                 // Handle ID-based selectors
-                return [context.getElementById(selector.substr(1))];
+                return [document.getElementById(selector.substr(1))];
             case '.':
                 // Handle class-based selectors
                 // Query by multiple classes by converting the selector
