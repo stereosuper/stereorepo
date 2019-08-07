@@ -15,43 +15,12 @@ class Window {
         this.resizeFunctions = [];
         this.resizeEndFunctions = [];
         this.noTransitionElts = [];
-    }
-    setNoTransitionElts(elements) {
-        this.noTransitionElts = elements;
-    }
-    resizeend() {
-        if (new Date() - this.rtime < this.delta) {
-            setTimeout(() => {
-                this.resizeend();
-            }, this.delta);
-        } else {
-            this.timeoutWindow = false;
-            [...this.noTransitionElts].map(el => {
-                el.classList.remove('no-transition');
-                return el;
-            });
-            forEach(this.resizeEndFunctions, f => {
-                if (f) {
-                    f();
-                }
-            });
-        }
-    }
-    noTransition() {
-        [...this.noTransitionElts].map(el => {
-            el.classList.add('no-transition');
-            return el;
-        });
 
-        this.rtime = new Date();
-
-        if (this.timeoutWindow === false) {
-            this.timeoutWindow = true;
-
-            setTimeout(() => {
-                this.resizeend();
-            }, this.delta);
-        }
+        this.launchWindow = this.launchWindow.bind(this);
+    }
+    setWindowSize() {
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
     }
     setBreakpointsToDOM() {
         if (!this.breakpoints.horizontal) return;
@@ -79,9 +48,52 @@ class Window {
         this.breakpoints.vertical = { ...vertical };
         this.setBreakpointsToDOM();
     }
+    setNoTransitionElts(elements) {
+        this.noTransitionElts = elements;
+    }
+    resizeEndBuffer() {
+        if (new Date() - this.rtime < this.delta) {
+            setTimeout(() => {
+                this.resizeEndBuffer();
+            }, this.delta);
+        } else {
+            this.timeoutWindow = false;
+            forEach(this.resizeEndFunctions, f => {
+                if (f) {
+                    f();
+                }
+            });
+            this.noTransitionClassHandler({ hasClass: false });
+        }
+    }
+    resizeEnd() {
+        this.rtime = new Date();
+
+        if (this.timeoutWindow === false) {
+            this.timeoutWindow = true;
+
+            setTimeout(() => {
+                this.resizeEndBuffer();
+            }, this.delta);
+        }
+    }
+    noTransitionClassHandler({ hasClass }) {
+        if (hasClass) {
+            [...this.noTransitionElts].map(el => {
+                el.classList.add('no-transition');
+                return el;
+            });
+        } else {
+            [...this.noTransitionElts].map(el => {
+                el.classList.remove('no-transition');
+                return el;
+            });
+        }
+    }
     resizeHandler() {
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
+        this.noTransitionClassHandler({ hasClass: true });
+        this.setWindowSize();
+        this.setBreakpointsToDOM();
 
         forEach(this.resizeFunctions, f => {
             if (f) {
@@ -89,9 +101,7 @@ class Window {
             }
         });
 
-        this.setBreakpointsToDOM();
-
-        this.noTransition();
+        this.resizeEnd();
     }
     addResizeFunction(resizeFunction) {
         this.resizeFunctions.push(resizeFunction);
@@ -113,23 +123,13 @@ class Window {
         });
     }
     initializeWindow() {
-        this.resizeHandler();
-        window.addEventListener(
-            'resize',
-            () => {
-                this.launchWindow();
-            },
-            false
-        );
+        this.setWindowSize();
+        this.setBreakpointsToDOM();
+
+        window.addEventListener('resize', this.launchWindow, false);
     }
     destroyWindow() {
-        window.removeEventListener(
-            'resize',
-            () => {
-                this.launchWindow();
-            },
-            false
-        );
+        window.removeEventListener('resize', this.launchWindow, false);
     }
 }
 
