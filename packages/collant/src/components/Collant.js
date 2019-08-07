@@ -5,14 +5,14 @@ class Collant {
         ctx = null,
         selector = '.js-collant-selector',
         box = '.js-collant-box',
-        offsetTop = '0px',
-        offsetBottom = '0px'
+        offsetTop = null,
+        offsetBottom = null
     }) {
         this.contextElement = ctx;
         this.collantSelector = selector;
         this.boxSelector = box;
-        this.rawOffset = offsetBottom !== '0px' ? offsetBottom : offsetTop;
-        this.offsetPosition = offsetBottom !== '0px' ? 'bottom' : 'top';
+        this.rawOffset = offsetBottom ? offsetBottom : offsetTop;
+        this.offsetPosition = offsetBottom ? 'bottom' : 'top';
 
         this.state = {
             resizing: false
@@ -81,7 +81,7 @@ class Collant {
         } else if (this.offsetPosition === 'bottom') {
             scrollOffset =
                 superScroll.scrollTop +
-                superWindow.h -
+                superWindow.windowHeight -
                 this.collantBoundings.height -
                 this.offset;
         }
