@@ -119,6 +119,8 @@ class Collant {
 
         this.collantDelimiter = this.getOffsetParents(this.collantElement);
 
+        this.handleOffset();
+
         this.state.resizing = false;
     }
     stickIt() {
