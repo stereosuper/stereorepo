@@ -156,10 +156,10 @@ class Collant {
         );
     }
     ripIt() {
-        this.resetCollantProperties();
         superScroll.removeScrollFunction(this.scrollFunctionId);
         superWindow.removeResizeFunction(this.resizeFunctionId);
         superWindow.removeResizeEndFunction(this.resizeEndFunctionId);
+        this.resetCollantProperties();
 
         this.state = {
             resizing: false
