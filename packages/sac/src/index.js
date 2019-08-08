@@ -14,8 +14,6 @@ import scrollComponent from './components/Scroll';
 import snifComponent from './components/Snif';
 import windowComponent from './components/Window';
 
-export const { fetchData } = async;
-
 export const { bodyRouter } = core;
 export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
@@ -46,7 +44,6 @@ export default {
     bodyRouter,
     camalize,
     createCrossBrowserEvent,
-    fetchData,
     forEach,
     isDisplayed,
     nodeIndex,
