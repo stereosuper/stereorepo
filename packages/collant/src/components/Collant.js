@@ -156,9 +156,22 @@ class Collant {
         );
     }
     ripIt() {
+        this.resetCollantProperties();
         superScroll.removeScrollFunction(this.scrollFunctionId);
         superWindow.removeResizeFunction(this.resizeFunctionId);
         superWindow.removeResizeEndFunction(this.resizeEndFunctionId);
+
+        this.state = {
+            resizing: false
+        };
+
+        this.collantElement = null;
+        this.boxElement = null;
+
+        this.boxBoundings = null;
+        this.collantBoundings = null;
+        this.windowPositions = null;
+        this.offset = 0;
     }
 }
 
