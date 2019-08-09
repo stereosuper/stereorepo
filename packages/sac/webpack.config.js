@@ -23,7 +23,7 @@ const config = (env, options) => {
 
     // Optimization
     let optimization = {
-        minimizer: [new TerserJSPlugin({})]
+        minimizer: []
     };
 
     return {
