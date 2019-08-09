@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = () => {
     // Rules
@@ -15,8 +15,8 @@ const config = () => {
 
     // Plugins
     const plugins = [
-        new CleanWebpackPlugin(),
-        new CopyWebpackPlugin([{ from: 'src/scss/', to: '' }])
+        new CleanWebpackPlugin()
+        // new CopyWebpackPlugin([{ from: path.resolve('src/scss/'), to: '' }])
     ];
 
     // Optimization
