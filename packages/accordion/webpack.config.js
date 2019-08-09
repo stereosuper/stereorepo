@@ -29,7 +29,7 @@ const config = () => {
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'index.js',
-            library: 'Sac',
+            library: 'Accordion',
             libraryTarget: 'umd',
             umdNamedDefine: true
         },

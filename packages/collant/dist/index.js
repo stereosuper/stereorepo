@@ -2,11 +2,106 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("Sac", [], factory);
+		define("Collant", [], factory);
 	else if(typeof exports === 'object')
-		exports["Sac"] = factory();
+		exports["Collant"] = factory();
 	else
-		root["Sac"] = factory();
+		root["Collant"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -2399,6 +2494,245 @@ var superWindow = components_Window;
   roundNumbers: src_roundNumbers,
   supportsWebp: src_supportsWebp,
   throttle: src_throttle
+});
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./node_modules/@stereorepo/sac/dist/index.js
+var dist = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./src/components/Collant.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Collant_Collant =
+/*#__PURE__*/
+function () {
+  function Collant(_ref) {
+    var _ref$ctx = _ref.ctx,
+        ctx = _ref$ctx === void 0 ? null : _ref$ctx,
+        _ref$selector = _ref.selector,
+        selector = _ref$selector === void 0 ? '.js-collant-selector' : _ref$selector,
+        _ref$box = _ref.box,
+        box = _ref$box === void 0 ? '.js-collant-box' : _ref$box,
+        _ref$offsetTop = _ref.offsetTop,
+        offsetTop = _ref$offsetTop === void 0 ? null : _ref$offsetTop,
+        _ref$offsetBottom = _ref.offsetBottom,
+        offsetBottom = _ref$offsetBottom === void 0 ? null : _ref$offsetBottom;
+
+    _classCallCheck(this, Collant);
+
+    this.contextElement = ctx;
+    this.collantSelector = selector;
+    this.boxSelector = box;
+    this.rawOffset = offsetBottom ? offsetBottom : offsetTop;
+    this.offsetPosition = offsetBottom ? 'bottom' : 'top';
+    this.state = {
+      resizing: false
+    };
+    this.collantElement = null;
+    this.boxElement = null;
+    this.boxBoundings = null;
+    this.collantBoundings = null;
+    this.windowPositions = null;
+    this.offset = 0;
+    this.scrollHandler = this.scrollHandler.bind(this);
+    this.resizeHandler = this.resizeHandler.bind(this);
+    this.stickIt = this.stickIt.bind(this);
+  }
+
+  _createClass(Collant, [{
+    key: "computeOffsetPx",
+    value: function computeOffsetPx() {
+      this.offset = parseInt(this.rawOffset.replace('px', ''), 10);
+    }
+  }, {
+    key: "computeOffsetVh",
+    value: function computeOffsetVh() {
+      this.offset = parseInt(this.rawOffset.replace('vh', ''), 10) * dist["superWindow"].windowHeight / 100;
+    }
+  }, {
+    key: "computeOffset",
+    value: function computeOffset() {
+      switch (true) {
+        case /px$/.test(this.rawOffset):
+          this.computeOffsetPx();
+          break;
+
+        case /vh$/.test(this.rawOffset):
+          this.computeOffsetVh();
+          break;
+
+        default:
+          break;
+      }
+    }
+  }, {
+    key: "getOffsetParents",
+    value: function getOffsetParents(element) {
+      var offsetParent = element.offsetParent;
+      var offset = element.offsetTop;
+
+      if (offsetParent) {
+        offset += this.getOffsetParents(offsetParent);
+      }
+
+      return offset;
+    }
+  }, {
+    key: "setBoundings",
+    value: function setBoundings() {
+      this.boxBoundings = this.boxElement.getBoundingClientRect();
+      this.collantBoundings = this.collantElement.getBoundingClientRect();
+    }
+  }, {
+    key: "getWindowPosition",
+    value: function getWindowPosition() {
+      this.windowPositions = {
+        y: window.scrollY
+      };
+    }
+  }, {
+    key: "resetCollantProperties",
+    value: function resetCollantProperties() {
+      this.collantElement.style.removeProperty('top');
+      this.collantElement.style.removeProperty('bottom');
+      this.collantElement.style.removeProperty('position');
+    }
+  }, {
+    key: "handleOffset",
+    value: function handleOffset() {
+      var scrollOffset = 0;
+
+      if (this.offsetPosition === 'top') {
+        scrollOffset = dist["superScroll"].scrollTop + this.offset;
+      } else if (this.offsetPosition === 'bottom') {
+        scrollOffset = dist["superScroll"].scrollTop + dist["superWindow"].windowHeight - this.collantBoundings.height - this.offset;
+      }
+
+      var bottomDelimiter = this.boxBoundings.y + this.boxBoundings.height + this.windowPositions.y - this.collantBoundings.height;
+      this.resetCollantProperties();
+
+      if (scrollOffset > bottomDelimiter) {
+        this.collantElement.style.top = 'auto';
+        this.collantElement.style.bottom = '0px';
+        this.collantElement.style.position = 'absolute';
+      } else if (scrollOffset > this.collantDelimiter) {
+        if (this.offsetPosition === 'top') {
+          this.collantElement.style.top = "".concat(this.offset, "px");
+          this.collantElement.style.bottom = 'auto';
+        } else if (this.offsetPosition === 'bottom') {
+          this.collantElement.style.top = 'auto';
+          this.collantElement.style.bottom = "".concat(this.offset, "px");
+        }
+
+        this.collantElement.style.position = 'fixed';
+      }
+    }
+  }, {
+    key: "scrollHandler",
+    value: function scrollHandler() {
+      if (this.state.resizing) return;
+      this.handleOffset();
+    }
+  }, {
+    key: "resizeHandler",
+    value: function resizeHandler() {
+      this.resetCollantProperties();
+      this.getWindowPosition();
+      this.setBoundings();
+      this.collantDelimiter = this.getOffsetParents(this.collantElement);
+      this.handleOffset();
+      this.state.resizing = false;
+    }
+  }, {
+    key: "stickIt",
+    value: function stickIt() {
+      var _this = this;
+
+      var _query = Object(dist["query"])({
+        selector: this.boxSelector,
+        ctx: this.contextElement
+      });
+
+      var _query2 = _slicedToArray(_query, 1);
+
+      this.boxElement = _query2[0];
+      if (!this.boxElement) return;
+
+      var _query3 = Object(dist["query"])({
+        selector: this.collantSelector,
+        ctx: this.boxElement
+      });
+
+      var _query4 = _slicedToArray(_query3, 1);
+
+      this.collantElement = _query4[0];
+      if (!this.collantElement) return;
+      this.computeOffset();
+      this.getWindowPosition();
+      this.setBoundings();
+      this.collantDelimiter = this.getOffsetParents(this.collantElement);
+      this.scrollHandler();
+      this.scrollFunctionId = dist["superScroll"].addScrollFunction(function () {
+        _this.scrollHandler();
+      });
+      this.resizeFunctionId = dist["superWindow"].addResizeFunction(function () {
+        _this.state.resizing = true;
+      });
+      this.resizeEndFunctionId = dist["superWindow"].addResizeEndFunction(this.resizeHandler);
+    }
+  }, {
+    key: "ripIt",
+    value: function ripIt() {
+      dist["superScroll"].removeScrollFunction(this.scrollFunctionId);
+      dist["superWindow"].removeResizeFunction(this.resizeFunctionId);
+      dist["superWindow"].removeResizeEndFunction(this.resizeEndFunctionId);
+      this.resetCollantProperties();
+      this.state = {
+        resizing: false
+      };
+      this.collantElement = null;
+      this.boxElement = null;
+      this.boxBoundings = null;
+      this.collantBoundings = null;
+      this.windowPositions = null;
+      this.offset = 0;
+    }
+  }]);
+
+  return Collant;
+}();
+
+/* harmony default export */ var components_Collant = (Collant_Collant);
+// CONCATENATED MODULE: ./src/index.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Collant", function() { return src_Collant; });
+
+var src_Collant = components_Collant;
+/* harmony default export */ var src = __webpack_exports__["default"] = ({
+  Collant: src_Collant
 });
 
 /***/ })
