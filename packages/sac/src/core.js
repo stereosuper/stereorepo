@@ -54,6 +54,9 @@ export const nodeIndex = node => [...node.parentNode.children].indexOf(node);
 export const query = ({ selector, ctx }) => {
     const classes = selector.substr(1).replace(/\./g, ' ');
 
+
+    
+
     const context = ctx || document;
     // Redirect simple selectors to the more performant function
     if (/^(#?[\w-]+|\.[\w-.]+)$/.test(selector)) {
