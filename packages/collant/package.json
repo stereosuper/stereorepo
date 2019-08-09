@@ -18,5 +18,8 @@
         "sticky"
     ],
     "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "@stereorepo/sac": "^1.5.10"
+    }
 }

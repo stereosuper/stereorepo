@@ -30,8 +30,10 @@ const config = (env, options) => {
         entry: './src/index.js',
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'index.js'
-            // Public path is important for dynamic imports. It'll help webpack to retrieve bundles by name and not by ids
+            filename: 'index.js',
+            library: 'Highway',
+            libraryTarget: 'umd',
+            umdNamedDefine: true
         },
         devtool: '',
         module: {
