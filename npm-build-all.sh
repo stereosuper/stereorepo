@@ -13,6 +13,7 @@ for f in *; do
         for p in "${packages[@]}"; do
 
             if [ "$f" == $p ]; then
+                npm i;
                 npm run build;
             fi
         done
