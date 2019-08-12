@@ -2,7 +2,7 @@
     "name": "@stereorepo/burger",
     "version": "1.6.2",
     "description": "",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "publishConfig": {
         "access": "public"
     },
