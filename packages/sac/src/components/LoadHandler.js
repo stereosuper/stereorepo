@@ -46,7 +46,8 @@ class LoadHandler {
         preloadCallback = null,
         loadCallback = null,
         animationsCallback = null,
-        noTransElementsClass = '.element-without-transition-on-resize'
+        noTransElementsClass = '.element-without-transition-on-resize',
+        initFallbacks = false
     }) {
         this.callbacks.preloadCallback = preloadCallback;
         this.callbacks.loadCallback = loadCallback;
@@ -59,7 +60,10 @@ class LoadHandler {
         scrollComponent.initializeScroll();
         windowComponent.setNoTransitionElts(noTransElem);
         windowComponent.initializeWindow();
-        fallbackComponent.initializeFallbacks();
+
+        if (initFallbacks) {
+            fallbackComponent.initializeFallbacks();
+        }
 
         this.preload(this.callbacks.preloadCallback);
         this.load(this.callbacks.loadCallback);
