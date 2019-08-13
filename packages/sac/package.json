@@ -1,6 +1,6 @@
 {
     "name": "@stereorepo/sac",
-    "version": "1.6.3",
+    "version": "1.6.4",
     "description": "",
     "main": "dist/index.js",
     "publishConfig": {
