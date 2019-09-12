@@ -1,37 +1,13 @@
 // NOTE: Functions not calling any other functions.
 export const createCrossBrowserEvent = name => {
     let crossBrowserEvent;
-    if (typeof window.CustomEvent === 'function') {
-        crossBrowserEvent = eventName => {
-            let e = new Event(eventName);
-            if (typeof Event !== 'function') {
-                e = document.createEvent('Event');
-                e.initEvent(eventName, true, true);
-            }
-            return e;
-        };
+    if (typeof Event === 'function') {
+        crossBrowserEvent = new Event(name);
     } else {
-        // ie 11
-        crossBrowserEvent = (event, params) => {
-            params = params || {
-                bubbles: false,
-                cancelable: false,
-                detail: undefined
-            };
-            const evt = document.createEvent('CustomEvent');
-            evt.initCustomEvent(
-                event,
-                params.bubbles,
-                params.cancelable,
-                params.detail
-            );
-            return evt;
-        };
-
-        crossBrowserEvent.prototype = window.Event.prototype;
-        window.CustomEvent = crossBrowserEvent;
+        crossBrowserEvent = document.createEvent('Event');
+        crossBrowserEvent.initEvent(name, true, true);
     }
-    return crossBrowserEvent(name);
+    return crossBrowserEvent;
 };
 
 export const forEach = (arr, callback) => {
