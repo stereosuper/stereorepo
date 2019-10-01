@@ -97,6 +97,7 @@ class Collant {
             this.collantElement.style.top = 'auto';
             this.collantElement.style.bottom = '0px';
             this.collantElement.style.position = 'absolute';
+            this.collantElement.classList.remove('collant');
         } else if (scrollOffset > this.collantDelimiter) {
             if (this.offsetPosition === 'top') {
                 this.collantElement.style.top = `${this.offset}px`;
@@ -107,6 +108,8 @@ class Collant {
             }
             this.collantElement.style.position = 'fixed';
             this.collantElement.classList.add('collant');
+        } else {
+            this.collantElement.classList.remove('collant');
         }
     }
     scrollHandler() {
