@@ -2649,6 +2649,7 @@ function () {
         }
 
         this.collantElement.style.position = 'fixed';
+        this.collantElement.classList.add('collant');
       }
     }
   }, {

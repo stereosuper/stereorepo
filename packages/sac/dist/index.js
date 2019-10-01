@@ -1404,35 +1404,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var createCrossBrowserEvent = function createCrossBrowserEvent(name) {
   var crossBrowserEvent;
 
-  if (typeof window.CustomEvent === 'function') {
-    crossBrowserEvent = function crossBrowserEvent(eventName) {
-      var e = new Event(eventName);
-
-      if (typeof Event !== 'function') {
-        e = document.createEvent('Event');
-        e.initEvent(eventName, true, true);
-      }
-
-      return e;
-    };
+  if (typeof Event === 'function') {
+    crossBrowserEvent = new Event(name);
   } else {
-    // ie 11
-    crossBrowserEvent = function crossBrowserEvent(event, params) {
-      params = params || {
-        bubbles: false,
-        cancelable: false,
-        detail: undefined
-      };
-      var evt = document.createEvent('CustomEvent');
-      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-      return evt;
-    };
-
-    crossBrowserEvent.prototype = window.Event.prototype;
-    window.CustomEvent = crossBrowserEvent;
+    crossBrowserEvent = document.createEvent('Event');
+    crossBrowserEvent.initEvent(name, true, true);
   }
 
-  return crossBrowserEvent(name);
+  return crossBrowserEvent;
 };
 var forEach = function forEach(arr, callback) {
   var i = 0;
@@ -2251,7 +2230,9 @@ function () {
           _ref$animationsCallba = _ref.animationsCallback,
           animationsCallback = _ref$animationsCallba === void 0 ? null : _ref$animationsCallba,
           _ref$noTransElementsC = _ref.noTransElementsClass,
-          noTransElementsClass = _ref$noTransElementsC === void 0 ? '.element-without-transition-on-resize' : _ref$noTransElementsC;
+          noTransElementsClass = _ref$noTransElementsC === void 0 ? '.element-without-transition-on-resize' : _ref$noTransElementsC,
+          _ref$initFallbacks = _ref.initFallbacks,
+          initFallbacks = _ref$initFallbacks === void 0 ? false : _ref$initFallbacks;
       this.callbacks.preloadCallback = preloadCallback;
       this.callbacks.loadCallback = loadCallback;
       this.callbacks.animationsCallback = animationsCallback;
@@ -2261,7 +2242,11 @@ function () {
       components_Scroll.initializeScroll();
       components_Window.setNoTransitionElts(noTransElem);
       components_Window.initializeWindow();
-      components_Fallback.initializeFallbacks();
+
+      if (initFallbacks) {
+        components_Fallback.initializeFallbacks();
+      }
+
       this.preload(this.callbacks.preloadCallback);
       this.load(this.callbacks.loadCallback);
       document.addEventListener('readystatechange', function () {

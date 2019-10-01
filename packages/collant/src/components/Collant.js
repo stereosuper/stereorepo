@@ -106,6 +106,7 @@ class Collant {
                 this.collantElement.style.bottom = `${this.offset}px`;
             }
             this.collantElement.style.position = 'fixed';
+            this.collantElement.classList.add('collant');
         }
     }
     scrollHandler() {
