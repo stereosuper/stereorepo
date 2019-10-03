@@ -102,8 +102,9 @@ class Accordion {
 
         if (!this.noScroll) {
             setTimeout(() => {
+                const scrollY = window.scrollY || window.pageYOffset;
                 const offset =
-                    clickedElement.getBoundingClientRect().top + window.scrollY;
+                    clickedElement.getBoundingClientRect().top + scrollY;
                 TweenMax.to(window, 0.5, {
                     scrollTo: {
                         y: offset,

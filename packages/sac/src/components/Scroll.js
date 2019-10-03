@@ -10,7 +10,7 @@ class Scroll {
         this.endFunctions = [];
     }
     scrollHandler() {
-        this.scrollTop = window.pageYOffset || window.scrollY;
+        this.scrollTop = window.scrollY || window.pageYOffset;
 
         if (this.scrollEnd) {
             this.scrollEnd = false;

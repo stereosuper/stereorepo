@@ -16,7 +16,8 @@ class Burger {
     }
     toggleNoScroll({ transitionElement, noScroll }) {
         const removeScroll = () => {
-            document.documentElement.style.top = `${-window.scrollY}px`;
+            const scrollY = window.scrollY || window.pageYOffset;
+            document.documentElement.style.top = `${-scrollY}px`;
             document.documentElement.classList.add('no-scroll');
 
             transitionElement.removeEventListener(
