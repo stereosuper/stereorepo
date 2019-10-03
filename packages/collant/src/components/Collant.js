@@ -60,13 +60,18 @@ class Collant {
         }
         return offset;
     }
-    setBoundings() {
-        this.boxBoundings = this.boxElement.getBoundingClientRect();
-        this.collantBoundings = this.collantElement.getBoundingClientRect();
-    }
     getWindowPosition() {
         this.windowPositions = {
-            y: window.scrollY
+            y: window.scrollY || window.pageYOffset
+        };
+    }
+    setBoundings() {
+        this.boxBoundings = {
+            y: this.boxElement.offsetTop - this.windowPositions.y,
+            height: this.boxElement.offsetHeight
+        };
+        this.collantBoundings = {
+            height: this.collantElement.offsetHeight
         };
     }
     resetCollantProperties() {
