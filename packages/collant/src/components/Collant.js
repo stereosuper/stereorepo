@@ -160,6 +160,8 @@ class Collant {
         );
     }
     ripIt() {
+        this.collantElement.classList.remove('collant');
+
         superScroll.removeScrollFunction(this.scrollFunctionId);
         superWindow.removeResizeFunction(this.resizeFunctionId);
         superWindow.removeResizeEndFunction(this.resizeEndFunctionId);
