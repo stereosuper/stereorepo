@@ -6,7 +6,7 @@ export const camalize = str => {
 
 export const pascalize = str => {
     const camel = camalize(str);
-    return camel.charAt(0).toUpperCase() + camel.substr(1).toLowerCase();
+    return camel.charAt(0).toUpperCase() + camel.substr(1);
 };
 
 export const reverseString = str =>
