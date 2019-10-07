@@ -1,4 +1,3 @@
-import async from './async';
 import core from './core';
 import parsing from './parsing';
 import math from './math';
