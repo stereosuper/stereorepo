@@ -25,6 +25,7 @@ export const { supportsWebp } = core;
 export const { throttle } = core;
 
 export const { camalize } = parsing;
+export const { pascalize } = parsing;
 export const { reverseString } = parsing;
 
 export const { roundNumbers } = math;
@@ -43,6 +44,7 @@ export const superWindow = windowComponent;
 export default {
     bodyRouter,
     camalize,
+    pascalize,
     createCrossBrowserEvent,
     forEach,
     isDisplayed,
