@@ -16,24 +16,29 @@ export const toggleNoScroll = ({ noScroll, nextTick }) => {
 };
 
 const setWindowSize = store => {
-    if (!store.state.stereorepo || !store.state.stereorepo.window) {
-        store.registerModule(['stereorepo', 'window'], {
-            namespaced: true,
-            state: {
-                width: Infinity,
-                height: 0
-            },
-            mutations: {
-                setWindow(state, { width, height }) {
-                    state.width = width;
-                    state.height = height;
+    if (!store.state.stereoWindow) {
+        store.registerModule(
+            'stereoWindow',
+            {
+                namespaced: true,
+                state: {
+                    width: Infinity,
+                    height: 0
+                },
+                mutations: {
+                    setWindow(state, { width, height }) {
+                        state.width = width;
+                        state.height = height;
+                    }
                 }
-            }
-        });
+            },
+            { preserveState: false }
+        );
     }
+
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    store.commit('stereorepo/window/setWindow', {
+    store.commit('stereoWindow/setWindow', {
         width: windowWidth,
         height: windowHeight
     });
@@ -45,7 +50,7 @@ const launchWindow = store => {
     });
 };
 
-export const initializeWindow = ({ store }) => {
+export const initializeWindow = store => {
     setWindowSize(store);
 
     window.addEventListener('resize', launchWindow.bind(null, store), false);
