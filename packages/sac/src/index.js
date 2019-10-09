@@ -1,18 +1,9 @@
+const state = {
+    isVue: false
+};
+
+// Core
 import core from './core';
-import parsing from './parsing';
-import math from './math';
-
-// Components classes imports
-import ErrorComponent from './components/Error';
-
-// Components instances imports
-import fallbackComponent from './components/Fallback';
-import loadHandlerComponent from './components/LoadHandler';
-import polyfillComponent from './components/Polyfill';
-import scrollComponent from './components/Scroll';
-import snifComponent from './components/Snif';
-import windowComponent from './components/Window';
-
 export const { bodyRouter } = core;
 export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
@@ -20,38 +11,85 @@ export const { isDisplayed } = core;
 export const { nodeIndex } = core;
 export const { query } = core;
 export const { requestAnimFrame } = core;
-export const { supportsWebp } = core;
 export const { throttle } = core;
 
+// Fallback
+import fallback from './fallback';
+export const { supportsWebp } = fallback;
+export const { spotMobile } = fallback;
+export const { spotIOS } = fallback;
+export const { spotSafari } = fallback;
+export const { spotFF } = fallback;
+export const { spotChromeAndroid } = fallback;
+export const { spotMS } = fallback;
+export const { spotIE } = fallback;
+
+// Math
+import math from './math';
+export const { roundNumbers } = math;
+
+// Parsing
+import parsing from './parsing';
 export const { camalize } = parsing;
 export const { pascalize } = parsing;
 export const { reverseString } = parsing;
 
-export const { roundNumbers } = math;
+// Polyfill
+import polyfill from './polyfill';
+export const { audioContextPolyfill } = polyfill;
+export const { ioPolyfill } = polyfill;
+export const { smoothScrollPolyfill } = polyfill;
+export const { ie11Polyfills } = polyfill;
 
-// Components classes exports
+// Snif
+import snif from './snif';
+export const { isIOS } = snif;
+export const { isAndroid } = snif;
+export const { isChrome } = snif;
+export const { isMobile } = snif;
+export const { isChromeAndroid } = snif;
+export const { isSafari } = snif;
+export const { isFF } = snif;
+export const { isMS } = snif;
+export const { mixBlendModeSupport } = snif;
+export const { isIe11 } = snif;
+
+// Components
+// Classes imports
+import ErrorComponent from './components/Error';
+import loadHandlerComponent from './components/LoadHandler';
+import scrollComponent from './components/Scroll';
+import windowComponent from './components/Window';
+
+// Classes exports
 export const SuperError = ErrorComponent;
-
-// Components instances exports
-export const superFallback = fallbackComponent;
 export const superLoad = loadHandlerComponent;
-export const superPolyfill = polyfillComponent;
 export const superScroll = scrollComponent;
-export const superSnif = snifComponent;
 export const superWindow = windowComponent;
 
+// Scoping
+if (!state.isVue && typeof window !== 'undefined') {
+    // Initializing scope in window
+    window.$stereorepo = {};
+}
+
+// NOTE: If used with Vue.use method
+export const install = (Vue, options) => {
+    state.isVue = true;
+
+    // Initializing scope in Vue
+    Vue.prototype.$stereorepo = {
+        ...Vue.prototype.$stereorepo,
+        namespace: 'stereosuper'
+    };
+
+    // if (typeof window !== 'undefined') {
+
+    // }
+};
+
 export default {
-    bodyRouter,
-    camalize,
-    pascalize,
-    createCrossBrowserEvent,
-    forEach,
-    isDisplayed,
-    nodeIndex,
-    query,
-    requestAnimFrame,
-    reverseString,
-    roundNumbers,
-    supportsWebp,
-    throttle
+    ...core,
+    ...math,
+    ...parsing
 };

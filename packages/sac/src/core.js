@@ -61,15 +61,6 @@ export const requestAnimFrame = callback => {
     return anim(callback);
 };
 
-export async function supportsWebp() {
-    if (!self.createImageBitmap) return false;
-
-    const webpData =
-        'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    const blob = await fetch(webpData).then(response => response.blob());
-    return createImageBitmap(blob).then(() => true, () => false);
-}
-
 export const throttle = ({ callback, delay }) => {
     let last;
     let timer;

@@ -1,6 +1,5 @@
 import windowComponent from './Window';
 import scrollComponent from './Scroll';
-import fallbackComponent from './Fallback';
 import { query } from '../core';
 
 class LoadHandler {
@@ -46,8 +45,7 @@ class LoadHandler {
         preloadCallback = null,
         loadCallback = null,
         animationsCallback = null,
-        noTransElementsClass = '.element-without-transition-on-resize',
-        initFallbacks = false
+        noTransElementsClass = '.element-without-transition-on-resize'
     }) {
         this.callbacks.preloadCallback = preloadCallback;
         this.callbacks.loadCallback = loadCallback;
@@ -60,10 +58,6 @@ class LoadHandler {
         scrollComponent.initializeScroll();
         windowComponent.setNoTransitionElts(noTransElem);
         windowComponent.initializeWindow();
-
-        if (initFallbacks) {
-            fallbackComponent.initializeFallbacks();
-        }
 
         this.preload(this.callbacks.preloadCallback);
         this.load(this.callbacks.loadCallback);
