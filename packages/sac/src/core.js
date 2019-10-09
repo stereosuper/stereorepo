@@ -106,6 +106,5 @@ export default {
     nodeIndex,
     query,
     requestAnimFrame,
-    supportsWebp,
     throttle
 };

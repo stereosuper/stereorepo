@@ -67,6 +67,10 @@ export const superLoad = loadHandlerComponent;
 export const superScroll = scrollComponent;
 export const superWindow = windowComponent;
 
+// Vue global components
+import windowComponentVue from './components/WindowVue';
+export const superWindowVue = windowComponentVue;
+
 // Scoping
 if (!state.isVue && typeof window !== 'undefined') {
     // Initializing scope in window
@@ -74,18 +78,13 @@ if (!state.isVue && typeof window !== 'undefined') {
 }
 
 // NOTE: If used with Vue.use method
-export const install = (Vue, options) => {
+export const useSacVue = (Vue, options) => {
     state.isVue = true;
-
     // Initializing scope in Vue
     Vue.prototype.$stereorepo = {
         ...Vue.prototype.$stereorepo,
-        namespace: 'stereosuper'
+        namespace: 'stereorepo'
     };
-
-    // if (typeof window !== 'undefined') {
-
-    // }
 };
 
 export default {
