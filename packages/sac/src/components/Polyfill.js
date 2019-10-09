@@ -21,4 +21,4 @@ class Polyfill {
     }
 }
 
-export default new Polyfill();
+export default Polyfill;

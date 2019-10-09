@@ -80,4 +80,4 @@ class LoadHandler {
     }
 }
 
-export default new LoadHandler();
+export default LoadHandler;

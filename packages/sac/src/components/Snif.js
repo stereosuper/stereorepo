@@ -70,4 +70,4 @@ class Snif {
     }
 }
 
-export default new Snif();
+export default Snif;

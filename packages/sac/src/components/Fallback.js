@@ -73,4 +73,4 @@ class Fallback {
     }
 }
 
-export default new Fallback();
+export default Fallback;

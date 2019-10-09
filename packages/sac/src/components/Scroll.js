@@ -81,4 +81,4 @@ class Scroll {
     }
 }
 
-export default new Scroll();
+export default Scroll;
