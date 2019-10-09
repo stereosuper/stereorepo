@@ -24,6 +24,7 @@
     "gitHead": "c62c236fe36ee005b1be43e5b7942984a9cca46a",
     "dependencies": {
         "intersection-observer": "^0.7.0",
+        "smoothscroll-polyfill": "^0.4.4",
         "whatwg-fetch": "^3.0.0"
     },
     "devDependencies": {
