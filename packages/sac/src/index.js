@@ -90,6 +90,9 @@ export const install = (Vue, options) => {
 
 export default {
     ...core,
+    ...fallback,
     ...math,
-    ...parsing
+    ...parsing,
+    ...polyfill,
+    ...snif
 };
