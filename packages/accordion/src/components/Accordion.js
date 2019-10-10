@@ -4,6 +4,8 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { TweenMax, Power1 } from 'gsap';
 
 // NOTE: We need to use ScrollToPlugin in order to ensure that the plugin won't be tree-shaked
+
+// eslint-disable-next-line no-unused-vars
 const ensureScrollTo = ScrollToPlugin;
 
 class Accordion {

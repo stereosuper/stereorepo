@@ -1,4 +1,4 @@
-import { superScroll, query, superWindow } from '@stereorepo/sac';
+import { useSuperScroll, query, useSuperWindow } from '@stereorepo/sac';
 
 class Collant {
     constructor({
@@ -18,6 +18,9 @@ class Collant {
             resizing: false
         };
 
+        useSuperScroll();
+        useSuperWindow();
+
         this.collantElement = null;
         this.boxElement = null;
 
@@ -36,7 +39,7 @@ class Collant {
     computeOffsetVh() {
         this.offset =
             (parseInt(this.rawOffset.replace('vh', ''), 10) *
-                superWindow.windowHeight) /
+                window.$stereorepo.superWindow.windowHeight) /
             100;
     }
     computeOffset() {
@@ -82,11 +85,12 @@ class Collant {
     handleOffset() {
         let scrollOffset = 0;
         if (this.offsetPosition === 'top') {
-            scrollOffset = superScroll.scrollTop + this.offset;
+            scrollOffset =
+                window.$stereorepo.superScroll.scrollTop + this.offset;
         } else if (this.offsetPosition === 'bottom') {
             scrollOffset =
-                superScroll.scrollTop +
-                superWindow.windowHeight -
+                window.$stereorepo.superScroll.scrollTop +
+                window.$stereorepo.superWindow.windowHeight -
                 this.collantBoundings.height -
                 this.offset;
         }
@@ -152,24 +156,34 @@ class Collant {
         this.collantDelimiter = this.getOffsetParents(this.collantElement);
 
         this.scrollHandler();
-        this.scrollFunctionId = superScroll.addScrollFunction(() => {
-            this.scrollHandler();
-        });
+        this.scrollFunctionId = window.$stereorepo.superScroll.addScrollFunction(
+            () => {
+                this.scrollHandler();
+            }
+        );
 
-        this.resizeFunctionId = superWindow.addResizeFunction(() => {
-            this.state.resizing = true;
-        });
+        this.resizeFunctionId = window.$stereorepo.superWindow.addResizeFunction(
+            () => {
+                this.state.resizing = true;
+            }
+        );
 
-        this.resizeEndFunctionId = superWindow.addResizeEndFunction(
+        this.resizeEndFunctionId = window.$stereorepo.superWindow.addResizeEndFunction(
             this.resizeHandler
         );
     }
     ripIt() {
         this.collantElement.classList.remove('collant');
 
-        superScroll.removeScrollFunction(this.scrollFunctionId);
-        superWindow.removeResizeFunction(this.resizeFunctionId);
-        superWindow.removeResizeEndFunction(this.resizeEndFunctionId);
+        window.$stereorepo.superScroll.removeScrollFunction(
+            this.scrollFunctionId
+        );
+        window.$stereorepo.superWindow.removeResizeFunction(
+            this.resizeFunctionId
+        );
+        window.$stereorepo.superWindow.removeResizeEndFunction(
+            this.resizeEndFunctionId
+        );
         this.resetCollantProperties();
 
         this.state = {

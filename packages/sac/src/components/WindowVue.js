@@ -1,8 +1,8 @@
-import WindowError from './Error';
+import SuperError from './Error';
 
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {
-        throw new WindowError(
+        throw new SuperError(
             `No store found, try passing vuex store as an argument in ${methodeName} call`
         );
     }

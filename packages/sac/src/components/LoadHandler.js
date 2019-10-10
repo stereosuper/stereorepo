@@ -10,6 +10,9 @@ class LoadHandler {
             animationsLaunched: false
         };
 
+        useSuperScroll();
+        useSuperWindow();
+
         this.callbacks = {
             preloadCallback: false,
             loadCallback: false,
@@ -54,9 +57,6 @@ class LoadHandler {
         const noTransElem = query({
             selector: noTransElementsClass
         });
-
-        useSuperScroll();
-        useSuperWindow();
 
         window.$stereorepo.superScroll.initializeScroll();
         window.$stereorepo.superWindow.setNoTransitionElts(noTransElem);

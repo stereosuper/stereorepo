@@ -1,7 +1,3 @@
-const state = {
-    isVue: false
-};
-
 // Core
 import core from './core';
 export const { bodyRouter } = core;
@@ -82,8 +78,7 @@ export const useSacVanilla = () => {
 };
 
 // NOTE: If used with Vue.use method
-export const useSacVue = (Vue, options) => {
-    state.isVue = true;
+export const useSacVue = Vue => {
     // Initializing scope in Vue
     Vue.prototype.$stereorepo = {
         ...Vue.prototype.$stereorepo,

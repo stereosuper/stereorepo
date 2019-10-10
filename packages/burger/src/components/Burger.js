@@ -9,6 +9,8 @@ class Burger {
             burgerActivated: false
         };
 
+        useSuperWindow();
+
         this.burgerSelector = burgerSelector;
         this.mainNavigationSelector = mainNavigationSelector;
 
@@ -96,7 +98,6 @@ class Burger {
             false
         );
 
-        useSuperWindow();
         window.$stereorepo.superWindow.addResizeFunction(
             this.thisBurgerIsTooFat
         );
