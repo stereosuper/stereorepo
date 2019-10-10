@@ -8,7 +8,6 @@
         "dev": "webpack-dev-server --mode development --open",
         "link": "sh npm-link.sh",
         "unlink": "sh npm-unlink.sh",
-        "build-packages": "sh npm-build-all.sh",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
