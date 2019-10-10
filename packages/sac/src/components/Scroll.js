@@ -42,7 +42,7 @@ class Scroll {
             () => {
                 this.launchScroll();
             },
-            false
+            false,
         );
     }
     destroyScroll() {
@@ -51,7 +51,7 @@ class Scroll {
             () => {
                 this.launchScroll();
             },
-            false
+            false,
         );
     }
     onScrollEnd() {

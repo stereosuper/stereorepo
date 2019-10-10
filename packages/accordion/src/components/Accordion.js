@@ -18,7 +18,7 @@ class Accordion {
         ease = Power1.easeInOut,
         scrollDelay = 300,
         noScroll = false,
-        silent = false
+        silent = false,
     }) {
         this.accordions = [];
         this.clickedElementsList = [];
@@ -39,25 +39,25 @@ class Accordion {
         const clickedElementParent = clickedElement.parentElement;
         const [contentWrapper] = query({
             selector: this.contentWrapperSelector,
-            ctx: clickedElementParent
+            ctx: clickedElementParent,
         });
         const alreadyActivated = clickedElementParent.classList.contains(
-            'activated'
+            'activated',
         );
         const [content] = query({
             selector: this.contentSelector,
-            ctx: this.clickedSelector.parentElement
+            ctx: this.clickedSelector.parentElement,
         });
 
         if (!contentWrapper && !this.silent) {
             throw new AccordionError(
-                'No accordion content wrapper found, try changing the contentWrapperSelector value in the Accordion declaration'
+                'No accordion content wrapper found, try changing the contentWrapperSelector value in the Accordion declaration',
             );
         }
 
         if (!content && !this.silent) {
             throw new AccordionError(
-                'No accordion content found, try changing the contentSelector value in the Accordion declaration'
+                'No accordion content found, try changing the contentSelector value in the Accordion declaration',
             );
         }
 
@@ -65,7 +65,7 @@ class Accordion {
 
         const sameLevelAccordions = query({
             selector: this.containerSelector,
-            ctx: clickedElementParent.parentElement
+            ctx: clickedElementParent.parentElement,
         });
 
         if (contentWrapper.style.maxHeight === 'none') {
@@ -79,14 +79,14 @@ class Accordion {
             TweenMax.to(
                 query({
                     selector: this.contentWrapperSelector,
-                    ctx: resetParent
+                    ctx: resetParent,
                 }),
                 0.3,
                 {
                     maxHeight: 0,
                     opacity: 0,
-                    ease: this.ease
-                }
+                    ease: this.ease,
+                },
             );
         });
 
@@ -98,7 +98,7 @@ class Accordion {
             ease: this.ease,
             onComplete: () => {
                 TweenMax.set(contentWrapper, { maxHeight: 'none' });
-            }
+            },
         });
         clickedElementParent.classList.add('activated');
 
@@ -110,28 +110,28 @@ class Accordion {
                 TweenMax.to(window, 0.5, {
                     scrollTo: {
                         y: offset,
-                        offsetY: this.offsetY
+                        offsetY: this.offsetY,
                     },
-                    ease: this.ease
+                    ease: this.ease,
                 });
             }, this.scrollDelay);
         }
     }
     initializeAccordions() {
         this.accordions = query({
-            selector: this.containerSelector
+            selector: this.containerSelector,
         });
 
         if (!this.accordions.length && !this.silent) {
             throw new AccordionError(
-                'No accordion found, try changing the containerSelector value in the Accordion declaration'
+                'No accordion found, try changing the containerSelector value in the Accordion declaration',
             );
         }
 
         forEach(this.accordions, accordion => {
             const [clickedElement] = query({
                 selector: this.clickedSelector,
-                ctx: accordion
+                ctx: accordion,
             });
 
             if (clickedElement) {
@@ -141,15 +141,15 @@ class Accordion {
                 clickedElement.addEventListener(
                     'click',
                     clickHandlerBuffer,
-                    false
+                    false,
                 );
                 this.clickedElementsList = [
                     ...this.clickedElementsList,
-                    { clickedElement, clickHandlerBuffer }
+                    { clickedElement, clickHandlerBuffer },
                 ];
             } else if (!this.silent) {
                 throw new AccordionError(
-                    'No element to click on found, try changing the clickedSelector value in the Accordion declaration'
+                    'No element to click on found, try changing the clickedSelector value in the Accordion declaration',
                 );
             }
         });
@@ -161,14 +161,14 @@ class Accordion {
                 const clickedElementParent = clickedElement.parentElement;
                 const [contentWrapper] = query({
                     selector: this.contentWrapperSelector,
-                    ctx: clickedElementParent
+                    ctx: clickedElementParent,
                 });
 
                 clickedElementParent.classList.remove('activated');
 
                 clickedElement.removeEventListener('click', clickHandlerBuffer);
                 TweenMax.set(contentWrapper, { clearProps: 'all' });
-            }
+            },
         );
 
         this.accordions = [];

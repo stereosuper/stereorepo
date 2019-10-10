@@ -44,5 +44,5 @@ export default {
     isFF,
     isMS,
     mixBlendModeSupport,
-    isIe11
+    isIe11,
 };

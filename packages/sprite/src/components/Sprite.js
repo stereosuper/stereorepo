@@ -44,7 +44,7 @@ class Sprite {
                 this.tl.set(
                     this.image,
                     { backgroundPosition: `${xpos}% ${ypos}%` },
-                    count * this.interval
+                    count * this.interval,
                 );
                 count += 1;
             }

@@ -3,7 +3,7 @@ import SuperError from './Error';
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {
         throw new SuperError(
-            `No store found, try passing vuex store as an argument in ${methodeName} call`
+            `No store found, try passing vuex store as an argument in ${methodeName} call`,
         );
     }
 };
@@ -13,7 +13,7 @@ const setWindowSize = store => {
     const windowHeight = window.innerHeight;
     store.commit('superWindow/setWindow', {
         width: windowWidth,
-        height: windowHeight
+        height: windowHeight,
     });
 };
 
@@ -32,16 +32,16 @@ export const initializeWindow = store => {
                 namespaced: true,
                 state: {
                     width: Infinity,
-                    height: 0
+                    height: 0,
                 },
                 mutations: {
                     setWindow(state, { width, height }) {
                         state.width = width;
                         state.height = height;
-                    }
-                }
+                    },
+                },
             },
-            { preserveState: false }
+            { preserveState: false },
         );
     }
 
@@ -64,7 +64,7 @@ export const toggleNoScroll = ({ noScroll, nextTick }) => {
         document.documentElement.classList.add('no-scroll');
     } else {
         const scrollY = Math.abs(
-            parseInt(document.documentElement.style.top.replace('px', ''), 10)
+            parseInt(document.documentElement.style.top.replace('px', ''), 10),
         );
         document.documentElement.style.top = '';
         document.documentElement.classList.remove('no-scroll');
@@ -79,10 +79,10 @@ const install = Vue => {
     Vue.prototype.$stereorepo.superWindow = {
         toggleNoScroll,
         initializeWindow,
-        destroyWindow
+        destroyWindow,
     };
 };
 
 export default {
-    install
+    install,
 };

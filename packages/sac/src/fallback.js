@@ -5,7 +5,7 @@ import {
     isIOS,
     isMobile,
     isMS,
-    isSafari
+    isSafari,
 } from './snif';
 
 export async function supportsWebp() {
@@ -65,5 +65,5 @@ export default {
     spotFF,
     spotChromeAndroid,
     spotMS,
-    spotIE
+    spotIE,
 };

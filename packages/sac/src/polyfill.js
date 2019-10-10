@@ -51,5 +51,5 @@ export default {
     audioContextPolyfill,
     ioPolyfill,
     smoothScrollPolyfill,
-    ie11Polyfills
+    ie11Polyfills,
 };

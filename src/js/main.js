@@ -7,7 +7,7 @@ const checkLoadingState = ({ section, sectionState, loadText }) => {
     const [preloadSectionElement] = query({ selector: section });
     const [preloadStateElement] = query({
         selector: sectionState,
-        ctx: preloadSectionElement
+        ctx: preloadSectionElement,
     });
 
     preloadStateElement.innerText = loadText;
@@ -17,7 +17,7 @@ const preloadCallback = () => {
     checkLoadingState({
         section: '#preload',
         sectionState: '.js-loading-state',
-        loadText: '✅ Preload done'
+        loadText: '✅ Preload done',
     });
 
     launchFuckingTests();
@@ -27,7 +27,7 @@ const loadCallback = () => {
     checkLoadingState({
         section: '#load',
         sectionState: '.js-loading-state',
-        loadText: '✅ Load done'
+        loadText: '✅ Load done',
     });
 };
 
@@ -35,7 +35,7 @@ const animationsCallback = () => {
     checkLoadingState({
         section: '#animations',
         sectionState: '.js-loading-state',
-        loadText: '✅ Animations call done'
+        loadText: '✅ Animations call done',
     });
 };
 
@@ -46,5 +46,5 @@ window.$stereorepo.superLoad.initializeLoadingShit({
     preloadCallback,
     loadCallback,
     animationsCallback,
-    noTransElementsClass: '.test'
+    noTransElementsClass: '.test',
 });

@@ -9,8 +9,8 @@ class SuperError extends Error {
             error: {
                 name: this.name,
                 message: this.message,
-                stacktrace: this.stack
-            }
+                stacktrace: this.stack,
+            },
         };
     }
 }

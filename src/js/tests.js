@@ -2,7 +2,7 @@ import {
     createCrossBrowserEvent,
     query,
     forEach,
-    useSuperWindow
+    useSuperWindow,
 } from '@stereorepo/sac';
 import { Accordion } from '@stereorepo/accordion';
 import { Burger } from '@stereorepo/burger';
@@ -15,13 +15,13 @@ const testCreateNewEvent = () => {
         'test-new-event',
         () => {
             const [eventText] = query({
-                selector: '#cross-browser-compatible-events .event-text'
+                selector: '#cross-browser-compatible-events .event-text',
             });
             if (eventText) {
                 eventText.innerText = '✅ Cross browser event dispatched';
             }
         },
-        false
+        false,
     );
     document.dispatchEvent(newEvent);
 };
@@ -31,7 +31,7 @@ const testForEach = () => {
     if (!forEachSection) return;
     const [foreachText] = query({
         selector: '.foreach-text',
-        ctx: forEachSection
+        ctx: forEachSection,
     });
 
     if (foreachText) {
@@ -50,26 +50,26 @@ const testForEach = () => {
 
 const testQuery = () => {
     const [querySection] = query({
-        selector: '#query-elements'
+        selector: '#query-elements',
     });
 
     const [elementSelector] = query({
         selector: 'span',
-        ctx: querySection
+        ctx: querySection,
     });
 
     const [idSelector] = query({
-        selector: '#id-selector'
+        selector: '#id-selector',
     });
 
     const [classSelector] = query({
         selector: '.class-selector',
-        ctx: querySection
+        ctx: querySection,
     });
 
     const [nestedSelector] = query({
         selector: '.nested-selector .child',
-        ctx: querySection
+        ctx: querySection,
     });
 
     elementSelector.innerText = '✅ element selector';
@@ -82,11 +82,11 @@ const testScssTransition = () => {
     const [sectionScssTransition] = query({ selector: '#scss-transition' });
     const [element] = query({
         selector: '.js-element',
-        ctx: sectionScssTransition
+        ctx: sectionScssTransition,
     });
     const [toggleButton] = query({
         selector: '.js-toggle-transition',
-        ctx: sectionScssTransition
+        ctx: sectionScssTransition,
     });
 
     if (!element || !toggleButton) return;
@@ -96,7 +96,7 @@ const testScssTransition = () => {
         () => {
             element.classList.toggle('activated');
         },
-        false
+        false,
     );
 };
 
@@ -110,12 +110,12 @@ const testSuperWindow = () => {
             m: 580,
             l: 780,
             xl: 960,
-            xxl: 1100
+            xxl: 1100,
         },
         vertical: {
             xs: 550,
-            xxl: 960
-        }
+            xxl: 960,
+        },
     });
 };
 
@@ -128,7 +128,7 @@ const testAccordion = () => {
         contentSelector: '.js-content',
         offsetY: 25,
         ease: null,
-        scrollDelay: 600
+        scrollDelay: 600,
     });
 
     accordion.initializeAccordions();
@@ -137,7 +137,7 @@ const testAccordion = () => {
 const testBurger = () => {
     const burger = new Burger({
         burgerSelector: '.js-burger',
-        mainNavigationSelector: '.js-main-navigation'
+        mainNavigationSelector: '.js-main-navigation',
     });
 
     burger.bigMacOrWhopper();
@@ -161,5 +161,5 @@ export const launchFuckingTests = () => {
 };
 
 export default {
-    launchFuckingTests
+    launchFuckingTests,
 };

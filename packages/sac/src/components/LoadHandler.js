@@ -7,7 +7,7 @@ class LoadHandler {
         this.state = {
             preloaded: false,
             loaded: false,
-            animationsLaunched: false
+            animationsLaunched: false,
         };
 
         useSuperScroll();
@@ -16,7 +16,7 @@ class LoadHandler {
         this.callbacks = {
             preloadCallback: false,
             loadCallback: false,
-            animationsCallback: false
+            animationsCallback: false,
         };
     }
     preload(callback) {
@@ -48,14 +48,14 @@ class LoadHandler {
         preloadCallback = null,
         loadCallback = null,
         animationsCallback = null,
-        noTransElementsClass = '.element-without-transition-on-resize'
+        noTransElementsClass = '.element-without-transition-on-resize',
     }) {
         this.callbacks.preloadCallback = preloadCallback;
         this.callbacks.loadCallback = loadCallback;
         this.callbacks.animationsCallback = animationsCallback;
 
         const noTransElem = query({
-            selector: noTransElementsClass
+            selector: noTransElementsClass,
         });
 
         window.$stereorepo.superScroll.initializeScroll();
@@ -72,7 +72,7 @@ class LoadHandler {
                     this.preload(this.callbacks.preloadCallback);
                 if (!this.state.loaded) this.load(this.callbacks.loadCallback);
             },
-            false
+            false,
         );
     }
 }

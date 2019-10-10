@@ -82,7 +82,7 @@ export const useSacVue = Vue => {
     // Initializing scope in Vue
     Vue.prototype.$stereorepo = {
         ...Vue.prototype.$stereorepo,
-        namespace: 'stereorepo'
+        namespace: 'stereorepo',
     };
 };
 
@@ -92,5 +92,5 @@ export default {
     ...math,
     ...parsing,
     ...polyfill,
-    ...snif
+    ...snif,
 };

@@ -5,10 +5,11 @@
     "version": "1.0.0",
     "main": "src/index.js",
     "scripts": {
+        "dev": "webpack-dev-server --mode development --open",
+        "build": "npm run link && npm run lint && webpack --mode production && npm run unlink",
+        "lint": "eslint --fix --ext .js --ignore-path .gitignore src && eslint --fix --ext .js --ignore-path .gitignore packages",
         "link": "sh npm-link.sh",
         "unlink": "sh npm-unlink.sh",
-        "dev": "webpack-dev-server --mode development --open",
-        "build": "npm run link && webpack --mode production && npm run unlink",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
