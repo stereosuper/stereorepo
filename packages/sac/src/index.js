@@ -57,25 +57,29 @@ export const { isIe11 } = snif;
 // Components
 // Classes imports
 import ErrorComponent from './components/Error';
-import loadHandlerComponent from './components/LoadHandler';
-import scrollComponent from './components/Scroll';
-import windowComponent from './components/Window';
+import initSuperLoadFunction from './components/LoadHandler';
+import initSuperScrollFunction from './components/Scroll';
+import initSuperWindowFunction from './components/Window';
 
 // Classes exports
 export const SuperError = ErrorComponent;
-export const superLoad = loadHandlerComponent;
-export const superScroll = scrollComponent;
-export const superWindow = windowComponent;
+export const useSuperLoad = initSuperLoadFunction;
+export const useSuperScroll = initSuperScrollFunction;
+export const useSuperWindow = initSuperWindowFunction;
 
 // Vue global components
 import windowComponentVue from './components/WindowVue';
 export const superWindowVue = windowComponentVue;
 
 // Scoping
-if (!state.isVue && typeof window !== 'undefined') {
-    // Initializing scope in window
-    window.$stereorepo = {};
-}
+
+// NOTE: If used with Vue.use method
+export const useSacVanilla = () => {
+    if (typeof window !== 'undefined') {
+        // Initializing scope in window
+        window.$stereorepo = {};
+    }
+};
 
 // NOTE: If used with Vue.use method
 export const useSacVue = (Vue, options) => {

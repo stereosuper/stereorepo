@@ -1,5 +1,5 @@
-import windowComponent from './Window';
-import scrollComponent from './Scroll';
+import { useSuperWindow } from './Window';
+import { useSuperScroll } from './Scroll';
 import { query } from '../core';
 
 class LoadHandler {
@@ -55,9 +55,12 @@ class LoadHandler {
             selector: noTransElementsClass
         });
 
-        scrollComponent.initializeScroll();
-        windowComponent.setNoTransitionElts(noTransElem);
-        windowComponent.initializeWindow();
+        useSuperScroll();
+        useSuperWindow();
+
+        window.$stereorepo.superScroll.initializeScroll();
+        window.$stereorepo.superWindow.setNoTransitionElts(noTransElem);
+        window.$stereorepo.superWindow.initializeWindow();
 
         this.preload(this.callbacks.preloadCallback);
         this.load(this.callbacks.loadCallback);
@@ -74,4 +77,10 @@ class LoadHandler {
     }
 }
 
-export default LoadHandler;
+export const useSuperLoad = () => {
+    if (!window.$stereorepo.superLoad) {
+        window.$stereorepo.superLoad = new LoadHandler();
+    }
+};
+
+export default useSuperLoad;

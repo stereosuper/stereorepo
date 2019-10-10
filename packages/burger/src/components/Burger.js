@@ -1,4 +1,4 @@
-import { query, superWindow } from '@stereorepo/sac';
+import { query, useSuperWindow } from '@stereorepo/sac';
 
 class Burger {
     constructor({
@@ -76,7 +76,7 @@ class Burger {
     }
     thisBurgerIsTooFat() {
         if (
-            superWindow.currentBreakpoint === 'xl' &&
+            window.$stereorepo.superWindow.currentBreakpoint === 'xl' &&
             this.state.burgerActivated
         ) {
             this.makeTheDamnBurger();
@@ -96,7 +96,10 @@ class Burger {
             false
         );
 
-        superWindow.addResizeFunction(this.thisBurgerIsTooFat);
+        useSuperWindow();
+        window.$stereorepo.superWindow.addResizeFunction(
+            this.thisBurgerIsTooFat
+        );
     }
 }
 

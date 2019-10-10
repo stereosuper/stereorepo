@@ -81,4 +81,10 @@ class Scroll {
     }
 }
 
-export default Scroll;
+export const useSuperScroll = () => {
+    if (!window.$stereorepo.superScroll) {
+        window.$stereorepo.superScroll = new Scroll();
+    }
+};
+
+export default useSuperScroll;

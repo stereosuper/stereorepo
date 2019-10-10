@@ -2,7 +2,7 @@ import {
     createCrossBrowserEvent,
     query,
     forEach,
-    superWindow
+    useSuperWindow
 } from '@stereorepo/sac';
 import { Accordion } from '@stereorepo/accordion';
 import { Burger } from '@stereorepo/burger';
@@ -102,7 +102,8 @@ const testScssTransition = () => {
 
 // Sac inner components tests
 const testSuperWindow = () => {
-    superWindow.setBreakpoints({
+    useSuperWindow();
+    window.$stereorepo.superWindow.setBreakpoints({
         horizontal: {
             xs: 0,
             s: 400,

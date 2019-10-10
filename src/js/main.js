@@ -1,4 +1,4 @@
-import { query, superLoad } from '@stereorepo/sac';
+import { query, useSuperLoad } from '@stereorepo/sac';
 // import { Sprite } from '@stereorepo/sprite';
 
 import { launchFuckingTests } from './tests';
@@ -39,7 +39,9 @@ const animationsCallback = () => {
     });
 };
 
-superLoad.initializeLoadingShit({
+useSuperLoad();
+
+window.$stereorepo.superLoad.initializeLoadingShit({
     preloadCallback,
     loadCallback,
     animationsCallback,

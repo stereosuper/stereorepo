@@ -133,4 +133,10 @@ class Window {
     }
 }
 
-export default Window;
+export const useSuperWindow = () => {
+    if (!window.$stereorepo.superWindow) {
+        window.$stereorepo.superWindow = new Window();
+    }
+};
+
+export default useSuperWindow;
