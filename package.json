@@ -5,9 +5,10 @@
     "version": "1.0.0",
     "main": "src/index.js",
     "scripts": {
-        "dev": "webpack-dev-server --mode development --open",
         "link": "sh npm-link.sh",
         "unlink": "sh npm-unlink.sh",
+        "dev": "webpack-dev-server --mode development --open",
+        "build": "npm run link && webpack --mode production && npm run unlink",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
@@ -49,6 +50,8 @@
         "es6",
         "webpack",
         "@stereorepo/accordion",
+        "@stereorepo/burger",
+        "@stereorepo/collant",
         "@stereorepo/sac",
         "@stereorepo/sprite"
     ],
