@@ -12,10 +12,10 @@ To get the superComponents like superWindow, superScroll... you'll have to decon
 
 ```js
 // Using the default import you'll get only the cute useful functions like: query, camelize, supportsWebp, forEach, etc
-import sac from '@stereosuper/sac';
+import sac from '@stereorepo/sac';
 
 // or you can deconstruct sac to get our superComponents
-import { query, superWindow } from '@stereosuper/sac';
+import { query, superWindow } from '@stereorepo/sac';
 
 // ⚠️ query is a useful function
 // ⚠️ superWindow is a superComponent
