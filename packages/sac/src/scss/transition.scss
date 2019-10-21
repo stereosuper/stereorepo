@@ -7,12 +7,13 @@
 
         $transition: $transition + ' ' + $property;
         @each $objectValues in $object {
-            @if str-index($objectValues, 'ease') or
-                str-index($objectValues, 'linear')
+            $string-value: inspect($objectValues);
+            @if str-index($string-value, 'ease') or
+                str-index($string-value, 'linear')
             {
                 $has-timing-function: true;
             }
-            $transition: $transition + ' ' + $objectValues;
+            $transition: $transition + ' ' + $string-value;
         }
 
         @if not $has-timing-function {
