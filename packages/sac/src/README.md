@@ -14,15 +14,99 @@ To get the superComponents like superWindow, superScroll... you'll have to decon
 // Using the default import you'll get only the cute useful functions like: query, camelize, supportsWebp, forEach, etc
 import sac from '@stereorepo/sac';
 
-// or you can deconstruct sac to get our superComponents
-import { query, superScroll } from '@stereorepo/sac';
+// or you can deconstruct sac to get our superComponents and useful functions
+import { query, useSacVanilla, useSuperWindow } from '@stereorepo/sac';
 
 // ⚠️ query is a useful function
-// ⚠️ superScroll is a superComponent
+// ⚠️ superWindow is a superComponent
+
+// Init superComponents
+useSacVanilla();
+useSuperWindow();
+
+// Access superComponents
+const superWindow = window.$stereorepo.superWindow;
 ```
 
 > 🚨 **Wait**  
 > Under the hood all of our superComponents are made with es6 classes, thus you can extend your own classes with those to make specific awesome things ! 💪
+
+## Work with Vue.js
+
+You can use our superWindow component with Vue.js. In order to do that use `superWindowVue` instead of `superWindow`.
+
+Example:
+
+```js
+// Import the init functions (if using Nuxt, do that in a plugin 👌)
+... global-plugin.js
+import { useSacVue, superWindowVue } from '@stereorepo/sac';
+
+// Set Vue.use here
+Vue.use(useSacVue);
+Vue.use(superWindowVue);
+...
+
+... YourComponent.vue
+mounted() {
+    // this.$store is your VueX store instance
+    this.$stereorepo.superWindow.initializeWindow(this.$store);
+}
+...
+```
+
+### superWindowVue
+
+### Functions
+
+**initializeWindow**
+
+With this function you'll initialize the `window.addEventListener('resize')` event. All the window's values will be updated in your VueX store at `yourStore.state.superWindow`.
+The superComponent is using a dynamic VueX module under the hood.
+
+See : https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration
+
+```js
+... your-vue-component.vue
+mounted() {
+    // Preferably in layout/default.vue (if using Nuxt)
+    // this.$store is your VueX store instance
+    this.$stereorepo.superWindow.initializeWindow(this.$store);
+},
+...
+```
+
+**destroyWindow**
+
+Simply destroy the _superWindow_'s events and store module.
+
+```js
+... your-vue-component.vue
+destroyed() {
+    // this.$store is your VueX store instance
+    this.$stereorepo.superWindow.destroyWindow(this.$store);
+},
+...
+```
+
+**toggleNoScroll**
+
+_Often used for your burger menus (html tag updated with position fixed to avoid scroll bugs)_.
+
+The _toggleNoScroll_ function will remembering your scroll distance when the navigation is activated.
+
+```js
+... your-vue-component.vue
+watch: {
+    navigationState(navState) {
+        this.$stereorepo.superWindow.this.$stereorepo.superWindow.toggleNoScroll({
+            noScroll: navState,
+            nextTick: this.$nextTick
+        });
+    }
+},
+...
+```
 
 ## Async
 
@@ -356,4 +440,161 @@ const reversedString = reverseString(myString);
 
 ## Polyfill
 
+### Functions
+
+**audioContextPolyfill**
+
+A sweet polyfill for the web audio api
+
+```js
+audioContextPolyfill();
+
+const audioContext = new window.AudioContext();
+```
+
+**ie11Polyfills**
+
+Internet explorer again...
+
+```js
+// Polyfills for matches, closest, entries elements functions
+ie11Polyfills();
+```
+
+**ioPolyfill**
+
+IntersectionObserver is pretty cool... but... like always... Internet explorer
+
+```js
+ioPolyfill();
+
+const options = {
+    root: document.querySelector('#scrollArea'),
+    rootMargin: '0px',
+    threshold: 1.0,
+};
+
+const observer = new IntersectionObserver(callback, options);
+```
+
+**smoothScrollPolyfill**
+
+Smooth scrolling to anchors is cool... but don't forget IE
+
+```js
+smoothScrollPolyfill();
+
+const [scrollToElement] = query({ selector: '.scroll-to-selector' });
+
+window.scroll({
+    top: 100, // In px
+    left: 0,
+    behavior: 'smooth',
+});
+```
+
 ## Snif
+
+### Functions
+
+**isIOS**
+
+Check for an ios device
+
+```js
+if (isIOS()) {
+    // Do some stuff
+}
+```
+
+**isAndroid**
+
+Check for an android device
+
+```js
+if (isAndroid()) {
+    // Do some stuff
+}
+```
+
+**isChrome**
+
+Check if the device uses chrome
+
+```js
+if (isChrome()) {
+    // Do some stuff
+}
+```
+
+**isMobile**
+
+Check if the device is a mobile
+
+```js
+if (isMobile()) {
+    // Do some stuff
+}
+```
+
+**isChromeAndroid**
+
+Check if the device running chrome on android
+
+```js
+if (isChromeAndroid()) {
+    // Do some stuff
+}
+```
+
+**isSafari**
+
+Check if the device is running safari
+
+```js
+if (isSafari()) {
+    // Do some stuff
+}
+```
+
+**isFF**
+
+Check if the device is running firefox
+
+```js
+if (isFF()) {
+    // Do some stuff
+}
+```
+
+**isMS**
+
+Check if the device is a Microsoft product (🤮)
+
+```js
+if (isMS()) {
+    // Do some stuff
+}
+```
+
+**mixBlendModeSupport**
+
+Check for mix blend mode support
+
+```js
+if (mixBlendModeSupport()) {
+    // Do some stuff
+}
+```
+
+**isIe11**
+
+Check if the device's running internet explorer
+
+```js
+if (isIe11()) {
+    // Do some stuff
+}
+```
+
+**P.S.** 21st century's celebrating its 20 years old... Seriously... Internet explorer's not dead by now ??? WTF ???

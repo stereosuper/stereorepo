@@ -25,8 +25,18 @@ Thus you can import the package in two different ways :
 // Using the default import you'll get only the cute useful functions like: query, camelize, supportsWebp, forEach, etc
 import sac from '@stereosuper/sac';
 
-// or you can deconstruct sac to get our superComponents and useful function
-import { query, superScroll } from '@stereosuper/sac';
+// or you can deconstruct sac to get our superComponents and useful functions
+import { query, useSacVanilla, useSuperWindow } from '@stereorepo/sac';
+
+// ⚠️ query is a useful function
+// ⚠️ superWindow is a superComponent
+
+// Init superComponents
+useSacVanilla();
+useSuperWindow();
+
+// Access superComponents
+const superWindow = window.$stereorepo.superWindow;
 ```
 
 If you wanna know more about the different **functions** inside this marvelous package you can click...

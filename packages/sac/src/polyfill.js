@@ -4,16 +4,6 @@ export const audioContextPolyfill = () => {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
 };
 
-export const ioPolyfill = () => {
-    window.IntersectionObserver || require('intersection-observer');
-};
-
-export const smoothScrollPolyfill = () => {
-    importSmoothScrollPolyfill().then(({ polyfill }) => {
-        polyfill();
-    });
-};
-
 // IE11 polyfills
 export const ie11Polyfills = () => {
     if (!Element.prototype.matches) {
@@ -47,9 +37,19 @@ export const ie11Polyfills = () => {
     }
 };
 
+export const ioPolyfill = () => {
+    window.IntersectionObserver || require('intersection-observer');
+};
+
+export const smoothScrollPolyfill = () => {
+    importSmoothScrollPolyfill().then(({ polyfill }) => {
+        polyfill();
+    });
+};
+
 export default {
     audioContextPolyfill,
+    ie11Polyfills,
     ioPolyfill,
     smoothScrollPolyfill,
-    ie11Polyfills,
 };
