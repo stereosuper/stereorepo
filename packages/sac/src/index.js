@@ -1,3 +1,9 @@
+// Async
+import async from './async';
+
+export const { wait } = async;
+export const { runPromisesSequence } = async;
+
 // Core
 import core from './core';
 export const { bodyRouter } = core;

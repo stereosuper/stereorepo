@@ -8,15 +8,6 @@ import {
     isSafari,
 } from './snif';
 
-export async function supportsWebp() {
-    if (!self.createImageBitmap) return false;
-
-    const webpData =
-        'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    const blob = await fetch(webpData).then(r => r.blob());
-    return createImageBitmap(blob).then(() => true, () => false);
-}
-
 export const spotMobile = () => {
     const html = document.documentElement;
     if (isMobile()) {
@@ -57,8 +48,16 @@ export const spotIE = () => {
     if (isIe11()) html.classList.add('is-ie');
 };
 
+export async function supportsWebp() {
+    if (!self.createImageBitmap) return false;
+
+    const webpData =
+        'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+    const blob = await fetch(webpData).then(r => r.blob());
+    return createImageBitmap(blob).then(() => true, () => false);
+}
+
 export default {
-    supportsWebp,
     spotMobile,
     spotIOS,
     spotSafari,
@@ -66,4 +65,5 @@ export default {
     spotChromeAndroid,
     spotMS,
     spotIE,
+    supportsWebp,
 };

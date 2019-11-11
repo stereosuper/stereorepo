@@ -15,14 +15,69 @@ To get the superComponents like superWindow, superScroll... you'll have to decon
 import sac from '@stereorepo/sac';
 
 // or you can deconstruct sac to get our superComponents
-import { query, superWindow } from '@stereorepo/sac';
+import { query, superScroll } from '@stereorepo/sac';
 
 // ⚠️ query is a useful function
-// ⚠️ superWindow is a superComponent
+// ⚠️ superScroll is a superComponent
 ```
 
 > 🚨 **Wait**  
 > Under the hood all of our superComponents are made with es6 classes, thus you can extend your own classes with those to make specific awesome things ! 💪
+
+## Async
+
+### Functions
+
+**wait**
+
+In an async function, _wait_ allows us to wait in simple way with _await_.
+
+Example:
+
+```js
+// delay is in ms
+const delay = 300;
+
+const asyncFunction = async () => {
+    ...
+    // Do some stuff
+    ...
+    await wait(delay);
+};
+
+asyncFunction();
+```
+
+**runPromisesSequence**
+
+This function allows us to add a timeout between promises (not possible with Promise.all).
+
+Example:
+
+```js
+// Say we want to download medias from urls
+// For each url we want to apply the same process...
+// With a delay... Because we wanna avoid a server overload
+
+// Media download function
+const handleMediaDownload = async (url, mediaName) => {
+    const [mediaName] = url.split('/').reverse();
+    const filePath = `static-path/${mediaName}`;
+    await writeMedia({ filePath, url });
+};
+
+// Apply the delay
+await runPromisesSequence(
+    {
+        array: urls, // For the examples' purpose, we'll say that urls is already defined as an array
+        handler: handleMediaDownload,
+        delay: 500, // In ms
+    },
+    () => {
+        // The callback called when all promises are done
+    },
+);
+```
 
 ## Core
 
@@ -42,7 +97,7 @@ document.addEventListener(
     () => {
         console.log('✅ Cross browser event dispatched');
     },
-    false
+    false,
 );
 
 document.dispatchEvent(newEvent);
@@ -98,10 +153,10 @@ Example:
 const [byId] = query({ selector: '#my-id' });
 const [byClass] = query({ selector: '.my-class' });
 const [myNestedElement] = query({
-    selector: '.the-ancestor .my-nested-element'
+    selector: '.the-ancestor .my-nested-element',
 });
 const allTheClasses = query({
-    selector: '.my-classes'
+    selector: '.my-classes',
 });
 const withContext = query({ selector: '.my-class', ctx: myContextualElement });
 ```
@@ -117,6 +172,110 @@ const animationFrameId = requestAnimFrame(() => {});
 
 // The better, you can cancel it 😱
 cancelAnimationFrame(animationFrameId);
+```
+
+**throttle**
+
+_throttle_ has been redisigned.
+
+Example:
+
+```js
+throttle({
+    callback: () => {
+        // Do whatever you want to
+    },
+    delay: 100,
+});
+```
+
+**bodyRouter**
+
+_bodyRouter_ will allow you to execute whatever javascript piece of code... on the specific page you want, not the others. One more thing, it uses _query_ under the hood 😏
+
+Example:
+
+```js
+bodyRouter({
+    identifier: '.page-template-contact',
+    callback: () => {
+        // Dynamically load your imports for example 💪
+    },
+});
+```
+
+## Fallback
+
+### Functions
+
+**spotMobile**
+
+Spot when a mobile is used by adding a class to the html element.
+
+Example:
+
+```js
+spotMobile(); // As simple as that
+```
+
+**spotIOS**
+
+Spot when ios is used by adding a class to the html element.
+
+Example:
+
+```js
+spotIOS(); // As simple as that
+```
+
+**spotSafari**
+
+Spot when safari is used by adding a class to the html element.
+
+Example:
+
+```js
+spotSafari(); // As simple as that
+```
+
+**spotFF**
+
+Spot when firefox is used by adding a class to the html element.
+
+Example:
+
+```js
+spotFF(); // As simple as that
+```
+
+**spotChromeAndroid**
+
+Spot when an android mobile uses chrome by adding a class to the html element.
+
+Example:
+
+```js
+spotChromeAndroid(); // As simple as that
+```
+
+**spotMS**
+
+Spot when a microsoft device is used by adding a class to the html element.
+
+Example:
+
+```js
+spotMS(); // As simple as that
+```
+
+**spotIE**
+
+Spot when internet explorer is used by adding a class to the html element.
+
+Example:
+
+```js
+spotIE(); // As simple as that
 ```
 
 **supportsWebp**
@@ -135,42 +294,6 @@ if (isWebpSupported) {
     // OKAY LET'S USE IMAGES THE OLD FASHION WAY
 }
 ```
-
-**throttle**
-
-_throttle_ has been redisigned.
-
-Example:
-
-```js
-throttle({
-    callback: () => {
-        // Do whatever you want to
-    },
-    delay: 100
-});
-```
-
-**bodyRouter**
-
-_bodyRouter_ will allow you to execute whatever javascript piece of code... on the specific page you want, not the others. One more thing, it uses _query_ under the hood 😏
-
-Example:
-
-```js
-bodyRouter({
-    identifier: '.page-template-contact',
-    callback: () => {
-        // Dynamically load your imports for example 💪
-    }
-});
-```
-
-## Async
-
-### Functions
-
-Nothing except a possibly cool fetch function for now.
 
 ## Math
 
@@ -205,6 +328,19 @@ const camalizedSlug = camalize(mySlug);
 // camalizedSlug = testSlug now.
 ```
 
+**pascalize**
+
+Just read the title.
+
+Example:
+
+```js
+const mySlug = 'test-slug';
+
+const pascalizedSlug = pascalize(mySlug);
+// pascalizedSlug = TestSlug now.
+```
+
 **reverseString**
 
 Just read the title.
@@ -217,3 +353,7 @@ const myString = 'emosewa';
 const reversedString = reverseString(myString);
 // myString = awesome now.
 ```
+
+## Polyfill
+
+## Snif

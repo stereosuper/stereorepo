@@ -1,6 +1,6 @@
 # Sac 🎒
 
-[Alban 🔥] Ever since **jQuery died in hour hearts** we had an idea.
+[Alban 🔥] Ever since **jQuery died\* in hour hearts** we had an idea.
 
 Create a small package that bring together all of our best dark magic art ! 🔮
 
@@ -25,8 +25,8 @@ Thus you can import the package in two different ways :
 // Using the default import you'll get only the cute useful functions like: query, camelize, supportsWebp, forEach, etc
 import sac from '@stereosuper/sac';
 
-// or you can deconstruct sac to get our superComponents
-import { query, superWindow } from '@stereosuper/sac';
+// or you can deconstruct sac to get our superComponents and useful function
+import { query, superScroll } from '@stereosuper/sac';
 ```
 
 If you wanna know more about the different **functions** inside this marvelous package you can click...
