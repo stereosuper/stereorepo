@@ -10,6 +10,7 @@ export const { bodyRouter } = core;
 export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
 export const { isDisplayed } = core;
+export const { loop } = core;
 export const { nodeIndex } = core;
 export const { query } = core;
 export const { requestAnimFrame } = core;

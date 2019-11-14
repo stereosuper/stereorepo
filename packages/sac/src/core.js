@@ -85,6 +85,31 @@ export const throttle = ({ callback, delay }) => {
 };
 
 // NOTE: Functions calling functions defined above.
+
+export const loop = ({ function: func, fpsInterval = 60, params = {} }) => {
+    if (!func) throw new Error('No function passed to loop.');
+    let then = 0;
+
+    const animate = () => {
+        // request another frame
+        const requestAnimFrameId = requestAnimFrame(animate);
+
+        // calc elapsed time since last loop
+        const now = Date.now();
+        const elapsed = now - then;
+
+        // if enough time has elapsed, draw the next frame
+        if (elapsed > fpsInterval) {
+            // Get ready for next frame by setting then=now, but also adjust for your
+            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+            then = now - (elapsed % fpsInterval);
+
+            func({ ...params, requestAnimFrameId });
+        }
+    };
+    animate();
+};
+
 /**
  * @description calls a function if the selector exists
  * @param {*} { identifier, callback }
@@ -103,6 +128,7 @@ export default {
     createCrossBrowserEvent,
     forEach,
     isDisplayed,
+    loop,
     nodeIndex,
     query,
     requestAnimFrame,
