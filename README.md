@@ -8,7 +8,7 @@ These packages are _"**npm scoped packages**"_ like _@babel/core_.
 
 -   [@stereorepo/accordion](https://github.com/stereosuper/stereorepo/tree/master/packages/accordion)
 -   [@stereorepo/burger](https://github.com/stereosuper/stereorepo/tree/master/packages/burger)
--   [@stereorepo/longue-vue](https://github.com/stereosuper/stereorepo/tree/master/packages/longue-vue)
+-   [@stereorepo/collant](https://github.com/stereosuper/stereorepo/tree/master/packages/collant)
 -   [@stereorepo/sac](https://github.com/stereosuper/stereorepo/tree/master/packages/sac)
 -   [@stereorepo/sprite](https://github.com/stereosuper/stereorepo/tree/master/packages/sprite)
 
