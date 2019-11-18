@@ -7,6 +7,7 @@ export const { runPromisesSequence } = async;
 // Core
 import core from './core';
 export const { bodyRouter } = core;
+export const { clearRequestTimeout } = core;
 export const { createCrossBrowserEvent } = core;
 export const { forEach } = core;
 export const { isDisplayed } = core;
@@ -14,6 +15,7 @@ export const { loop } = core;
 export const { nodeIndex } = core;
 export const { query } = core;
 export const { requestAnimFrame } = core;
+export const { requestTimeout } = core;
 export const { throttle } = core;
 
 // Fallback
