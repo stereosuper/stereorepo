@@ -1,16 +1,21 @@
-import { useSuperScroll, query, useSuperWindow } from '@stereorepo/sac';
+import {
+    useSacVanilla,
+    useSuperScroll,
+    query,
+    useSuperWindow,
+} from '@stereorepo/sac';
 
 class Collant {
     constructor({
         ctx = null,
-        selector = '.js-collant-selector',
-        box = '.js-collant-box',
+        collantElement = null,
+        box = null,
         offsetTop = null,
         offsetBottom = null,
     }) {
         this.contextElement = ctx;
-        this.collantSelector = selector;
-        this.boxSelector = box;
+        this.collantElement = collantElement;
+        this.boxElement = box;
         this.rawOffset = offsetBottom ? offsetBottom : offsetTop;
         this.offsetPosition = offsetBottom ? 'bottom' : 'top';
 
@@ -18,11 +23,11 @@ class Collant {
             resizing: false,
         };
 
+        useSacVanilla();
         useSuperScroll();
         useSuperWindow();
-
-        this.collantElement = null;
-        this.boxElement = null;
+        window.$stereorepo.superWindow.initializeWindow();
+        window.$stereorepo.superScroll.initializeScroll();
 
         this.boxBoundings = null;
         this.collantBoundings = null;
@@ -137,17 +142,7 @@ class Collant {
         this.state.resizing = false;
     }
     stickIt() {
-        [this.boxElement] = query({
-            selector: this.boxSelector,
-            ctx: this.contextElement,
-        });
-        if (!this.boxElement) return;
-
-        [this.collantElement] = query({
-            selector: this.collantSelector,
-            ctx: this.boxElement,
-        });
-        if (!this.collantElement) return;
+        if (!this.boxElement || !this.collantElement) return;
 
         this.computeOffset();
         this.getWindowPosition();
