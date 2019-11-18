@@ -1,8 +1,9 @@
 import {
     useSacVanilla,
     useSuperScroll,
-    query,
     useSuperWindow,
+    throttle,
+    loop,
 } from '@stereorepo/sac';
 
 class Collant {
@@ -99,11 +100,19 @@ class Collant {
                 this.collantBoundings.height -
                 this.offset;
         }
+        loop({
+            function: throttle({
+                callback: () => {
+                    this.setBoundings();
+                },
+                delay: 300,
+            }),
+        });
 
         const bottomDelimiter =
             this.boxBoundings.y +
-            this.boxBoundings.height +
-            this.windowPositions.y -
+            this.windowPositions.y +
+            this.boxBoundings.height -
             this.collantBoundings.height;
 
         this.resetCollantProperties();
