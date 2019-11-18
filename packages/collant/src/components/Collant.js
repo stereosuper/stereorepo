@@ -1,10 +1,4 @@
-import {
-    useSacVanilla,
-    useSuperScroll,
-    useSuperWindow,
-    throttle,
-    loop,
-} from '@stereorepo/sac';
+import { useSacVanilla, useSuperScroll, useSuperWindow } from '@stereorepo/sac';
 
 class Collant {
     constructor({
@@ -100,14 +94,6 @@ class Collant {
                 this.collantBoundings.height -
                 this.offset;
         }
-        loop({
-            function: throttle({
-                callback: () => {
-                    this.setBoundings();
-                },
-                delay: 300,
-            }),
-        });
 
         const bottomDelimiter =
             this.boxBoundings.y +
