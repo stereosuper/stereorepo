@@ -64,8 +64,13 @@ class SuperScroll {
     scrollHandler() {
         if (!this.isScrolling) {
             this.isScrolling = true;
-            this.scroll();
+            this.scrollForWatchedElements();
         }
+
+        requestAnimFrame(() => {
+            this.scrollTop = window.scrollY || window.pageYOffset;
+            this.dispatchScroll();
+        });
 
         // Scroll end detection
         if (this.scrollRequestTimeoutId) {
@@ -80,17 +85,14 @@ class SuperScroll {
             }, 100);
         }
     }
-    scroll() {
+    scrollForWatchedElements() {
         const lerpNotDone = this.watchedElements.some(
             element => element && element.lerpNotDone,
         );
 
         if (lerpNotDone || this.isScrolling) {
-            requestAnimFrame(() => this.scroll());
+            requestAnimFrame(() => this.scrollForWatchedElements());
         }
-
-        this.scrollTop = window.scrollY || window.pageYOffset;
-        this.dispatchScroll();
 
         this.handleWatchedElements();
     }
