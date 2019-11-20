@@ -1,11 +1,17 @@
+import { transform } from './utils/transform';
+
 class WatchedElement {
-    constructor({ element, id, destroyMethod }) {
+    constructor({ destroyMethod, element, id, speed = 0 }) {
+        // Constructor props
+        this.destroyMethod = destroyMethod;
         this.element = element;
         this.id = id;
-        this.destroyMethod = destroyMethod;
+        this.speed = speed;
+
+        // Computed data
         this.boundings = null;
 
-        // Real data
+        // Output data
         this.offsetWindowTop = null;
         this.offsetWindowBottom = null;
         this.inView = false;
@@ -17,6 +23,18 @@ class WatchedElement {
         this.inViewStateChanged();
     }
     // methods
+    parallax({ scrollTop, firstScrollTopOffset }) {
+        if (!this.speed || !this.inView) return;
+        const relativeToElementCenter =
+            this.boundings.top +
+            firstScrollTopOffset + // Compensating window already scrolled when first trigger
+            this.boundings.height / 2;
+        const relativeToWindowAndElementCenter =
+            relativeToElementCenter - window.innerHeight / 2;
+        let y = relativeToWindowAndElementCenter - scrollTop;
+        y *= this.speed * 0.1;
+        transform(this.element, 0, y);
+    }
     compute() {
         this.boundings = this.element.getBoundingClientRect();
     }
@@ -28,7 +46,7 @@ class WatchedElement {
         }
     }
     amIInView({ scrollTop, firstScrollTopOffset }) {
-        const elementTop = this.boundings.y + firstScrollTopOffset;
+        const elementTop = this.boundings.top + firstScrollTopOffset;
 
         // If offsetWindowTop is positive, the element is below the window's top
         this.offsetWindowTop = elementTop + this.boundings.height - scrollTop;

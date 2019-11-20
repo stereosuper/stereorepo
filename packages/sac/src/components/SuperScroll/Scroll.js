@@ -88,6 +88,10 @@ class SuperScroll {
                 scrollTop: this.scrollTop,
                 firstScrollTopOffset: this.firstScrollTopOffset,
             });
+            element.parallax({
+                scrollTop: this.scrollTop,
+                firstScrollTopOffset: this.firstScrollTopOffset,
+            });
         });
     }
     // Events part
@@ -134,13 +138,14 @@ class SuperScroll {
         );
     }
     // Watching elements
-    watch(element) {
+    watch({ element, options }) {
         // Ensuring that the function will have an element to watch.
         if (!element)
             throw new Error('No element passed to superScroll.watch().');
 
         const watchedElementsLength = this.watchedElements.length;
         const watched = new WatchedElement({
+            ...options,
             element,
             id: watchedElementsLength,
             destroyMethod: this.removeWatchedElement,
@@ -149,8 +154,8 @@ class SuperScroll {
 
         return watched;
     }
-    watchMultiple(elements) {
-        return elements.map(element => this.watch(element));
+    watchMultiple({ elements, options }) {
+        return elements.map(element => this.watch({ element, options }));
     }
     forgetMultiple(elements) {
         forEach(elements, element => {
