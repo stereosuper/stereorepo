@@ -2,7 +2,14 @@ import { transform } from './utils/transform';
 import { forEach, createCrossBrowserEvent } from '../../core';
 
 class WatchedElement {
-    constructor({ destroyMethod, element, id, speed = 0, stalk = true }) {
+    constructor({
+        destroyMethod,
+        element,
+        id,
+        speed = 0,
+        stalk = true,
+        triggerOffset = 0,
+    }) {
         this.namespace = `super-scroll-watched-element-${id}`;
         // Constructor props
         this.destroyMethod = destroyMethod;
@@ -10,6 +17,7 @@ class WatchedElement {
         this.id = id;
         this.speed = speed;
         this.stalk = stalk;
+        this.triggerOffset = triggerOffset;
 
         // Computed data
         this.boundings = null;
@@ -33,6 +41,13 @@ class WatchedElement {
         if (this.stalk || !this.alreadyInViewed) {
             this.inViewStateChanged();
         }
+    }
+    get parsedTriggerOffset() {
+        if (!/%$/.test(this.triggerOffset)) return this.triggerOffset;
+        return parseInt(
+            this.triggerOffset.replace('%', '') * (this.boundings.height / 100),
+            10,
+        );
     }
     // NOTE: Methods section
     // Relative to element size
@@ -67,11 +82,17 @@ class WatchedElement {
         const elementTop = this.boundings.top + firstScrollTopOffset;
 
         // If offsetWindowTop is positive, the element is below the window's top
-        this.offsetWindowTop = elementTop + this.boundings.height - scrollTop;
+        this.offsetWindowTop =
+            elementTop +
+            this.boundings.height -
+            this.parsedTriggerOffset -
+            scrollTop;
 
         // If offsetWindowBottom is positive, the element is below the window's bottom
-        this.offsetWindowBottom = elementTop - (scrollTop + window.innerHeight);
-        // console.log(this.offsetWindowTop, this.offsetWindowBottom);
+        this.offsetWindowBottom =
+            elementTop +
+            this.parsedTriggerOffset -
+            (scrollTop + window.innerHeight);
 
         if (
             Math.sign(this.offsetWindowTop) > 0 &&
@@ -126,10 +147,6 @@ class WatchedElement {
     forget() {
         // Curryied functions destruction
         forEach(Object.keys(this.events), event => {
-            console.log(
-                'TCL: forget -> this[this.events[event]]',
-                this[this.events[event]],
-            );
             window.removeEventListener(
                 `${this.namespace}-${event}`,
                 this[this.events[event]],
