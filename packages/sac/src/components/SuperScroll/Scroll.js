@@ -13,7 +13,8 @@ class SuperScroll {
         this.scrollTop = null;
 
         // Used for scroll end detection
-        this.requestTimeoutId = null;
+        this.scrollRequestTimeoutId = null;
+        this.resizeRequestTimeoutId = null;
 
         // Curryied functions names sorted by events
         this.events = {
@@ -26,6 +27,7 @@ class SuperScroll {
 
         // Binds
         this.scrollHandler = this.scrollHandler.bind(this);
+        this.resizeHandler = this.resizeHandler.bind(this);
         this.listenToEvents = this.listenToEvents.bind(this);
         this.removeWatchedElement = this.removeWatchedElement.bind(this);
     }
@@ -49,6 +51,7 @@ class SuperScroll {
         await this.checkDomState();
         this.initializeContext();
         window.addEventListener('scroll', this.scrollHandler, false);
+        window.addEventListener('resize', this.resizeHandler, false);
     }
     initializeContext() {
         this.firstScrollTopOffset = window.scrollY || window.pageYOffset;
@@ -63,16 +66,33 @@ class SuperScroll {
         this.handleWatchedElements();
 
         // Scroll end detection
-        if (this.requestTimeoutId) {
-            clearRequestTimeout(this.requestTimeoutId);
-            this.requestTimeoutId = null;
+        if (this.scrollRequestTimeoutId) {
+            clearRequestTimeout(this.scrollRequestTimeoutId);
+            this.scrollRequestTimeoutId = null;
         }
-        if (!this.requestTimeoutId) {
-            this.requestTimeoutId = requestTimeout(() => {
+        if (!this.scrollRequestTimeoutId) {
+            this.scrollRequestTimeoutId = requestTimeout(() => {
                 this.dispatchScrollEnd();
-                this.requestTimeoutId = null;
+                this.scrollRequestTimeoutId = null;
             }, 100);
         }
+    }
+    // Resize
+    resizeHandler() {
+        // Resize end detection
+        if (this.resizeRequestTimeoutId) {
+            clearRequestTimeout(this.resizeRequestTimeoutId);
+            this.resizeRequestTimeoutId = null;
+        }
+        if (!this.resizeRequestTimeoutId) {
+            this.resizeRequestTimeoutId = requestTimeout(() => {
+                this.resizeEnd();
+                this.resizeRequestTimeoutId = null;
+            }, 100);
+        }
+    }
+    resizeEnd() {
+        this.initializeContext();
     }
     // Handle watched elements
     computeWatchedElements() {

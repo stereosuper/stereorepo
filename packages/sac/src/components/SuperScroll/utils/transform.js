@@ -1,5 +1,4 @@
-import { lerp } from './maths';
-import { roundNumbers } from '../../../math';
+import { lerp, roundNumbers } from '../../../math';
 
 export function getTranslate(el) {
     const translate = {};
