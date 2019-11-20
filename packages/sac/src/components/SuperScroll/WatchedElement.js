@@ -6,6 +6,7 @@ class WatchedElement {
         destroyMethod,
         element,
         id,
+        lerp: lerpIntensity = null,
         speed = 0,
         stalk = true,
         triggerOffset = 0,
@@ -15,6 +16,7 @@ class WatchedElement {
         this.destroyMethod = destroyMethod;
         this.element = element;
         this.id = id;
+        this.lerpIntensity = lerpIntensity;
         this.speed = speed;
         this.stalk = stalk;
         this.triggerOffset = triggerOffset;
@@ -66,7 +68,7 @@ class WatchedElement {
             relativeToElementCenter - window.innerHeight / 2;
         let y = relativeToWindowAndElementCenter - scrollTop;
         y *= this.speed * 0.1;
-        this.transform = transform(this.element, 0, y);
+        this.transform = transform(this.element, 0, y, this.lerpIntensity);
     }
     // Relative to component in view state
     inViewStateChanged() {

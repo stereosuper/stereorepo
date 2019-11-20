@@ -27,6 +27,7 @@ export const transform = (element, xFloat, yFloat, delay) => {
     if (!delay) {
         transform = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,${x},${y},0,1)`;
     } else {
+        console.log('lerp');
         let start = getTranslate(element);
         let lerpX = lerp(start.x, x, delay);
         let lerpY = lerp(start.y, y, delay);

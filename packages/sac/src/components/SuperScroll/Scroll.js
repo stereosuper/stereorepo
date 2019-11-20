@@ -187,6 +187,11 @@ class SuperScroll {
     }
     // Destroy
     destroyScroll() {
+        forEach(this.watchedElements, element => {
+            if (!element) return;
+            element.forget();
+        });
+
         // Curryied functions destruction
         forEach(Object.keys(this.events), event => {
             window.removeEventListener(
