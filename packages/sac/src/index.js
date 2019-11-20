@@ -63,7 +63,7 @@ export const { isIe11 } = snif;
 // Classes imports
 import ErrorComponent from './components/Error';
 import initSuperLoadFunction from './components/LoadHandler';
-import initSuperScrollFunction from './components/Scroll';
+import initSuperScrollFunction from './components/SuperScroll';
 import initSuperWindowFunction from './components/Window';
 
 // Classes exports

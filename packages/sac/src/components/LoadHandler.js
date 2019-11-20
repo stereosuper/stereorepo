@@ -1,5 +1,5 @@
 import { useSuperWindow } from './Window';
-import { useSuperScroll } from './Scroll';
+import { useSuperScroll } from './SuperScroll';
 import { query } from '../core';
 
 class LoadHandler {
