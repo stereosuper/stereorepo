@@ -37,4 +37,6 @@ export const transform = (element, xFloat, yFloat, delay) => {
     element.style.webkitTransform = transform;
     element.style.msTransform = transform;
     element.style.transform = transform;
+
+    return { x, y };
 };

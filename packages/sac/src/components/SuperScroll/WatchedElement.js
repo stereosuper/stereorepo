@@ -21,6 +21,7 @@ class WatchedElement {
 
         // Computed data
         this.boundings = null;
+        this.transform = { x: 0, y: 0 };
         this.alreadyInViewed = false;
 
         // Output data
@@ -65,7 +66,7 @@ class WatchedElement {
             relativeToElementCenter - window.innerHeight / 2;
         let y = relativeToWindowAndElementCenter - scrollTop;
         y *= this.speed * 0.1;
-        transform(this.element, 0, y);
+        this.transform = transform(this.element, 0, y);
     }
     // Relative to component in view state
     inViewStateChanged() {
@@ -79,7 +80,8 @@ class WatchedElement {
         }
     }
     amIInView({ scrollTop, firstScrollTopOffset }) {
-        const elementTop = this.boundings.top + firstScrollTopOffset;
+        const elementTop =
+            this.boundings.top + firstScrollTopOffset + this.transform.y;
 
         // If offsetWindowTop is positive, the element is below the window's top
         this.offsetWindowTop =
