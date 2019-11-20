@@ -33,16 +33,3 @@ export const mixBlendModeSupport = () =>
     'CSS' in window &&
     'supports' in window.CSS &&
     window.CSS.supports('mix-blend-mode', 'multiply');
-
-export default {
-    isIOS,
-    isAndroid,
-    isChrome,
-    isMobile,
-    isChromeAndroid,
-    isSafari,
-    isFF,
-    isMS,
-    mixBlendModeSupport,
-    isIe11,
-};

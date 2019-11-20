@@ -178,15 +178,3 @@ export const bodyRouter = ({ identifier, callback }) => {
     if (!hasIdentifier || !callback) return;
     callback();
 };
-
-export default {
-    bodyRouter,
-    createCrossBrowserEvent,
-    forEach,
-    isDisplayed,
-    loop,
-    nodeIndex,
-    query,
-    requestAnimFrame,
-    throttle,
-};

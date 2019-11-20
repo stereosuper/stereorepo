@@ -1,6 +1,6 @@
-import { requestAnimFrame, forEach } from '../core';
+import { requestAnimFrame, forEach } from '../../core';
 
-class Window {
+class SuperWindow {
     constructor() {
         this.currentBreakpoint = '';
         this.breakpoints = {
@@ -135,7 +135,7 @@ class Window {
 
 export const useSuperWindow = () => {
     if (!window.$stereorepo.superWindow) {
-        window.$stereorepo.superWindow = new Window();
+        window.$stereorepo.superWindow = new SuperWindow();
     }
 };
 

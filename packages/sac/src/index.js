@@ -1,11 +1,11 @@
-// Async
-import async from './async';
+// 🔄 Async
+import * as async from './async';
 
 export const { wait } = async;
 export const { runPromisesSequence } = async;
 
-// Core
-import core from './core';
+// ⚙️ Core
+import * as core from './core';
 export const { bodyRouter } = core;
 export const { clearRequestTimeout } = core;
 export const { createCrossBrowserEvent } = core;
@@ -18,8 +18,8 @@ export const { requestAnimFrame } = core;
 export const { requestTimeout } = core;
 export const { throttle } = core;
 
-// Fallback
-import fallback from './fallback';
+// 🛠 Fallback
+import * as fallback from './fallback';
 export const { supportsWebp } = fallback;
 export const { spotMobile } = fallback;
 export const { spotIOS } = fallback;
@@ -29,25 +29,26 @@ export const { spotChromeAndroid } = fallback;
 export const { spotMS } = fallback;
 export const { spotIE } = fallback;
 
-// Math
-import math from './math';
+// 🧮 Math
+import * as math from './math';
+export const { lerp } = math;
 export const { roundNumbers } = math;
 
-// Parsing
-import parsing from './parsing';
+// ✏️ Parsing
+import * as parsing from './parsing';
 export const { camalize } = parsing;
 export const { pascalize } = parsing;
 export const { reverseString } = parsing;
 
-// Polyfill
-import polyfill from './polyfill';
+// 📺 Polyfill
+import * as polyfill from './polyfill';
 export const { audioContextPolyfill } = polyfill;
 export const { ioPolyfill } = polyfill;
 export const { smoothScrollPolyfill } = polyfill;
 export const { ie11Polyfills } = polyfill;
 
-// Snif
-import snif from './snif';
+// 📱💻🖥 Snif
+import * as snif from './snif';
 export const { isIOS } = snif;
 export const { isAndroid } = snif;
 export const { isChrome } = snif;
@@ -59,25 +60,20 @@ export const { isMS } = snif;
 export const { mixBlendModeSupport } = snif;
 export const { isIe11 } = snif;
 
-// Components
-// Classes imports
-import ErrorComponent from './components/Error';
-import initSuperLoadFunction from './components/LoadHandler';
-import initSuperScrollFunction from './components/SuperScroll';
-import initSuperWindowFunction from './components/Window';
+// 🧱Components
+// Components behaving the same way in any environment
+export { default as SuperError } from './components/SuperError';
+export { default as useSuperLoad } from './components/SuperLoad';
 
-// Classes exports
-export const SuperError = ErrorComponent;
-export const useSuperLoad = initSuperLoadFunction;
-export const useSuperScroll = initSuperScrollFunction;
-export const useSuperWindow = initSuperWindowFunction;
+// For vanilla use
+export { useSuperScroll } from './components/SuperScroll';
+export { useSuperWindow } from './components/SuperWindow';
 
-// Vue global components
-import windowComponentVue from './components/WindowVue';
-export const superWindowVue = windowComponentVue;
+// For Vue.js use
+export { default as useSuperScrollVue } from './components/SuperScroll';
+export { default as useSuperWindowVue } from './components/SuperWindowVue';
 
-// Scoping
-
+// 🔭 Scoping
 // NOTE: If used with Vue.use method
 export const useSacVanilla = () => {
     if (typeof window !== 'undefined') {

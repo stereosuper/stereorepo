@@ -26,8 +26,3 @@ export const runPromisesSequence = async (
         callback();
     }
 };
-
-export default {
-    wait,
-    runPromisesSequence,
-};

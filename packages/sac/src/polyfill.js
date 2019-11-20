@@ -1,3 +1,4 @@
+// NOTE: Do not export this dynamic import
 const importSmoothScrollPolyfill = () => import('smoothscroll-polyfill');
 
 export const audioContextPolyfill = () => {
@@ -45,11 +46,4 @@ export const smoothScrollPolyfill = () => {
     importSmoothScrollPolyfill().then(({ polyfill }) => {
         polyfill();
     });
-};
-
-export default {
-    audioContextPolyfill,
-    ie11Polyfills,
-    ioPolyfill,
-    smoothScrollPolyfill,
 };

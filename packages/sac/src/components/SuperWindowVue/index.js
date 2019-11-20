@@ -1,4 +1,4 @@
-import SuperError from './Error';
+import SuperError from '../SuperError';
 
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {

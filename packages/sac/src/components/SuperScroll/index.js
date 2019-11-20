@@ -12,4 +12,4 @@ const install = Vue => {
     Vue.prototype.$stereorepo.superScroll = new SuperScroll();
 };
 
-export default { install, useSuperScroll };
+export default { install };

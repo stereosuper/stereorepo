@@ -14,5 +14,3 @@ export const reverseString = str =>
         .split('')
         .reverse()
         .join('');
-
-export default { camalize, reverseString };

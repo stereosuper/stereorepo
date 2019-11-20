@@ -56,14 +56,3 @@ export async function supportsWebp() {
     const blob = await fetch(webpData).then(r => r.blob());
     return createImageBitmap(blob).then(() => true, () => false);
 }
-
-export default {
-    spotMobile,
-    spotIOS,
-    spotSafari,
-    spotFF,
-    spotChromeAndroid,
-    spotMS,
-    spotIE,
-    supportsWebp,
-};
