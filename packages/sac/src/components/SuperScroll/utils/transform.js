@@ -18,26 +18,25 @@ export function getTranslate(el) {
     return translate;
 }
 
-export const transform = (element, xFloat, yFloat, delay) => {
-    const [x, y] = [xFloat, yFloat].map(float =>
+export const transform = (element, xFloat, yFloat, lerpAmount) => {
+    const [roundedX, roundedY] = [xFloat, yFloat].map(float =>
         roundNumbers({ number: float, decimalOffset: 2 }),
     );
-    let transform;
 
-    if (!delay) {
-        transform = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,${x},${y},0,1)`;
-    } else {
-        console.log('lerp');
-        let start = getTranslate(element);
-        let lerpX = lerp(start.x, x, delay);
-        let lerpY = lerp(start.y, y, delay);
+    let x = roundedX;
+    let y = roundedY;
 
-        transform = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,${lerpX},${lerpY},0,1)`;
+    if (lerpAmount) {
+        const start = getTranslate(element);
+        x = lerp(start.x, x, lerpAmount);
+        y = lerp(start.y, y, lerpAmount);
     }
 
-    element.style.webkitTransform = transform;
-    element.style.msTransform = transform;
-    element.style.transform = transform;
+    const transformValue = `matrix3d(1,0,0.00,0,0.00,1,0.00,0,0,0,1,0,${x},${y},0,1)`;
+
+    element.style.webkitTransform = transformValue;
+    element.style.msTransform = transformValue;
+    element.style.transform = transformValue;
 
     return { x, y };
 };

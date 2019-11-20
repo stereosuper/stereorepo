@@ -4,6 +4,7 @@ import {
     createCrossBrowserEvent,
     forEach,
     requestTimeout,
+    requestAnimFrame,
 } from '../../core';
 
 class SuperScroll {
@@ -11,6 +12,7 @@ class SuperScroll {
         this.namespace = 'super-scroll';
         this.firstScrollTopOffset = null;
         this.scrollTop = null;
+        this.isScrolling = false;
 
         // Used for scroll end detection
         this.scrollRequestTimeoutId = null;
@@ -60,10 +62,10 @@ class SuperScroll {
         this.handleWatchedElements();
     }
     scrollHandler() {
-        this.scrollTop = window.scrollY || window.pageYOffset;
-        this.dispatchScroll();
-
-        this.handleWatchedElements();
+        if (!this.isScrolling) {
+            this.isScrolling = true;
+            this.scroll();
+        }
 
         // Scroll end detection
         if (this.scrollRequestTimeoutId) {
@@ -72,10 +74,25 @@ class SuperScroll {
         }
         if (!this.scrollRequestTimeoutId) {
             this.scrollRequestTimeoutId = requestTimeout(() => {
+                this.isScrolling = false;
                 this.dispatchScrollEnd();
                 this.scrollRequestTimeoutId = null;
             }, 100);
         }
+    }
+    scroll() {
+        const lerpNotDone = this.watchedElements.some(
+            element => element && element.lerpNotDone,
+        );
+
+        if (lerpNotDone || this.isScrolling) {
+            requestAnimFrame(() => this.scroll());
+        }
+
+        this.scrollTop = window.scrollY || window.pageYOffset;
+        this.dispatchScroll();
+
+        this.handleWatchedElements();
     }
     // Resize
     resizeHandler() {

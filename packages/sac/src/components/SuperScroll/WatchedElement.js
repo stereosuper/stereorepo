@@ -1,12 +1,18 @@
 import { transform } from './utils/transform';
-import { forEach, createCrossBrowserEvent } from '../../core';
+import {
+    forEach,
+    createCrossBrowserEvent,
+    requestTimeout,
+    clearRequestTimeout,
+    requestAnimFrame,
+} from '../../core';
 
 class WatchedElement {
     constructor({
         destroyMethod,
         element,
         id,
-        lerp: lerpIntensity = null,
+        lerp: lerpAmount = null,
         speed = 0,
         stalk = true,
         triggerOffset = 0,
@@ -16,7 +22,7 @@ class WatchedElement {
         this.destroyMethod = destroyMethod;
         this.element = element;
         this.id = id;
-        this.lerpIntensity = lerpIntensity;
+        this.lerpAmount = lerpAmount;
         this.speed = speed;
         this.stalk = stalk;
         this.triggerOffset = triggerOffset;
@@ -25,6 +31,7 @@ class WatchedElement {
         this.boundings = null;
         this.transform = { x: 0, y: 0 };
         this.alreadyInViewed = false;
+        this.lerpNotDone = false;
 
         // Output data
         this.offsetWindowTop = null;
@@ -68,7 +75,10 @@ class WatchedElement {
             relativeToElementCenter - window.innerHeight / 2;
         let y = relativeToWindowAndElementCenter - scrollTop;
         y *= this.speed * 0.1;
-        this.transform = transform(this.element, 0, y, this.lerpIntensity);
+        this.transform = transform(this.element, 0, y, this.lerpAmount);
+
+        this.lerpNotDone =
+            this.lerpAmount && Math.abs(y - this.transform.y) > 1;
     }
     // Relative to component in view state
     inViewStateChanged() {

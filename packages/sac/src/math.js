@@ -1,5 +1,5 @@
-export function lerp(start, end, amt) {
-    return (1 - amt) * start + amt * end;
+export function lerp(start, end, amount) {
+    return (1 - amount) * start + amount * end;
 }
 
 export const roundNumbers = ({ number, decimalOffset }) => {
