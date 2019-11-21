@@ -14,6 +14,7 @@ class WatchedElement {
         triggerOffset = 0,
     }) {
         this.namespace = `super-scroll-watched-element-${id}`;
+
         // Constructor props
         this.destroyMethod = destroyMethod;
         this.element = element;
@@ -25,14 +26,22 @@ class WatchedElement {
         this.target = target;
         this.triggerOffset = triggerOffset;
 
-        // Computed data
-        this.boundings = null;
-        this.targetBoundings = null;
-        this.transform = { x: 0, y: 0 };
+        // Instance state variables
+        this.initialized = false;
         this.alreadyInViewed = false;
         this.lerpNotDone = false;
 
-        // Output data
+        // Sizes
+        this.boundings = null;
+        this.targetBoundings = null;
+
+        // Values relative to parallax
+        this.transformValue = 0;
+        this.parallaxValue = 0;
+        this.targetRelativity = 0;
+        this.transform = { x: 0, y: 0 };
+
+        // In view variables
         this.offsetWindowTop = null;
         this.offsetWindowBottom = null;
         this.inView = false;
@@ -44,19 +53,20 @@ class WatchedElement {
         };
     }
     // NOTE: Getters and setters section
-    set isInView(state) {
-        if (this.inView === state) return;
-        this.inView = state;
-        if (this.stalk || !this.alreadyInViewed) {
-            this.inViewStateChanged();
-        }
-    }
     get parsedTriggerOffset() {
         if (!/%$/.test(this.triggerOffset)) return this.triggerOffset;
         return parseInt(
             this.triggerOffset.replace('%', '') * (this.boundings.height / 100),
             10,
         );
+    }
+    // Setting the in view state and preparing in view events calls
+    set isInView(state) {
+        if (this.inView === state) return;
+        this.inView = state;
+        if (this.stalk || !this.alreadyInViewed) {
+            this.inViewStateChanged();
+        }
     }
     // NOTE: Methods section
     // Relative to element size
@@ -65,10 +75,7 @@ class WatchedElement {
         if (!this.target) return;
         this.targetBoundings = this.target.getBoundingClientRect();
     }
-    // Element modifications
-    parallax({ scrollTop, firstScrollTopOffset }) {
-        if (!this.speed || !this.inView) return;
-
+    computeParallax({ scrollTop, firstScrollTopOffset }) {
         // Compute speed centered relatively to element and window
         let windowPosition = window.innerHeight / 2;
         const relativeToElement =
@@ -78,27 +85,47 @@ class WatchedElement {
 
         const relativeToWindowAndElement = relativeToElement - windowPosition;
 
-        let y = relativeToWindowAndElement - scrollTop;
-        y *= this.speed * 0.1;
-
+        this.parallaxValue =
+            (relativeToWindowAndElement - scrollTop) * this.speed * 0.1;
+    }
+    computeTargetRelativity() {
+        if (!this.position) return;
         // Add position relatively to target
         const relativeToTarget = this.target
             ? this.boundings.top - this.targetBoundings.top
-            : this.boundings.top;
+            : window.innerHeight / 2 - this.boundings.height / 2;
         switch (this.position) {
             case 'top':
-                y -= relativeToTarget;
+                this.targetRelativity = -relativeToTarget;
                 break;
             case 'bottom':
-                y += relativeToTarget;
+                this.targetRelativity = relativeToTarget;
                 break;
             default:
                 break;
         }
+    }
+    // Element modifications
+    parallax() {
+        if (!this.speed || (this.initialized && !this.inView)) return;
 
-        this.transform = transform(this.element, 0, y, this.lerpAmount);
+        if (
+            !this.initialized &&
+            Math.abs(this.transformValue) > window.innerHeight
+        ) {
+            this.transformValue =
+                window.innerHeight * Math.sign(this.transformValue);
+        }
+
+        this.transform = transform(
+            this.element,
+            0,
+            this.transformValue,
+            this.lerpAmount,
+        );
         this.lerpNotDone =
-            this.lerpAmount && Math.abs(y - this.transform.y) > 1;
+            this.lerpAmount &&
+            Math.abs(this.transformValue - this.transform.y) > 1;
     }
     // Relative to component in view state
     inViewStateChanged() {
@@ -127,6 +154,19 @@ class WatchedElement {
             elementTop +
             this.parsedTriggerOffset -
             (scrollTop + window.innerHeight);
+
+        // Displacing the in-view box from the transform value added later on
+        if (this.speed) {
+            this.computeParallax({ scrollTop, firstScrollTopOffset });
+            this.computeTargetRelativity();
+
+            this.transformValue = this.parallaxValue + this.targetRelativity;
+
+            this.offsetWindowTop +=
+                this.transformValue + this.boundings.height / 2;
+            this.offsetWindowBottom +=
+                this.transformValue - this.boundings.height / 2;
+        }
 
         if (
             Math.sign(this.offsetWindowTop) > 0 &&
