@@ -54,6 +54,7 @@ class SuperScroll {
         this.initializeContext();
         window.addEventListener('scroll', this.scrollHandler, false);
         window.addEventListener('resize', this.resizeHandler, false);
+        return this.firstScrollTopOffset;
     }
     initializeContext() {
         this.firstScrollTopOffset = window.scrollY || window.pageYOffset;

@@ -1,11 +1,5 @@
 import { transform } from './utils/transform';
-import {
-    forEach,
-    createCrossBrowserEvent,
-    requestTimeout,
-    clearRequestTimeout,
-    requestAnimFrame,
-} from '../../core';
+import { forEach, createCrossBrowserEvent } from '../../core';
 
 class WatchedElement {
     constructor({
@@ -22,7 +16,7 @@ class WatchedElement {
         this.destroyMethod = destroyMethod;
         this.element = element;
         this.id = id;
-        this.lerpAmount = lerpAmount;
+        this.lerpAmount = lerpAmount * 0.1;
         this.speed = speed;
         this.stalk = stalk;
         this.triggerOffset = triggerOffset;

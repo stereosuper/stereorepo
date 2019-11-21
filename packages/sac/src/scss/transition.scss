@@ -9,7 +9,8 @@
         @each $objectValues in $object {
             $string-value: inspect($objectValues);
             @if str-index($string-value, 'ease') or
-                str-index($string-value, 'linear')
+                str-index($string-value, 'linear') or
+                str-index($string-value, 'cubic-bezier')
             {
                 $has-timing-function: true;
             }
