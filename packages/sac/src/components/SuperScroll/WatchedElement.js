@@ -7,8 +7,10 @@ class WatchedElement {
         element,
         id,
         lerp: lerpAmount = null,
+        position,
         speed = 0,
         stalk = true,
+        target,
         triggerOffset = 0,
     }) {
         this.namespace = `super-scroll-watched-element-${id}`;
@@ -17,12 +19,15 @@ class WatchedElement {
         this.element = element;
         this.id = id;
         this.lerpAmount = lerpAmount * 0.1;
+        this.position = position;
         this.speed = speed;
         this.stalk = stalk;
+        this.target = target;
         this.triggerOffset = triggerOffset;
 
         // Computed data
         this.boundings = null;
+        this.targetBoundings = null;
         this.transform = { x: 0, y: 0 };
         this.alreadyInViewed = false;
         this.lerpNotDone = false;
@@ -57,20 +62,41 @@ class WatchedElement {
     // Relative to element size
     compute() {
         this.boundings = this.element.getBoundingClientRect();
+        if (!this.target) return;
+        this.targetBoundings = this.target.getBoundingClientRect();
     }
     // Element modifications
     parallax({ scrollTop, firstScrollTopOffset }) {
         if (!this.speed || !this.inView) return;
-        const relativeToElementCenter =
+
+        // Compute speed centered relatively to element and window
+        let windowPosition = window.innerHeight / 2;
+        const relativeToElement =
             this.boundings.top +
             firstScrollTopOffset + // Compensating window already scrolled when first trigger
             this.boundings.height / 2;
-        const relativeToWindowAndElementCenter =
-            relativeToElementCenter - window.innerHeight / 2;
-        let y = relativeToWindowAndElementCenter - scrollTop;
-        y *= this.speed * 0.1;
-        this.transform = transform(this.element, 0, y, this.lerpAmount);
 
+        const relativeToWindowAndElement = relativeToElement - windowPosition;
+
+        let y = relativeToWindowAndElement - scrollTop;
+        y *= this.speed * 0.1;
+
+        // Add position relatively to target
+        const relativeToTarget = this.target
+            ? this.boundings.top - this.targetBoundings.top
+            : this.boundings.top;
+        switch (this.position) {
+            case 'top':
+                y -= relativeToTarget;
+                break;
+            case 'bottom':
+                y += relativeToTarget;
+                break;
+            default:
+                break;
+        }
+
+        this.transform = transform(this.element, 0, y, this.lerpAmount);
         this.lerpNotDone =
             this.lerpAmount && Math.abs(y - this.transform.y) > 1;
     }
@@ -134,6 +160,8 @@ class WatchedElement {
                 return this[this.events['enter-view']];
             case 'leave-view':
                 return this[this.events['leave-view']];
+            default:
+                break;
         }
     }
     on(event, func) {

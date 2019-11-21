@@ -88,7 +88,7 @@ class SuperScroll {
     }
     scrollForWatchedElements() {
         const lerpNotDone = this.watchedElements.some(
-            element => element && element.lerpNotDone,
+            element => element && element.inView && element.lerpNotDone,
         );
 
         if (lerpNotDone || this.isScrolling) {
@@ -161,6 +161,8 @@ class SuperScroll {
                 return this[this.events.scroll];
             case 'scroll-end':
                 return this[this.events['scroll-end']];
+            default:
+                break;
         }
     }
     on(event, func) {
