@@ -109,12 +109,13 @@ class WatchedElement {
     parallax() {
         if (!this.speed || (this.initialized && !this.inView)) return;
 
+        // Limiting the first effective transform value to a window half's height (since the elements' positions are computed based on the window's center)
         if (
             !this.initialized &&
             Math.abs(this.transformValue) > window.innerHeight
         ) {
             this.transformValue =
-                window.innerHeight * Math.sign(this.transformValue);
+                (window.innerHeight / 2) * Math.sign(this.transformValue);
         }
 
         this.transform = transform(
