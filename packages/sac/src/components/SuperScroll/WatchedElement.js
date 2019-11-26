@@ -3,6 +3,8 @@ import { forEach, createCrossBrowserEvent } from '../../core';
 
 class WatchedElement {
     constructor({
+        collant: isCollant = false,
+        collantOffset = 0,
         destroyMethod,
         element,
         id,
@@ -16,6 +18,8 @@ class WatchedElement {
         this.namespace = `super-scroll-watched-element-${id}`;
 
         // Constructor props
+        this.isCollant = isCollant;
+        this.collantOffset = collantOffset;
         this.destroyMethod = destroyMethod;
         this.element = element;
         this.id = id;
@@ -41,6 +45,11 @@ class WatchedElement {
         this.targetRelativity = 0;
         this.transform = { x: 0, y: 0 };
 
+        // Values relative to collant
+        this.collantTopDelimiter = 0;
+        this.collantBottomDelimiter = 0;
+        this.computedCollantOffset = 0;
+
         // In view variables
         this.offsetWindowTop = null;
         this.offsetWindowBottom = null;
@@ -55,9 +64,18 @@ class WatchedElement {
     // NOTE: Getters and setters section
     get parsedTriggerOffset() {
         if (!/%$/.test(this.triggerOffset)) return this.triggerOffset;
-        return parseInt(
-            this.triggerOffset.replace('%', '') * (this.boundings.height / 100),
-            10,
+        return (
+            parseInt(this.triggerOffset.replace('%', ''), 10) *
+            (this.boundings.height / 100)
+        );
+    }
+    get parsedCollantOffset() {
+        // Parsing vh or directly returning pixels
+        if (!/vh$/.test(this.collantOffset)) return this.collantOffset;
+        return (
+            (parseInt(this.collantOffset.replace('vh', ''), 10) *
+                window.innerHeight) /
+            100
         );
     }
     // Setting the in view state and preparing in view events calls
@@ -69,18 +87,94 @@ class WatchedElement {
         }
     }
     // NOTE: Methods section
-    // Relative to element size
-    compute() {
+    // Relative to component in view state
+    compute({ firstScrollTopOffset }) {
+        this.firstScrollTopOffset = firstScrollTopOffset;
         this.boundings = this.element.getBoundingClientRect();
+
         if (!this.target) return;
+
         this.targetBoundings = this.target.getBoundingClientRect();
+
+        if (!this.isCollant) return;
+
+        // Computing the top delimiter
+        this.collantTopDelimiter =
+            this.targetBoundings.top + this.firstScrollTopOffset;
+
+        // Computing the bottom delimiter
+        this.collantBottomDelimiter =
+            this.targetBoundings.top +
+            this.firstScrollTopOffset +
+            this.targetBoundings.height -
+            this.boundings.height;
+
+        // Computing the offset for any position
+        if (this.position === 'top') {
+            this.computedCollantOffset = this.parsedCollantOffset;
+        } else if (this.position === 'bottom') {
+            this.computedCollantOffset =
+                window.innerHeight -
+                this.boundings.height -
+                this.parsedCollantOffset;
+        }
     }
-    computeParallax({ scrollTop, firstScrollTopOffset }) {
+    inViewStateChanged() {
+        if (this.inView) {
+            if (!this.alreadyInViewed) this.alreadyInViewed = true;
+            this.element.classList.add('is-in-view');
+            this.dispatchViewInOut('enter');
+        } else {
+            this.element.classList.remove('is-in-view');
+            this.dispatchViewInOut('leave');
+        }
+    }
+    amIInView({ scrollTop }) {
+        const elementTop =
+            this.boundings.top + this.firstScrollTopOffset + this.transform.y;
+
+        // If offsetWindowTop is positive, the element is below the window's top
+        this.offsetWindowTop =
+            elementTop +
+            this.boundings.height -
+            this.parsedTriggerOffset -
+            scrollTop;
+
+        // If offsetWindowBottom is positive, the element is below the window's bottom
+        this.offsetWindowBottom =
+            elementTop +
+            this.parsedTriggerOffset -
+            (scrollTop + window.innerHeight);
+
+        // Displacing the in-view box from the transform value added later on
+        if (this.speed) {
+            this.computeParallax({ scrollTop });
+            this.computeTargetRelativity();
+
+            this.transformValue = this.parallaxValue + this.targetRelativity;
+
+            this.offsetWindowTop +=
+                this.transformValue + this.boundings.height / 2;
+            this.offsetWindowBottom +=
+                this.transformValue - this.boundings.height / 2;
+        }
+
+        if (
+            Math.sign(this.offsetWindowTop) > 0 &&
+            Math.sign(this.offsetWindowBottom) < 0
+        ) {
+            this.isInView = true;
+        } else {
+            this.isInView = false;
+        }
+    }
+    // Relative to element transforms
+    computeParallax({ scrollTop }) {
         // Compute speed centered relatively to element and window
         let windowPosition = window.innerHeight / 2;
         const relativeToElement =
             this.boundings.top +
-            firstScrollTopOffset + // Compensating window already scrolled when first trigger
+            this.firstScrollTopOffset + // Compensating window already scrolled when first trigger
             this.boundings.height / 2;
 
         const relativeToWindowAndElement = relativeToElement - windowPosition;
@@ -90,9 +184,10 @@ class WatchedElement {
     }
     computeTargetRelativity() {
         if (!this.position) return;
+
         // Add position relatively to target
         const relativeToTarget = this.target
-            ? this.boundings.top - this.targetBoundings.top
+            ? this.targetBoundings.height / 2 - this.boundings.height / 2
             : window.innerHeight / 2 - this.boundings.height / 2;
         switch (this.position) {
             case 'top':
@@ -105,7 +200,6 @@ class WatchedElement {
                 break;
         }
     }
-    // Element modifications
     parallax() {
         if (!this.speed || (this.initialized && !this.inView)) return;
 
@@ -128,54 +222,43 @@ class WatchedElement {
             this.lerpAmount &&
             Math.abs(this.transformValue - this.transform.y) > 1;
     }
-    // Relative to component in view state
-    inViewStateChanged() {
-        if (this.inView) {
-            if (!this.alreadyInViewed) this.alreadyInViewed = true;
-            this.element.classList.add('is-in-view');
-            this.dispatchViewInOut('enter');
+    // Relative to collant
+    collant({ scrollTop }) {
+        if (!this.isCollant || !this.position || !this.target) return;
+
+        // Getting the offset updated with the scroll position
+        const scrollOffset = scrollTop + this.computedCollantOffset;
+
+        if (scrollOffset >= this.collantBottomDelimiter) {
+            // Cleaning properties
+            this.element.style.removeProperty('max-width');
+
+            // Adding properties
+            this.element.style.top = 'auto';
+            this.element.style.bottom = '0px';
+            this.element.style.position = 'absolute';
+            this.element.classList.remove('collant');
+        } else if (scrollOffset >= this.collantTopDelimiter) {
+            // Handle width when the position is fixed
+            this.element.style.maxWidth = `${this.targetBoundings.width}px`;
+
+            if (this.position === 'top') {
+                this.element.style.top = `${this.parsedCollantOffset}px`;
+                this.element.style.bottom = 'auto';
+            } else if (this.position === 'bottom') {
+                this.element.style.top = 'auto';
+                this.element.style.bottom = `${this.parsedCollantOffset}px`;
+            }
+            this.element.style.position = 'fixed';
+            this.element.classList.add('collant');
         } else {
-            this.element.classList.remove('is-in-view');
-            this.dispatchViewInOut('leave');
-        }
-    }
-    amIInView({ scrollTop, firstScrollTopOffset }) {
-        const elementTop =
-            this.boundings.top + firstScrollTopOffset + this.transform.y;
+            // Cleaning properties
+            this.element.style.removeProperty('position');
+            this.element.style.removeProperty('top');
+            this.element.style.removeProperty('bottom');
+            this.element.style.removeProperty('max-width');
 
-        // If offsetWindowTop is positive, the element is below the window's top
-        this.offsetWindowTop =
-            elementTop +
-            this.boundings.height -
-            this.parsedTriggerOffset -
-            scrollTop;
-
-        // If offsetWindowBottom is positive, the element is below the window's bottom
-        this.offsetWindowBottom =
-            elementTop +
-            this.parsedTriggerOffset -
-            (scrollTop + window.innerHeight);
-
-        // Displacing the in-view box from the transform value added later on
-        if (this.speed) {
-            this.computeParallax({ scrollTop, firstScrollTopOffset });
-            this.computeTargetRelativity();
-
-            this.transformValue = this.parallaxValue + this.targetRelativity;
-
-            this.offsetWindowTop +=
-                this.transformValue + this.boundings.height / 2;
-            this.offsetWindowBottom +=
-                this.transformValue - this.boundings.height / 2;
-        }
-
-        if (
-            Math.sign(this.offsetWindowTop) > 0 &&
-            Math.sign(this.offsetWindowBottom) < 0
-        ) {
-            this.isInView = true;
-        } else {
-            this.isInView = false;
+            this.element.classList.remove('collant');
         }
     }
     // Events
@@ -219,6 +302,13 @@ class WatchedElement {
             false,
         );
         return this;
+    }
+    clean() {
+        this.element.style.removeProperty('position');
+        this.element.style.removeProperty('top');
+        this.element.style.removeProperty('bottom');
+        this.element.style.removeProperty('max-height');
+        this.element.style.removeProperty('transform');
     }
     // Destroy
     forget() {

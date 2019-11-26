@@ -118,7 +118,10 @@ class SuperScroll {
     computeWatchedElements() {
         forEach(this.watchedElements, element => {
             if (!element) return;
-            element.compute();
+            element.clean();
+            element.compute({
+                firstScrollTopOffset: this.firstScrollTopOffset,
+            });
         });
     }
     handleWatchedElements() {
@@ -126,11 +129,10 @@ class SuperScroll {
             if (!element) return;
             element.amIInView({
                 scrollTop: this.scrollTop,
-                firstScrollTopOffset: this.firstScrollTopOffset,
             });
-            element.parallax({
+            element.parallax();
+            element.collant({
                 scrollTop: this.scrollTop,
-                firstScrollTopOffset: this.firstScrollTopOffset,
             });
         });
     }
