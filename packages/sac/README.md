@@ -6,6 +6,8 @@ Create a small package that bring together all of our best dark magic art ! 🔮
 
 **_Sac à choses_** is born !
 
+\*Since, well, the beginning of time 😂
+
 ## Installation
 
 ```sh
@@ -17,7 +19,7 @@ npm i -S @stereorepo/sac
 Sac is composed of two major type of things :
 
 -   Useful functions
--   Components used in every projects
+-   Super components used in every projects
 
 Thus you can import the package in two different ways :
 
@@ -29,21 +31,20 @@ import sac from '@stereosuper/sac';
 import { query, useSacVanilla, useSuperWindow } from '@stereorepo/sac';
 
 // ⚠️ query is a useful function
-// ⚠️ superWindow is a superComponent
+// ⚠️ SuperWindow is a SuperComponent
 
-// Init superComponents
+// Init SuperComponents
 useSacVanilla();
 useSuperWindow();
 
-// Access superComponents
-const superWindow = window.$stereorepo.superWindow;
+// Access superComponents with
+// window.$stereorepo.superWindow;
 ```
 
-If you wanna know more about the different **functions** inside this marvelous package you can click...
-<br> 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈 and...
+## Know more about the functions
 
-[here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src)... [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) and also [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👌
+If you wanna know more about the different **functions** inside this marvelous package you can click 👉 [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈
 
-[Click here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components) for the **components**.
+## Know more about the SuperComponents
 
-\*Since, well, the beginning of time 😂
+To know more about the **components** [click here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components).

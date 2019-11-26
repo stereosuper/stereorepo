@@ -56,6 +56,11 @@ class SuperScroll {
         window.addEventListener('resize', this.resizeHandler, false);
         return this.firstScrollTopOffset;
     }
+    async update() {
+        // Checking if the DOM is loaded (in order to computed objects sizes)
+        await this.checkDomState();
+        this.initializeContext();
+    }
     initializeContext() {
         this.firstScrollTopOffset = window.scrollY || window.pageYOffset;
         this.scrollTop = this.firstScrollTopOffset;

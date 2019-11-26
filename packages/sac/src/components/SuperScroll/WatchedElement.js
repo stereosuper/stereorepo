@@ -223,8 +223,20 @@ class WatchedElement {
             Math.abs(this.transformValue - this.transform.y) > 1;
     }
     // Relative to collant
+    cleanCollant() {
+        this.element.style.removeProperty('position');
+        this.element.style.removeProperty('top');
+        this.element.style.removeProperty('bottom');
+        this.element.style.removeProperty('max-width');
+
+        this.element.classList.remove('collant');
+    }
     collant({ scrollTop }) {
         if (!this.isCollant || !this.position || !this.target) return;
+        if (this.boundings.height >= this.targetBoundings.height) {
+            this.cleanCollant();
+            return;
+        }
 
         // Getting the offset updated with the scroll position
         const scrollOffset = scrollTop + this.computedCollantOffset;
@@ -253,12 +265,7 @@ class WatchedElement {
             this.element.classList.add('collant');
         } else {
             // Cleaning properties
-            this.element.style.removeProperty('position');
-            this.element.style.removeProperty('top');
-            this.element.style.removeProperty('bottom');
-            this.element.style.removeProperty('max-width');
-
-            this.element.classList.remove('collant');
+            this.cleanCollant();
         }
     }
     // Events
