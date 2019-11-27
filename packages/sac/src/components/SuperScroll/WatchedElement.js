@@ -121,9 +121,9 @@ class WatchedElement {
     }
     inViewStateChanged() {
         if (this.inView) {
-            if (!this.alreadyInViewed) this.alreadyInViewed = true;
             this.element.classList.add('is-in-view');
             this.dispatchViewInOut('enter');
+            if (!this.alreadyInViewed) this.alreadyInViewed = true;
         } else {
             this.element.classList.remove('is-in-view');
             this.dispatchViewInOut('leave');
@@ -270,6 +270,11 @@ class WatchedElement {
     }
     // Events
     dispatchViewInOut(type) {
+        if (!this.stalk && this.alreadyInViewed) return;
+
+        if (this.element.classList.contains('flash-slider')) {
+            console.log(this.stalk, this.alreadyInViewed);
+        }
         const eventName = `${this.namespace}-${type}-view`;
         const inOutEvent = createCrossBrowserEvent(eventName);
         window.dispatchEvent(inOutEvent);
