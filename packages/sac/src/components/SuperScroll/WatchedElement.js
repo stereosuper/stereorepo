@@ -272,9 +272,6 @@ class WatchedElement {
     dispatchViewInOut(type) {
         if (!this.stalk && this.alreadyInViewed) return;
 
-        if (this.element.classList.contains('flash-slider')) {
-            console.log(this.stalk, this.alreadyInViewed);
-        }
         const eventName = `${this.namespace}-${type}-view`;
         const inOutEvent = createCrossBrowserEvent(eventName);
         window.dispatchEvent(inOutEvent);
