@@ -34,6 +34,7 @@ class WatchedElement {
         this.initialized = false;
         this.alreadyInViewed = false;
         this.lerpNotDone = false;
+        this.isDestroyed = false;
 
         // Sizes
         this.boundings = null;
@@ -321,6 +322,7 @@ class WatchedElement {
     }
     // Destroy
     forget() {
+        this.isDestroyed = true;
         // Curryied functions destruction
         forEach(Object.keys(this.events), event => {
             window.removeEventListener(

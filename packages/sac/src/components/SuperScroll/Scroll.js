@@ -13,6 +13,7 @@ class SuperScroll {
         this.firstScrollTopOffset = null;
         this.scrollTop = null;
         this.isScrolling = false;
+        this.DOMisLoaded = false;
 
         // Used for scroll end detection
         this.scrollRequestTimeoutId = null;
@@ -36,11 +37,15 @@ class SuperScroll {
     // Handling scroll
     async checkDomState() {
         return new Promise(resolve => {
-            if (document.readyState === 'complete') resolve();
+            if (document.readyState === 'complete') {
+                this.DOMisLoaded = true;
+                resolve();
+            }
             document.addEventListener(
                 'readystatechange',
                 () => {
                     if (document.readyState === 'complete') {
+                        this.DOMisLoaded = true;
                         resolve();
                     }
                 },
@@ -199,6 +204,11 @@ class SuperScroll {
             id: watchedElementsLength,
             destroyMethod: this.removeWatchedElement,
         });
+        if (this.DOMisLoaded) {
+            watched.compute({
+                firstScrollTopOffset: this.firstScrollTopOffset,
+            });
+        }
         this.watchedElements[watchedElementsLength] = watched;
 
         return watched;
