@@ -66,7 +66,8 @@ With this function you'll:
 
 It returns the distance between the top of your html document and the top of the window before you even scrolled... a.k.a. first scrolled value.
 
-🚨 The _initializeScroll_ function is asynchronous. So, to get its return value you'll need to use _await_ or _then()_.
+> 🚨 **Nota bene**  
+> The _initializeScroll_ function is asynchronous. So, to get its return value you'll need to use _await_ or _then()_.
 
 #### 🥚 Vanilla
 
@@ -75,6 +76,7 @@ window.$stereorepo.superScroll
     .initializeScroll()
     .then(scrollDistanceFromTop => {
         // scrollDistanceFromTop is the distance already scrolled on initialization
+
         console.log(scrollDistanceFromTop);
     });
 ```
@@ -83,20 +85,108 @@ window.$stereorepo.superScroll
 
 ```js
 ... your-vue-component.vue
+
 mounted() {
     // 🚀 If using Nuxt: Preferably in layout/default.vue
     this.$stereorepo.superScroll.initializeScroll().then(scrollDistanceFromTop => {
         // scrollDistanceFromTop is the distance already scrolled on initialization
 
+        console.log(scrollDistanceFromTop);
+
         // Tips: add scrollDistanceFromTop directly to your VueX store 👌
     });
 },
+
 ...
 ```
 
 ### The _on_ function
 
+The on method will allow you to listen to the specific events below 👇
+
+#### The _scroll_ event
+
+##### 🥚 Vanilla
+
+```js
+// Listen to scroll
+window.$stereorepo.superScroll.on('scroll', scrollTop => {
+    console.log('Is scrolling');
+    console.log('Number of pixels scrolled', scrollTop);
+});
+```
+
+##### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+mounted(){
+    // Listen to scroll
+    this.$stereorepo.superScroll.on('scroll', scrollTop => {
+        console.log('Is scrolling');
+        console.log('Number of pixels scrolled', scrollTop);
+    });
+},
+
+...
+```
+
+#### The _scroll-end_ event
+
+##### 🥚 Vanilla
+
+```js
+// Listen to scroll end
+this.$stereorepo.superScroll.on('scroll-end', () => {
+    console.log("Isn't scrolling anymore");
+});
+```
+
+##### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+mounted(){
+    // Listen to scroll end
+    this.$stereorepo.superScroll.on('scroll-end', () => {
+        console.log("Isn't scrolling anymore");
+    });
+},
+
+...
+```
+
 ### The _update_ function
+
+With the update function you'll be able to force update the context.
+
+By context I mean:
+
+👉 Re-compute the [_scrollDistanceFromTop_](#the-initializeScroll-function)
+
+👉 Re-compute the [_watched elements_](#watched-elements) positions.
+
+👉 Re-compute the [_watched elements_](#watched-elements) effects (like _parallax_, _lerp_, _collant_, etc).
+
+#### 🥚 Vanilla
+
+```js
+window.$stereorepo.superScroll.update();
+```
+
+#### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+mounted(){
+    this.$stereorepo.superScroll.update();
+},
+
+...
+```
 
 ### The _destroyScroll_ function
 

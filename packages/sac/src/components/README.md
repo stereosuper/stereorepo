@@ -23,7 +23,7 @@ useSuperWindow();
 // window.$stereorepo.superWindow;
 ```
 
-> 🚨 **Wait**  
+> 🚨 **Nota bene**  
 > Under the hood all of our SuperComponents are made with es6 classes, thus you can extend your own classes with those to make specific awesome things ! 💪
 
 ## Working with Vue.js 😏
