@@ -8,29 +8,27 @@
 // ❌ import sac from '@stereorepo/sac';
 
 // We will then deconstruct sac to get our SuperComponents.
-// Remember that our useful functions are available with deconstructing...
-// in case you need some of them too
+// Remember that our useful functions are available with deconstructing... just in case you need some of them too
 import { query, useSacVanilla, useSuperWindow } from '@stereorepo/sac';
 
-// ⚠️ query is a useful function
-// ⚠️ superWindow is a superComponent
+// 👉 query is a useful function
+// 👉 superWindow is a superComponent
 
 // Init SuperComponents
 useSacVanilla();
 useSuperWindow();
 
-// Access SuperComponents
 // All our SuperComponents are scoped into the window
 // It ensures that you'll have only one instance of each declared 👌
 // window.$stereorepo.superWindow;
 ```
 
 > 🚨 **Wait**  
-> Under the hood all of our superComponents are made with es6 classes, thus you can extend your own classes with those to make specific awesome things ! 💪
+> Under the hood all of our SuperComponents are made with es6 classes, thus you can extend your own classes with those to make specific awesome things ! 💪
 
-## Work with Vue.js
+## Working with Vue.js 😏
 
-You can use some of our SuperComponent with Vue.js. In order to do that you'll need to use specific versions of them like `superWindowVue` instead of `superWindow`.
+You can use some of our SuperComponents with Vue.js. In order to do that you'll need to use specific initializing function like `useSuperWindowVue` instead of `useSuperWindow`.
 
 Example:
 
@@ -54,14 +52,12 @@ mounted() {
 
 ## Documentation links
 
-👉 [SuperError](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperError)
+**Now that you've got the basics... let's get schwifty ! 🤘**
 
-👉 [SuperLoad](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperLoad)
-
-👉 [SuperLoad](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperLoad)
-
-👉 [SuperScroll](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperScroll)
-
-👉 [SuperWindow](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperWindow)
-
-👉 [SuperWindowVue](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperWindowVue)
+| Package                                                                                                            | Vanilla compatibility | Vue.js compatibility |
+| ------------------------------------------------------------------------------------------------------------------ | :-------------------: | :------------------: |
+| [SuperError](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperError)         |          ✅           |          ✅          |
+| [SuperLoad](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperLoad)           |          ✅           |          ❌          |
+| [SuperScroll](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperScroll)       |          ✅           |          ✅          |
+| [SuperWindow](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperWindow)       |          ✅           |          ❌          |
+| [SuperWindowVue](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components/SuperWindowVue) |          ❌           |          ✅          |
