@@ -54,7 +54,13 @@ mounted() {
 
 ### The _initializeScroll_ function
 
-With this function you'll initialize the window's scroll event listener.
+With this function you'll:
+
+👉 Initialize the window's scroll event listener.
+
+👉 Create events to listen to with the [_on function_](#the-on-function)
+
+👉 Use the window's resize event listener to handle the [_watched elements_](#watched-elements).
 
 #### Vanilla
 
@@ -87,3 +93,5 @@ mounted() {
 ### The _update_ function
 
 ### The _destroyScroll_ function
+
+## Watched elements
