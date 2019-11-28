@@ -30,8 +30,8 @@ import sac from '@stereosuper/sac';
 // or you can deconstruct sac to get our superComponents and useful functions
 import { query, useSacVanilla, useSuperWindow } from '@stereorepo/sac';
 
-// ⚠️ query is a useful function
-// ⚠️ SuperWindow is a SuperComponent
+// 👉 query is a useful function
+// 👉 SuperWindow is a SuperComponent
 
 // Init SuperComponents
 useSacVanilla();
