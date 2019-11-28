@@ -62,7 +62,13 @@ With this function you'll:
 
 👉 Use the window's resize event listener to handle the [_watched elements_](#watched-elements).
 
-#### Vanilla
+#### 🎁 Return value
+
+It returns the distance between the top of your html document and the top of the window before you even scrolled... a.k.a. first scrolled value.
+
+🚨 The _initializeScroll_ function is asynchronous. So, to get its return value you'll need to use _await_ or _then()_.
+
+#### 🥚 Vanilla
 
 ```js
 window.$stereorepo.superScroll
@@ -73,7 +79,7 @@ window.$stereorepo.superScroll
     });
 ```
 
-#### Vue.js
+#### 🍳 Vue.js
 
 ```js
 ... your-vue-component.vue
