@@ -4,7 +4,7 @@ SuperError is not auto-instanciated. This class will help you to build cool cust
 
 For instance this components helps us to build the errors for all the @stereorepo 👌
 
-To use it you'll have to import it the extend your class with it 🔥
+To use it you'll have to import it and then extend your class with it 🔥
 
 Example:
 
