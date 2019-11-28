@@ -427,39 +427,47 @@ const watched = window.$stereorepo.superScroll.watch({
 ##### The _collant_ property
 
 Type: `Boolean`
-Dafault value: `false`
+
+Default value: `false`
 
 ##### The _collantOffset_ property
 
 Type: `Integer` or `String`
-Dafault value: `0`
+
+Default value: `0`
 
 ##### The _lerp_ property
 
 Type: `Float` ∈ [0,1]
-Dafault value: `null`
+
+Default value: `null`
 
 ##### The _position_ property
 
 Type: `String`
-Dafault value: `null`
+
+Default value: `null`
 
 ##### The _speed_ property
 
 Type: `Number`
-Dafault value: `0`
+
+Default value: `0`
 
 ##### The _stalk_ property
 
 Type: `Boolean`
-Dafault value: `true`
+
+Default value: `true`
 
 ##### The _target_ property
 
 Type: `HTML element`
-Dafault value: `null`
+
+Default value: `null`
 
 ##### The _triggerOffset_ property
 
 Type: `Integer` or `String`
-Dafault value: `0`
+
+Default value: `0`
