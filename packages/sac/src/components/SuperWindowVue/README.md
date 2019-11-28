@@ -12,7 +12,7 @@ See : https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration
 ```js
 ... your-vue-component.vue
 mounted() {
-    // Preferably in layout/default.vue (if using Nuxt)
+    // 🚀 If using Nuxt: Preferably in layout/default.vue
     // this.$store is your VueX store instance
     this.$stereorepo.superWindow.initializeWindow(this.$store);
 },

@@ -31,7 +31,8 @@ useSuperScroll();
 ### Vue.js
 
 ```js
-// Import the init functions (if using Nuxt, do that in a plugin 👌)
+// Import the init functions
+// 🚀 If using Nuxt: do that in a plugin 👌)
 ... global-plugin.js
 import Vue from 'vue';
 import { useSacVue, useSuperScrollVue } from '@stereorepo/sac';
@@ -49,53 +50,40 @@ mounted() {
 ...
 ```
 
-## The Scroll
+## The Scroll object
 
-**initializeWindow**
+### The _initializeScroll_ function
 
-With this function you'll initialize the `window.addEventListener('resize')` event. All the window's values will be updated in your VueX store at `yourStore.state.superWindow`.
-The superComponent is using a dynamic VueX module under the hood.
+With this function you'll initialize the window's scroll event listener.
 
-See : https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration
+#### Vanilla
+
+```js
+window.$stereorepo.superScroll
+    .initializeScroll()
+    .then(scrollDistanceFromTop => {
+        // scrollDistanceFromTop is the distance already scrolled on initialization
+        console.log(scrollDistanceFromTop);
+    });
+```
+
+#### Vue.js
 
 ```js
 ... your-vue-component.vue
 mounted() {
-    // Preferably in layout/default.vue (if using Nuxt)
-    // this.$store is your VueX store instance
-    this.$stereorepo.superWindow.initializeWindow(this.$store);
+    // 🚀 If using Nuxt: Preferably in layout/default.vue
+    this.$stereorepo.superScroll.initializeScroll().then(scrollDistanceFromTop => {
+        // scrollDistanceFromTop is the distance already scrolled on initialization
+
+        // Tips: add scrollDistanceFromTop directly to your VueX store 👌
+    });
 },
 ...
 ```
 
-**destroyWindow**
+### The _on_ function
 
-Simply destroy the _superWindow_'s events and store module.
+### The _update_ function
 
-```js
-... your-vue-component.vue
-destroyed() {
-    // this.$store is your VueX store instance
-    this.$stereorepo.superWindow.destroyWindow(this.$store);
-},
-...
-```
-
-**toggleNoScroll**
-
-_Often used for your burger menus (html tag updated with position fixed to avoid scroll bugs)_.
-
-The _toggleNoScroll_ function will remembering your scroll distance when the navigation is activated.
-
-```js
-... your-vue-component.vue
-watch: {
-    navigationState(navState) {
-        this.$stereorepo.superWindow.this.$stereorepo.superWindow.toggleNoScroll({
-            noScroll: navState,
-            nextTick: this.$nextTick
-        });
-    }
-},
-...
-```
+### The _destroyScroll_ function

@@ -33,7 +33,8 @@ You can use some of our SuperComponents with Vue.js. In order to do that you'll 
 Example:
 
 ```js
-// Import the init functions (if using Nuxt, do that in a plugin 👌)
+// Import the init functions
+// 🚀 If using Nuxt: do that in a plugin 👌
 ... global-plugin.js
 import Vue from 'vue';
 import { useSacVue, useSuperWindowVue } from '@stereorepo/sac';
