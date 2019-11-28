@@ -50,7 +50,7 @@ mounted() {
 ...
 ```
 
-## The Scroll object
+## The Scroll
 
 ### The _initializeScroll_ function
 
@@ -101,3 +101,11 @@ mounted() {
 ### The _destroyScroll_ function
 
 ## Watched elements
+
+### The _watch_ function
+
+### The _forget_ function
+
+### The _watchMultiple_ function
+
+### The _forgetMultiple_ function
