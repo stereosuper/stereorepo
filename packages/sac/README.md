@@ -45,7 +45,7 @@ useSuperWindow();
 
 If you wanna know more about the different **functions** inside this marvelous package
 
-👉 click [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈
+👉 [click here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src) 👈
 
 ## Know more about the SuperComponents
 
