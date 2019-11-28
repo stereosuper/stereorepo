@@ -18,9 +18,9 @@ module.exports = {
     {
         test: /\.js$/,
         loader: 'babel-loader',
-        // Instead of excluding the _node_modules_
+        // Instead of excluding the node_modules
         // You'll need to include all the sources you wanna transpile
-        // Here _@stereorepo_ packages and all .js files in ./src/js
+        // Here @stereorepo packages and all .js files in ./src/js
         include: [/node_modules\/@stereorepo/, path.resolve(__dirname, 'src', 'js')]
     }
   }
