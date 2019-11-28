@@ -35,6 +35,7 @@ Example:
 ```js
 // Import the init functions (if using Nuxt, do that in a plugin 👌)
 ... global-plugin.js
+import Vue from 'vue';
 import { useSacVue, useSuperWindowVue } from '@stereorepo/sac';
 
 // Set Vue.use here
