@@ -34,8 +34,8 @@ import { useSuperLoad } from '@stereorepo/sac';
 // Initialize the SuperComponent
 useSuperLoad();
 
-// The SuperWindow component was instanciated by _useSuperLoad_
-// So now you can access it with **this.$stereorepo.superWindow**
+// The SuperWindow component was instanciated by useSuperLoad
+// So now you can access it with this.$stereorepo.superWindow
 // Only one instance for the same things all across your code 👌
 
 const preloadCallback = () => {};
