@@ -4,13 +4,42 @@
 
 These packages are _"**npm scoped packages**"_ like _@babel/core_.
 
-## The packages list
+## Foreword
 
--   [@stereorepo/accordion](https://github.com/stereosuper/stereorepo/tree/master/packages/accordion)
--   [@stereorepo/burger](https://github.com/stereosuper/stereorepo/tree/master/packages/burger)
--   [@stereorepo/collant](https://github.com/stereosuper/stereorepo/tree/master/packages/collant)
--   [@stereorepo/sac](https://github.com/stereosuper/stereorepo/tree/master/packages/sac)
--   [@stereorepo/sprite](https://github.com/stereosuper/stereorepo/tree/master/packages/sprite)
+Theses packages are written using the latest ECMAScript syntax. Thus, you'll need to transpile the packages (with babel for example).
+
+Example using webpack : 
+
+```js
+... webpack.config.js
+module.exports = {
+  ...
+  module: {
+    {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        // Instead of excluding the _node_modules_
+        // You'll need to include all the sources you wanna transpile
+        // Here _@stereorepo_ packages and all .js files in ./src/js
+        include: [/node_modules\/@stereorepo/, path.resolve(__dirname, 'src', 'js')]
+    }
+  }
+  ...
+};
+
+```
+
+## The packages
+
+👉 [@stereorepo/accordion](https://github.com/stereosuper/stereorepo/tree/master/packages/accordion)
+
+👉 [@stereorepo/burger](https://github.com/stereosuper/stereorepo/tree/master/packages/burger)
+
+👉 [@stereorepo/collant](https://github.com/stereosuper/stereorepo/tree/master/packages/collant)
+
+👉 [@stereorepo/sac](https://github.com/stereosuper/stereorepo/tree/master/packages/sac)
+
+👉 [@stereorepo/sprite](https://github.com/stereosuper/stereorepo/tree/master/packages/sprite)
 
 ## Maintain the packages
 
@@ -84,7 +113,7 @@ In order to run some tests on our awesome new libraries we run a [test webpack p
 
 ### The test project
 
-At the project root there's a package.json which contains some scripts :
+At the project's root there's a package.json which contains some scripts :
 
 ```sh
 //package.json
