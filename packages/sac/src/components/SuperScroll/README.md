@@ -33,7 +33,7 @@ import { useSacVanilla, useSuperScroll } from '@stereorepo/sac';
 useSuperScroll();
 
 // The SuperScroll component's instance is accessible with:
-// 👉 this.$stereorepo.superScroll
+// 👉 window.$stereorepo.superScroll
 ```
 
 ### Vue.js
@@ -96,7 +96,9 @@ window.$stereorepo.superScroll
 
 mounted() {
     // 🚀 If using Nuxt: Preferably in layout/default.vue
-    this.$stereorepo.superScroll.initializeScroll().then(scrollDistanceFromTop => {
+    this.$stereorepo.superScroll
+    .initializeScroll()
+    .then(scrollDistanceFromTop => {
         // scrollDistanceFromTop is the distance already scrolled on initialization
 
         console.log(scrollDistanceFromTop);
@@ -146,7 +148,7 @@ mounted(){
 
 ```js
 // Listen to scroll end
-this.$stereorepo.superScroll.on('scroll-end', () => {
+window.$stereorepo.superScroll.on('scroll-end', () => {
     console.log("Isn't scrolling anymore");
 });
 ```
@@ -289,7 +291,7 @@ export default {
     }),
     mounted() {
         // Watch an element
-        this.myWatcher = window.$stereorepo.superScroll.watch({ element: this.$refs.item });
+        this.myWatcher = this.$stereorepo.superScroll.watch({ element: this.$refs.item });
     },
     beforeDestroy() {
         // Forget the watcher to avoid memory leak
@@ -341,7 +343,7 @@ export default {
     },
     beforeDestroy() {
         // Forget the watchers to avoid memory leak
-        if (this.myWatchers.length) window.$stereorepo.superScroll.forgetMultiple(this.myWatchers);
+        if (this.myWatchers.length) this.$stereorepo.superScroll.forgetMultiple(this.myWatchers);
     }
 };
 </script>
