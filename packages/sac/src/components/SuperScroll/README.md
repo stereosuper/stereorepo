@@ -14,7 +14,15 @@
 
 🍯 Stick any elements to the viewport while scrolling.
 
-## Initialization
+## Table of contents
+
+👉 [The initialization](#the-initialization)
+
+👉 [The scroll](#the-scroll)
+
+👉 [The watched elements](#the-watched-elements)
+
+## The initialization
 
 ### Vanilla
 
@@ -100,7 +108,7 @@ mounted() {
 ...
 ```
 
-### The _on_ function
+### The _on_ method
 
 The on method will allow you to listen to the specific events below 👇
 
@@ -158,7 +166,7 @@ mounted(){
 ...
 ```
 
-### The _update_ function
+### The _update_ method
 
 With the update function you'll be able to force update the context.
 
@@ -188,14 +196,36 @@ mounted(){
 ...
 ```
 
-### The _destroyScroll_ function
+### The _destroyScroll_ method
 
-## Watched elements
+The _destroyScroll_ method will remove all [_watched elements_](#watched-elements) and their listeners. Then it will remove the scroll object instance and all its listeners.
+
+Everything will be ready for garbage collection 👌
+
+#### 🥚 Vanilla
+
+```js
+window.$stereorepo.superScroll.destroyScroll();
+```
+
+#### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+beforeDestroy(){
+    this.$stereorepo.superScroll.destroyScroll();
+},
+
+...
+```
+
+## The watched elements
 
 ### The _watch_ function
 
-### The _forget_ function
+### The _forget_ method
 
 ### The _watchMultiple_ function
 
-### The _forgetMultiple_ function
+### The _forgetMultiple_ method
