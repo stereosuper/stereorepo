@@ -2,27 +2,54 @@
 
 ## SuperScroll will help you
 
-👂 Listening to the window scroll event
+👂 Listen to the window's scroll event.
 
-📏 Getting the window's scrolled distance
+📏 Get the window's scrolled distance.
 
-🛑 Listening to a cool scroll end event
+🛑 Listen to a cool scroll end event.
 
-👁️ Watch elements entering and leaving the view
+👁️ Watch elements entering and leaving the view.
 
-🔮 Adding parallax to the watched elements
+🔮 Add parallax to the watched elements.
+
+🍯 Stick any elements to the viewport while scrolling.
 
 ## Initialization
 
 ### Vanilla
 
 ```js
+// Import the init functions
 import { useSacVanilla, useSuperScroll } from '@stereorepo/sac';
+
+useSuperScroll();
+
+// The SuperScroll component's instance is accessible with:
+// 👉 this.$stereorepo.superScroll
 ```
 
 ### Vue.js
 
-## Functions
+```js
+// Import the init functions (if using Nuxt, do that in a plugin 👌)
+... global-plugin.js
+import Vue from 'vue';
+import { useSacVue, useSuperScrollVue } from '@stereorepo/sac';
+
+// Set Vue.use here
+Vue.use(useSacVue);
+Vue.use(useSuperScrollVue);
+...
+
+... YourComponent.vue
+mounted() {
+    // The SuperScroll component's instance is accessible with:
+    // 👉 this.$stereorepo.superScroll
+}
+...
+```
+
+## The Scroll
 
 **initializeWindow**
 
