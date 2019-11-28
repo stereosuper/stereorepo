@@ -66,9 +66,9 @@ With this function you'll:
 
 👉 Initialize the window's scroll event listener.
 
-👉 Create events to listen to with the [_on function_](#the-on-function)
+👉 Create events to listen to with the [_on function_](#the-on-method)
 
-👉 Use the window's resize event listener to handle the [_watched elements_](#watched-elements).
+👉 Use the window's resize event listener to handle the [_watched elements_](#the-watched-elements).
 
 #### 🎁 Return value
 
@@ -174,9 +174,9 @@ By context I mean:
 
 👉 Re-compute the [_scrollDistanceFromTop_](#the-initializeScroll-function)
 
-👉 Re-compute the [_watched elements_](#watched-elements) positions.
+👉 Re-compute the [_watched elements_](#the-watched-elements) positions.
 
-👉 Re-compute the [_watched elements_](#watched-elements) effects (like _parallax_, _lerp_, _collant_, etc).
+👉 Re-compute the [_watched elements_](#the-watched-elements) effects (like _parallax_, _lerp_, _collant_, etc).
 
 #### 🥚 Vanilla
 
@@ -198,7 +198,7 @@ mounted(){
 
 ### The _destroyScroll_ method
 
-The _destroyScroll_ method will remove all [_watched elements_](#watched-elements) and their listeners. Then it will remove the scroll object instance and all its listeners.
+The _destroyScroll_ method will remove all [_watched elements_](#the-watched-elements) and their listeners. Then it will remove the scroll object instance and all its listeners.
 
 Everything will be ready for garbage collection 👌
 
@@ -222,10 +222,131 @@ beforeDestroy(){
 
 ## The watched elements
 
-### The _watch_ function
+Here's the real magic !
 
-### The _forget_ method
+Counting scroll pixels is quite nice... but between us that's for amateurs 💅
 
-### The _watchMultiple_ function
+We'll now learn how to watch elements and make awesome things with them 🔥
 
-### The _forgetMultiple_ method
+### The basics
+
+Firstly, you need to learn the basics, i.e. _watch_ and _forget_ an element.
+
+#### _Watch_ function and _forget_ method
+
+Watching an element will unleash a ton of awesome dark magic spells... that you're not ready to learn for now.
+
+##### 🎁 Return value
+
+The _watch_ function returns an instance of _WatchedElement_.
+
+> 🚨 **Nota bene**  
+> By watching an element you will set default behaviors like:
+>
+> 👉 Auto toggling an _is-in-view_ class on the element when it enters the viewport.
+>
+> 👉 Dispatching two events: _enter-view_ and _leave-view_ accessible from the _WatchedElement_ instance.
+
+We'll start with the simple stuff.
+To do simple magic you only need one thing:
+
+👉 An HTML element
+
+##### 🥚 Vanilla
+
+```js
+import { query } from '@stereorepo/sac';
+
+// 🚨 Do not forget to init the SuperScroll component! (See the sections above)
+
+// element is my HTML element
+const [element] = query({ selector: '#my-id' });
+
+// Watch an element
+const myWatcher = window.$stereorepo.superScroll.watch({ element });
+
+// Forget the element
+myWatcher.forget();
+```
+
+> See: [_query_](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src#query) to learn more about this useful function
+
+##### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+<template>
+    <div class="section">
+        <span ref="item" class="item">I'm a span</span>
+    </div>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        myWatcher: null
+    }),
+    mounted() {
+        // Watch an element
+        this.myWatcher = window.$stereorepo.superScroll.watch({ element: this.$refs.item });
+    },
+    beforeDestroy() {
+        // Forget the watcher to avoid memory leak
+        if (this.myWatcher) this.myWatcher.forget();
+    }
+};
+</script>
+
+...
+```
+
+#### The _watchMultiple_ function and _forgetMultiple_ method
+
+This function will simply help you watch multiple elements at the same time.
+
+##### 🥚 Vanilla
+
+```js
+// We'll say that elements is my array of HTML elements
+
+// Watch multiple elements
+const myWatchers = window.$stereorepo.superScroll.watchMultiple({ elements });
+
+// Forget multiple watchers
+window.$stereorepo.superScroll.forgetMultiple(myWatchers);
+```
+
+##### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+
+<template>
+    <ul class="section">
+        <li ref="items" v-for="index in 5">
+            <span>{ `I'm span number ${index}` }</span>
+        </li>
+    </ul>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        myWatcher: []
+    }),
+    mounted() {
+        // Watch an element
+        this.myWatchers = this.$stereorepo.superScroll.watchMultiple({ elements: this.$refs.items });
+    },
+    beforeDestroy() {
+        // Forget the watchers to avoid memory leak
+        if (this.myWatchers.length) window.$stereorepo.superScroll.forgetMultiple(this.myWatchers);
+    }
+};
+</script>
+
+...
+```
+
+#### The _on_ method

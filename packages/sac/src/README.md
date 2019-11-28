@@ -16,7 +16,7 @@ To get the SuperComponents like superWindow, superScroll... you'll have to decon
 
 ### Functions
 
-**wait**
+#### wait
 
 In an async function, _wait_ allows us to wait in simple way with _await_.
 
@@ -36,7 +36,7 @@ const asyncFunction = async () => {
 asyncFunction();
 ```
 
-**runPromisesSequence**
+#### runPromisesSequence
 
 This function allows us to add a timeout between promises (not possible with Promise.all).
 
@@ -71,7 +71,7 @@ await runPromisesSequence(
 
 ### Functions
 
-**createCrossBrowserEvent**
+#### createCrossBrowserEvent
 
 This function will help you to make cross browser events (I hope internet explorer will die one day...).
 
@@ -91,7 +91,7 @@ document.addEventListener(
 document.dispatchEvent(newEvent);
 ```
 
-**forEach**
+#### forEach
 
 A cool while loop running under the hood to increase the native forEach's performances.
 
@@ -106,7 +106,7 @@ forEach(emojisArray, (item, index) => {
 });
 ```
 
-**isDisplayed**
+#### isDisplayed
 
 _isDisplayed_ will allow you to test if your html element is in _display: none_ mode.
 
@@ -120,7 +120,7 @@ if (testingDisplay) {
 }
 ```
 
-**nodeIndex**
+#### nodeIndex
 
 With this function you'll be able to know the index of your html element position amongst his siblings.
 
@@ -130,7 +130,7 @@ Example:
 const index = nodeIndex(myElement);
 ```
 
-**query**
+#### query
 
 _query_ will allow you to get any html element you want with performances you can only dream of !
 _getElementById_, _getElementsByClassName_, _getElementsByTagName_, _querySelectorAll_... you don't need to choose anymore, it'll do it for you 😏
@@ -149,7 +149,7 @@ const allTheClasses = query({
 const withContext = query({ selector: '.my-class', ctx: myContextualElement });
 ```
 
-**requestAnimFrame**
+#### requestAnimFrame
 
 A requestAnimationFrame method for every browsers... yes that exists.
 
@@ -162,7 +162,7 @@ const animationFrameId = requestAnimFrame(() => {});
 cancelAnimationFrame(animationFrameId);
 ```
 
-**throttle**
+#### throttle
 
 _throttle_ has been redisigned.
 
@@ -177,7 +177,7 @@ throttle({
 });
 ```
 
-**bodyRouter**
+#### bodyRouter
 
 _bodyRouter_ will allow you to execute whatever javascript piece of code... on the specific page you want, not the others. One more thing, it uses _query_ under the hood 😏
 
@@ -196,7 +196,7 @@ bodyRouter({
 
 ### Functions
 
-**spotMobile**
+#### spotMobile
 
 Spot when a mobile is used by adding a class to the html element.
 
@@ -206,7 +206,7 @@ Example:
 spotMobile(); // As simple as that
 ```
 
-**spotIOS**
+#### spotIOS
 
 Spot when ios is used by adding a class to the html element.
 
@@ -216,7 +216,7 @@ Example:
 spotIOS(); // As simple as that
 ```
 
-**spotSafari**
+#### spotSafari
 
 Spot when safari is used by adding a class to the html element.
 
@@ -226,7 +226,7 @@ Example:
 spotSafari(); // As simple as that
 ```
 
-**spotFF**
+#### spotFF
 
 Spot when firefox is used by adding a class to the html element.
 
@@ -236,7 +236,7 @@ Example:
 spotFF(); // As simple as that
 ```
 
-**spotChromeAndroid**
+#### spotChromeAndroid
 
 Spot when an android mobile uses chrome by adding a class to the html element.
 
@@ -246,7 +246,7 @@ Example:
 spotChromeAndroid(); // As simple as that
 ```
 
-**spotMS**
+#### spotMS
 
 Spot when a microsoft device is used by adding a class to the html element.
 
@@ -256,7 +256,7 @@ Example:
 spotMS(); // As simple as that
 ```
 
-**spotIE**
+#### spotIE
 
 Spot when internet explorer is used by adding a class to the html element.
 
@@ -266,7 +266,7 @@ Example:
 spotIE(); // As simple as that
 ```
 
-**supportsWebp**
+#### supportsWebp
 
 To handle webp support correctly... test it in a simple way.
 
@@ -287,7 +287,7 @@ if (isWebpSupported) {
 
 ### Functions
 
-**roundNumbers**
+#### roundNumbers
 
 Rounding numbers could be a bit boring sometimes. Now rounding numbers became pretty easy.
 
@@ -303,7 +303,7 @@ const myNumber = roundNumbers({ number: 10.123456789, decimalOffset: 2 });
 
 ### Functions
 
-**camalize**
+#### camalize
 
 Just read the title.
 
@@ -316,7 +316,7 @@ const camalizedSlug = camalize(mySlug);
 // camalizedSlug = testSlug now.
 ```
 
-**pascalize**
+#### pascalize
 
 Just read the title.
 
@@ -329,7 +329,7 @@ const pascalizedSlug = pascalize(mySlug);
 // pascalizedSlug = TestSlug now.
 ```
 
-**reverseString**
+#### reverseString
 
 Just read the title.
 
@@ -346,7 +346,7 @@ const reversedString = reverseString(myString);
 
 ### Functions
 
-**audioContextPolyfill**
+#### audioContextPolyfill
 
 A sweet polyfill for the web audio api
 
@@ -356,7 +356,7 @@ audioContextPolyfill();
 const audioContext = new window.AudioContext();
 ```
 
-**ie11Polyfills**
+#### ie11Polyfills
 
 Internet explorer again...
 
@@ -365,7 +365,7 @@ Internet explorer again...
 ie11Polyfills();
 ```
 
-**ioPolyfill**
+#### ioPolyfill
 
 IntersectionObserver is pretty cool... but... like always... Internet explorer
 
@@ -381,7 +381,7 @@ const options = {
 const observer = new IntersectionObserver(callback, options);
 ```
 
-**smoothScrollPolyfill**
+#### smoothScrollPolyfill
 
 Smooth scrolling to anchors is cool... but don't forget IE
 
@@ -401,7 +401,7 @@ window.scroll({
 
 ### Functions
 
-**isIOS**
+#### isIOS
 
 Check for an ios device
 
@@ -411,7 +411,7 @@ if (isIOS()) {
 }
 ```
 
-**isAndroid**
+#### isAndroid
 
 Check for an android device
 
@@ -421,7 +421,7 @@ if (isAndroid()) {
 }
 ```
 
-**isChrome**
+#### isChrome
 
 Check if the device uses chrome
 
@@ -431,7 +431,7 @@ if (isChrome()) {
 }
 ```
 
-**isMobile**
+#### isMobile
 
 Check if the device is a mobile
 
@@ -441,7 +441,7 @@ if (isMobile()) {
 }
 ```
 
-**isChromeAndroid**
+#### isChromeAndroid
 
 Check if the device running chrome on android
 
@@ -451,7 +451,7 @@ if (isChromeAndroid()) {
 }
 ```
 
-**isSafari**
+#### isSafari
 
 Check if the device is running safari
 
@@ -461,7 +461,7 @@ if (isSafari()) {
 }
 ```
 
-**isFF**
+#### isFF
 
 Check if the device is running firefox
 
@@ -471,7 +471,7 @@ if (isFF()) {
 }
 ```
 
-**isMS**
+#### isMS
 
 Check if the device is a Microsoft product (🤮)
 
@@ -481,7 +481,7 @@ if (isMS()) {
 }
 ```
 
-**mixBlendModeSupport**
+#### mixBlendModeSupport
 
 Check for mix blend mode support
 
@@ -491,7 +491,7 @@ if (mixBlendModeSupport()) {
 }
 ```
 
-**isIe11**
+#### isIe11
 
 Check if the device's running internet explorer
 
