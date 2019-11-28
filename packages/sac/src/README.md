@@ -10,7 +10,7 @@ If you use the default es6 import you'll get the _"utils functions"_ from @stere
 
 To get the SuperComponents like superWindow, superScroll... you'll have to deconstruct the import...
 
-**👉 See the SuperComponents documentation [here](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components)**
+**👉 See the SuperComponents [documentation](https://github.com/stereosuper/stereorepo/tree/master/packages/sac/src/components)**
 
 ## Async
 
