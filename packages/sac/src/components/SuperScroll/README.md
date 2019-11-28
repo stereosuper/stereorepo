@@ -413,53 +413,53 @@ const watched = window.$stereorepo.superScroll.watch({
 
 #### The options 🧰
 
-| Key           | Type              | Description |
-| ------------- | ----------------- | ----------- |
-| collant       | Boolean           |             |
-| collantOffset | Integer or String |             |
-| lerp          | Float ∈ [0,1]     |             |
-| position      | String            |             |
-| speed         | Number            |             |
-| stalk         | Boolean           |             |
-| target        | HTML element      |             |
-| triggerOffset | Integer or String |             |
+| Key           | Type                  | Description |
+| ------------- | --------------------- | ----------- |
+| collant       | `Boolean`             |             |
+| collantOffset | `Integer` or `String` |             |
+| lerp          | `Float` ∈ [0,1]       |             |
+| position      | `String`              |             |
+| speed         | `Number`              |             |
+| stalk         | `Boolean`             |             |
+| target        | `HTML element`        |             |
+| triggerOffset | `Integer` or `String` |             |
 
 ##### The _collant_ property
 
-Type: Boolean
-Dafault value: false
+Type: `Boolean`
+Dafault value: `false`
 
 ##### The _collantOffset_ property
 
-Type: Integer or String
-Dafault value: 0
+Type: `Integer` or `String`
+Dafault value: `0`
 
 ##### The _lerp_ property
 
-Type: Float ∈ [0,1]
-Dafault value: null
+Type: `Float` ∈ [0,1]
+Dafault value: `null`
 
 ##### The _position_ property
 
-Type: String
-Dafault value: null
+Type: `String`
+Dafault value: `null`
 
 ##### The _speed_ property
 
-Type: Number
-Dafault value: 0
+Type: `Number`
+Dafault value: `0`
 
 ##### The _stalk_ property
 
-Type: Boolean
-Dafault value: true
+Type: `Boolean`
+Dafault value: `true`
 
 ##### The _target_ property
 
-Type: HTML element
-Dafault value: null
+Type: `HTML element`
+Dafault value: `null`
 
 ##### The _triggerOffset_ property
 
-Type: Integer or String
-Dafault value: 0
+Type: `Integer` or `String`
+Dafault value: `0`
