@@ -230,7 +230,7 @@ Counting scroll pixels is quite nice... but between us that's for amateurs 💅
 
 We'll now learn how to watch elements and make awesome things with them 🔥
 
-### The basics
+### The basics 👌
 
 Firstly, you need to learn the basics, i.e. _watch_ and _forget_ an element.
 
@@ -338,7 +338,7 @@ export default {
         myWatcher: []
     }),
     mounted() {
-        // Watch an element
+        // Watch multiple elements
         this.myWatchers = this.$stereorepo.superScroll.watchMultiple({ elements: this.$refs.items });
     },
     beforeDestroy() {
@@ -352,3 +352,114 @@ export default {
 ```
 
 #### The _on_ method
+
+The on method will allow you to listen to the specific events below 👇
+
+##### The _enter-view_ and _leave-view_ events
+
+###### 🥚 Vanilla
+
+```js
+// We'll say that element is my HTML element
+
+// Watch multiple elements
+const myWatcher = window.$stereorepo.superScroll
+    .watch({ element })
+    .on('enter-view', () => {
+        console.log('Is in view');
+    })
+    .on('leave-view', () => {
+        console.log("Isn't in view");
+    });
+```
+
+###### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+// We'll say that this.$refs.item is my HTML element
+
+mounted() {
+    // Watch an element
+    this.myWatcher = this.$stereorepo.superScroll
+    .watch({ element: this.$refs.item })
+    .on('enter-view', () => {
+        console.log('Is in view');
+    })
+    .on('leave-view', () => {
+        console.log("Isn't in view");
+    });
+},
+
+...
+```
+
+### The dark magic 🔮
+
+For this part the examples will only be in vanilla Javascript since the changes will only concern the _watch_ function (and _watchMultiple_ function, which will take the same _options_ object into account).
+
+So like I said, you'll need to pass an additional _options_ object to your _watch_ function.
+
+**Example:**
+
+```js
+const watched = window.$stereorepo.superScroll.watch({
+    element,
+    options: {
+        // Here goes your options
+    },
+});
+```
+
+#### The options 🧰
+
+| Key           | Type              | Description |
+| ------------- | ----------------- | ----------- |
+| collant       | Boolean           |             |
+| collantOffset | Integer or String |             |
+| lerp          | Float ∈ [0,1]     |             |
+| position      | String            |             |
+| speed         | Number            |             |
+| stalk         | Boolean           |             |
+| target        | HTML element      |             |
+| triggerOffset | Integer or String |             |
+
+##### The _collant_ property
+
+Type: Boolean
+Dafault value: false
+
+##### The _collantOffset_ property
+
+Type: Integer or String
+Dafault value: 0
+
+##### The _lerp_ property
+
+Type: Float ∈ [0,1]
+Dafault value: null
+
+##### The _position_ property
+
+Type: String
+Dafault value: null
+
+##### The _speed_ property
+
+Type: Number
+Dafault value: 0
+
+##### The _stalk_ property
+
+Type: Boolean
+Dafault value: true
+
+##### The _target_ property
+
+Type: HTML element
+Dafault value: null
+
+##### The _triggerOffset_ property
+
+Type: Integer or String
+Dafault value: 0

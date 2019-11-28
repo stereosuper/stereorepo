@@ -9,10 +9,10 @@ class WatchedElement {
         element,
         id,
         lerp: lerpAmount = null,
-        position,
+        position = null,
         speed = 0,
         stalk = true,
-        target,
+        target = null,
         triggerOffset = 0,
     }) {
         this.namespace = `super-scroll-watched-element-${id}`;
