@@ -1,6 +1,8 @@
 # ✨ SuperLoad
 
-Here's our loadHandler. With it you'll be able to prioritize the different functions calls that you are doing in your project.
+Here's our super vanilla load handler 💪
+
+With it you'll be able to prioritize the different functions calls that you are doing in your project.
 
 You can divide your code execution in three different steps.
 
@@ -16,26 +18,31 @@ In there do all the pretty and smooth things that will require a user interactio
 
 Last but not least, animations stuff. All the sweetness of the world you created goes here. Pretty animations that don't help in delivering the main message... HERE.
 
-⚠️ Note that the animations handler is called in the load handler, because you won't always preload things. But you'll necessarily load things.
+🚨 Note that the animations handler is optional, because you won't always need three levels of stuff loading.
 
-**So without the load handler, no animations handler.**
+But don't forget that the animations handler is called in the load handler... **So without the load handler, no animations handler.**
 
 ## initializeLoadingShit
 
-This function will initialize superScroll, superWindow (also init the _"no transition elements"_), and the superFallback components. Then it will call preloadCallback, and loadCallback.
+This function will initialize the _superWindow_ component. Then it will call _preloadCallback_, _loadCallback_, and _animationsCallback_.
 
 Example:
 
 ```js
-import { superLoad } from '@stereorepo/sac';
+import { useSuperLoad } from '@stereorepo/sac';
 
-// All of these components are already instanciated in order to increase performances 📈
-// Only one instance for the same things all across your code.
+// Initialize the SuperComponent
+useSuperLoad();
+
+// The SuperWindow component was instanciated by _useSuperLoad_
+// So now you can access it with **this.$stereorepo.superWindow**
+// Only one instance for the same things all across your code 👌
+
 const preloadCallback = () => {};
 
 const loadCallback = () => {};
 
-const preloadCallback = () => {};
+const animationsCallback = () => {};
 
 superLoad.initializeLoadingShit({
     preloadCallback,
