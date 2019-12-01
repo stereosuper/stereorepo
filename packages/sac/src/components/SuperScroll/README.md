@@ -553,7 +553,7 @@ In this context the following parameters will be taken into account:
 
 👉 target
 
-#### The _collant_ property
+#### ⚙️ The _collant_ property
 
 Type: `Boolean`
 
@@ -563,7 +563,7 @@ Default value: `false`
 
 Activate sticky positioning relatively to the `target` container.
 
-#### The _collantOffset_ property
+#### ⚙️ The _collantOffset_ property
 
 Type: `Float` or `String`
 
