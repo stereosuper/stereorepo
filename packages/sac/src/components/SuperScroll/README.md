@@ -411,18 +411,65 @@ const watched = window.$stereorepo.superScroll.watch({
 });
 ```
 
-#### The options 🧰
+### The options in context 🧰
 
-| Key           | Type                  | Description |
-| ------------- | --------------------- | ----------- |
-| collant       | `Boolean`             |             |
-| collantOffset | `Integer` or `String` |             |
-| lerp          | `Float` ∈ [0,1]       |             |
-| position      | `String`              |             |
-| speed         | `Number`              |             |
-| stalk         | `Boolean`             |             |
-| target        | `HTML element`        |             |
-| triggerOffset | `Integer` or `String` |             |
+There is some options that you can apply to your watched element. Instead of listing all of them, we'll see them depending on what you want to achieve.
+
+#### Element detection 🔍
+
+In this context the following parameters will be taken into account:
+
+👉 stalk
+
+👉 triggerOffset
+
+##### The _stalk_ property
+
+Type: `Boolean`
+
+Default value: `true`
+
+📝 Description: Decide whether or not watching the element entrance multiple times. By default any in/out-view state change will be recorded.
+
+By setting `stalk` to `false`, only the first in-view state will be recorded. No following change will  
+take effect.
+
+##### The _triggerOffset_ property
+
+Type: `Integer` or `String`
+
+Default value: `0`
+
+📝 Description: By default your watched element will be detected when one of those two conditions is met:
+
+👉 The bottom of the window reaches the top of the element.
+
+👉 The top of the window reaches the bottom of the element.
+
+The `triggerOffset` parameter will only shift the top and bottom boundaries towards the center of your element.
+
+Examples:
+
+A `triggerOffset` set to `100` will shift the top and bottom boundaries of your element to 100 pixels towards its center.
+
+A `triggerOffset` set to `10%` will shift the top and bottom boundaries of your element to 10 percent of its current height towards its center.
+
+![alt text](./doc/images/trigger-offset.png 'Trigger offset schema')
+
+#### Apply speed 🚀
+
+#### Make it stick 🍯
+
+| Key           | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
+| collant       | Activate sticky positioning relatively to the `target` container |
+| collantOffset | The offset amount from the                                       |
+| lerp          |                                                                  |
+| position      |                                                                  |
+| speed         |                                                                  |
+| stalk         |                                                                  |
+| target        |                                                                  |
+| triggerOffset |                                                                  |
 
 ##### The _collant_ property
 
@@ -454,20 +501,8 @@ Type: `Number`
 
 Default value: `0`
 
-##### The _stalk_ property
-
-Type: `Boolean`
-
-Default value: `true`
-
 ##### The _target_ property
 
 Type: `HTML element`
 
 Default value: `null`
-
-##### The _triggerOffset_ property
-
-Type: `Integer` or `String`
-
-Default value: `0`
