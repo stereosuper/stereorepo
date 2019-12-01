@@ -596,3 +596,31 @@ const watched = window.$stereorepo.superScroll.watch({
     },
 });
 ```
+
+#### ⚙️ The _target_ property
+
+Type: `HTML element`
+
+Default value: `null`
+
+##### 📝 Description
+
+The `target` property will be the box in which your _collant_ element will stick. Thus, the box shall have a greater height than its curent height. **Otherwise the element won't be sticky**.
+
+Without any `target` specified, collant element won't be sticky.
+
+#### ⚙️ The _position_ property
+
+Type: `String`
+
+Default value: `null`
+
+##### 📝 Description
+
+This property will only take two possible values:
+
+👉 `'top'`
+
+👉 `'bottom'`
+
+With a `target` specified, the `collantOffset` will be set relatively to the target's top or bottom.
