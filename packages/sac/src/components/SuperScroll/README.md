@@ -456,7 +456,7 @@ The `triggerOffset` parameter will only shift the top and bottom boundaries towa
 
 A `triggerOffset` set to `50` will shift the top and bottom boundaries of your element to 50 pixels towards its center.
 
-A `triggerOffset` set to `10%` will shift the top and bottom boundaries of your element to 10 percent of its current height towards its center.
+A `triggerOffset` set to `'10%'` will shift the top and bottom boundaries of your element to 10 percent of its current height towards its center.
 
 ![alt text](./doc/images/trigger-offset.png 'Trigger offset schema')
 
@@ -468,7 +468,7 @@ In this context the following parameters will be taken into account:
 
 👉 lerp
 
-👉 postion
+👉 position
 
 👉 target
 
@@ -511,30 +511,45 @@ By changing the lerp factor between `0` and `1` you're currently translating the
 
 By repeating this computation for each frame, you'll have a sense of delay applied to your initial `speed` factor.
 
-#### ⚙️ The _position_ property
-
-Type: `String`
-
-Default value: `null`
-
 #### ⚙️ The _target_ property
 
 Type: `HTML element`
 
 Default value: `null`
 
+##### 📝 Description
+
+The target property will allow you to shift your element relativity from the center of the window to the specified target. This property won't be taken into account without specifying the `position` property.
+
+#### ⚙️ The _position_ property
+
+Type: `String`
+
+Default value: `null`
+
+##### 📝 Description
+
+This property will only take two possible values:
+
+👉 `'top'`
+
+👉 `'bottom'`
+
+Without any `target` specified, the position will be set relatively to the window's top or bottom.
+
+With a `target` specified, the position will be set relatively to the target's top or bottom.
+
 ### Make it stick 🍯
 
-| Key           | Description                                                      |
-| ------------- | ---------------------------------------------------------------- |
-| collant       | Activate sticky positioning relatively to the `target` container |
-| collantOffset | The offset amount from the                                       |
-| lerp          |                                                                  |
-| position      |                                                                  |
-| speed         |                                                                  |
-| stalk         |                                                                  |
-| target        |                                                                  |
-| triggerOffset |                                                                  |
+In this context the following parameters will be taken into account:
+
+👉 collant
+
+👉 collantOffset
+
+👉 position
+
+👉 target
 
 #### The _collant_ property
 
@@ -542,8 +557,42 @@ Type: `Boolean`
 
 Default value: `false`
 
+##### 📝 Description
+
+Activate sticky positioning relatively to the `target` container.
+
 #### The _collantOffset_ property
 
-Type: `Integer` or `String`
+Type: `Float` or `String`
 
 Default value: `0`
+
+##### 📝 Description
+
+By default your collant element will be sticky when one of those two conditions is met:
+
+👉 The top of the window reaches the top of the element.
+
+👉 The bottom of the window reaches the bottom of the element.
+
+The `collantOffset` parameter will only offset those two conditions by the given value.
+
+For example, by giving a value of `100` to `collantOffset` and a `position` parameter of `'top'`, the element will be sticky 100 pixels before reaching the current element top.
+
+The result will be a 100 pixels margin between the window's top and the element's top while being sticky.
+
+The accepted value are `Float` which will be directly translated into pixel, or `String` ending by `vh` directly translated to percentage of the window's height.
+
+**Example:**
+
+```js
+const watched = window.$stereorepo.superScroll.watch({
+    element,
+    options: {
+        collant: true,
+        collantOffset: 100,
+        // or
+        collantOffset: '10vh',
+    },
+});
+```
