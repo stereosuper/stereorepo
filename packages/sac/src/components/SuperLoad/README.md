@@ -1,6 +1,6 @@
 # ✨ SuperLoad
 
-Here's our super vanilla load handler 💪
+[Alban 🔥] Here's our super vanilla load handler 💪
 
 With it you'll be able to prioritize the different functions calls that you are doing in your project.
 
