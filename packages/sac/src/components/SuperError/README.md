@@ -1,6 +1,6 @@
 # ✨ SuperError
 
-SuperError is not auto-instanciated. This class will help you to build cool custom errors.
+[Alban 🔥] SuperError is not auto-instanciated. This class will help you to build cool custom errors.
 
 For instance this components helps us to build the errors for all the @stereorepo 👌
 
