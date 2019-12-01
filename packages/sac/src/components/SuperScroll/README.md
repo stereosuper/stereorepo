@@ -22,6 +22,8 @@
 
 👉 [The watched elements](#the-watched-elements)
 
+👉 [The options](#the-dark-magic)
+
 ## The initialization
 
 ### Vanilla
@@ -394,7 +396,7 @@ mounted() {
 ...
 ```
 
-## The dark magic 🔮
+## The dark magic
 
 For this part the examples will only be in vanilla Javascript since the changes will only concern the _watch_ function (and _watchMultiple_ function, which will take the same _options_ object into account).
 
