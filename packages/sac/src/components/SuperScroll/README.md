@@ -394,7 +394,7 @@ mounted() {
 ...
 ```
 
-### The dark magic 🔮
+## The dark magic 🔮
 
 For this part the examples will only be in vanilla Javascript since the changes will only concern the _watch_ function (and _watchMultiple_ function, which will take the same _options_ object into account).
 
@@ -411,11 +411,11 @@ const watched = window.$stereorepo.superScroll.watch({
 });
 ```
 
-### The options in context 🧰
+## The options in context 🧰
 
 There is some options that you can apply to your watched element. Instead of listing all of them, we'll see them depending on what you want to achieve.
 
-#### Element detection 🔍
+### Element detection 🔍
 
 In this context the following parameters will be taken into account:
 
@@ -423,24 +423,28 @@ In this context the following parameters will be taken into account:
 
 👉 triggerOffset
 
-##### The _stalk_ property
+#### ⚙️ The _stalk_ property
 
 Type: `Boolean`
 
 Default value: `true`
 
-📝 Description: Decide whether or not watching the element entrance multiple times. By default any in/out-view state change will be recorded.
+##### 📝 Description
+
+Decide whether or not watching the element entrance multiple times. By default any in/out-view state change will be recorded.
 
 By setting `stalk` to `false`, only the first in-view state will be recorded. No following change will  
 take effect.
 
-##### The _triggerOffset_ property
+#### ⚙️ The _triggerOffset_ property
 
 Type: `Integer` or `String`
 
 Default value: `0`
 
-📝 Description: By default your watched element will be detected when one of those two conditions is met:
+##### 📝 Description
+
+By default your watched element will be detected when one of those two conditions is met:
 
 👉 The bottom of the window reaches the top of the element.
 
@@ -448,17 +452,78 @@ Default value: `0`
 
 The `triggerOffset` parameter will only shift the top and bottom boundaries towards the center of your element.
 
-Examples:
+##### Examples
 
-A `triggerOffset` set to `100` will shift the top and bottom boundaries of your element to 100 pixels towards its center.
+A `triggerOffset` set to `50` will shift the top and bottom boundaries of your element to 50 pixels towards its center.
 
 A `triggerOffset` set to `10%` will shift the top and bottom boundaries of your element to 10 percent of its current height towards its center.
 
 ![alt text](./doc/images/trigger-offset.png 'Trigger offset schema')
 
-#### Apply speed 🚀
+### Apply speed 🚀
 
-#### Make it stick 🍯
+In this context the following parameters will be taken into account:
+
+👉 speed
+
+👉 lerp
+
+👉 postion
+
+👉 target
+
+#### ⚙️ The _speed_ property
+
+Type: `Number`
+
+Default value: `0`
+
+##### 📝 Description
+
+The speed property will allow you to create parallax effects.
+
+Any element of the page with a `speed` of `0` will scroll the normal amount of pixels.
+
+Any element with a `speed` of `1` will scroll the normal amount of pixels **plus an extra 10%** of this amount.
+
+Any element with a **positive speed** will **disappear faster than a classic element**.
+
+Any element with a **negative speed** will **fight against the current** and disappear slower than any classic element.
+
+#### ⚙️ The _lerp_ property
+
+Type: `Float` ∈ [0,1]
+
+Default value: `null`
+
+##### 📝 Description
+
+In mathematics, lerp (linear interpolation) is a method of curve fitting using linear polynomials to construct new data points within the range of a discrete set of known data points.
+
+**In our case, the simplest translation would be this schema**.
+![alt text](./doc/images/lerp.png 'Linear interpolation schema')
+
+By setting a lerp value, at each frame, the normal translation value (coming from the speed property) will be lerped.
+
+The (x0, y0) point would be the element current position. The (x1, y1) point would be the new element's position with a speed property applied to it. The effective position will be the (x,y) point.
+
+By changing the lerp factor between `0` and `1` you're currently translating the red point on the red line.
+
+By repeating this computation for each frame, you'll have a sense of delay applied to your initial `speed` factor.
+
+#### ⚙️ The _position_ property
+
+Type: `String`
+
+Default value: `null`
+
+#### ⚙️ The _target_ property
+
+Type: `HTML element`
+
+Default value: `null`
+
+### Make it stick 🍯
 
 | Key           | Description                                                      |
 | ------------- | ---------------------------------------------------------------- |
@@ -471,38 +536,14 @@ A `triggerOffset` set to `10%` will shift the top and bottom boundaries of your 
 | target        |                                                                  |
 | triggerOffset |                                                                  |
 
-##### The _collant_ property
+#### The _collant_ property
 
 Type: `Boolean`
 
 Default value: `false`
 
-##### The _collantOffset_ property
+#### The _collantOffset_ property
 
 Type: `Integer` or `String`
 
 Default value: `0`
-
-##### The _lerp_ property
-
-Type: `Float` ∈ [0,1]
-
-Default value: `null`
-
-##### The _position_ property
-
-Type: `String`
-
-Default value: `null`
-
-##### The _speed_ property
-
-Type: `Number`
-
-Default value: `0`
-
-##### The _target_ property
-
-Type: `HTML element`
-
-Default value: `null`
