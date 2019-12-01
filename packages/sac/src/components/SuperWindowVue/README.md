@@ -11,24 +11,29 @@ See : https://vuex.vuejs.org/guide/modules.html#dynamic-module-registration
 
 ```js
 ... your-vue-component.vue
+
 mounted() {
-    // 🚀 If using Nuxt: Preferably in layout/default.vue
+    // Always call initializeWindow to ensure that the dynamic VueX module exists
+    // Don't worry, if it already exists it won't be redeclared
     // this.$store is your VueX store instance
     this.$stereorepo.superWindow.initializeWindow(this.$store);
 },
+
 ...
 ```
 
 **destroyWindow**
 
-Simply destroy the _superWindow_'s events and store module.
+Simply destroy the _SuperWindow_'s events and store module.
 
 ```js
 ... your-vue-component.vue
+
 destroyed() {
     // this.$store is your VueX store instance
     this.$stereorepo.superWindow.destroyWindow(this.$store);
 },
+
 ...
 ```
 
@@ -40,6 +45,7 @@ The _toggleNoScroll_ function will remembering your scroll distance when the nav
 
 ```js
 ... your-vue-component.vue
+
 watch: {
     navigationState(navState) {
         this.$stereorepo.superWindow.this.$stereorepo.superWindow.toggleNoScroll({
@@ -48,5 +54,6 @@ watch: {
         });
     }
 },
+
 ...
 ```
