@@ -218,6 +218,7 @@ class SuperScroll {
     }
     forgetMultiple(elements) {
         forEach(elements, element => {
+            if (!element) return;
             element.forget();
         });
     }
