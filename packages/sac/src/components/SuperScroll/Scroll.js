@@ -69,8 +69,11 @@ class SuperScroll {
     initializeContext() {
         this.firstScrollTopOffset = window.scrollY || window.pageYOffset;
         this.scrollTop = this.firstScrollTopOffset;
+
         this.computeWatchedElements();
         this.handleWatchedElements();
+
+        document.documentElement.classList.add('super-scroll-initiated');
     }
     scrollHandler() {
         if (!this.isScrolling) {
