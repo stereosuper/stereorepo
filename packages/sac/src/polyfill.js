@@ -2,7 +2,10 @@
 const importSmoothScrollPolyfill = () => import('smoothscroll-polyfill');
 
 export const audioContextPolyfill = () => {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    window.AudioContext =
+        window.webkitAudioContext ||
+        window.AudioContext ||
+        window.mozAudioContext;
 };
 
 // IE11 polyfills
