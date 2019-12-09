@@ -6,3 +6,11 @@ export const roundNumbers = ({ number, decimalOffset }) => {
     const decimalsFactor = 10 ** decimalOffset;
     return Math.round(number * decimalsFactor) / decimalsFactor;
 };
+
+export const average = array => {
+    if (!array.length) return null;
+    return (
+        array.reduce((accumulator, current) => accumulator + current) /
+        array.length
+    );
+};
