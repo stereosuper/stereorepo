@@ -33,6 +33,7 @@ export const { spotIE } = fallback;
 import * as math from './math';
 export const { lerp } = math;
 export const { roundNumbers } = math;
+export const { average } = math;
 
 // ✏️ Parsing
 import * as parsing from './parsing';
