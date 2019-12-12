@@ -61,9 +61,10 @@ export const requestAnimFrame = callback => {
     return anim(callback);
 };
 
+// NOTE: Functions calling functions defined above.
 export const throttle = ({ callback, delay }) => {
-    let last;
-    let timer;
+    let last = null;
+    let timer = null;
 
     return function throttleFunction(...args) {
         const now = +new Date();
@@ -75,16 +76,14 @@ export const throttle = ({ callback, delay }) => {
 
         if (last && now < last + delay) {
             // le délai n'est pas écoulé on reset le timer
-            clearTimeout(timer);
+            if (timer) clearRequestTimeout(timer);
 
-            timer = setTimeout(reset, delay);
+            timer = requestTimeout(reset, delay);
         } else {
             reset();
         }
     };
 };
-
-// NOTE: Functions calling functions defined above.
 
 export const loop = ({ function: func, fpsInterval = 60, params = {} }) => {
     if (!func) throw new Error('No function passed to loop.');
