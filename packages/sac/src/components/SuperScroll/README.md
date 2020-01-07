@@ -364,7 +364,7 @@ The on method will allow you to listen to the specific events below 👇
 ```js
 // We'll say that element is my HTML element
 
-// Watch multiple elements
+// Watch an element
 const myWatcher = window.$stereorepo.superScroll
     .watch({ element })
     .on('enter-view', () => {
@@ -372,6 +372,56 @@ const myWatcher = window.$stereorepo.superScroll
     })
     .on('leave-view', () => {
         console.log("Isn't in view");
+    });
+```
+
+###### 🍳 Vue.js
+
+```js
+... your-vue-component.vue
+// We'll say that this.$refs.item is my HTML element
+
+mounted() {
+    // Watch an element
+    this.myWatcher = this.$stereorepo.superScroll
+    .watch({ element: this.$refs.item })
+    .on('enter-view', () => {
+        console.log('Is in view');
+    })
+    .on('leave-view', () => {
+        console.log("Isn't in view");
+    });
+},
+
+...
+```
+
+##### The _before-enter-collant_, _enter-collant_ and _leave-collant_ events
+
+###### 🥚 Vanilla
+
+```js
+// We'll say that element is my HTML collant element and sidebar is the container in which the collant will evolve
+
+// Watch an element
+const myCollant = window.$stereorepo.superScroll
+    .watch({
+        element,
+        options: {
+            collant: true,
+            collantOffset: 100,
+            target: sidebar,
+            position: 'top',
+        },
+    })
+    .on('before-enter-collant', () => {
+        console.log("The element isn't collant.");
+    })
+    .on('enter-collant', () => {
+        console.log('The element is collant.');
+    })
+    .on('leave-collant', () => {
+        console.log('The element was collant.');
     });
 ```
 

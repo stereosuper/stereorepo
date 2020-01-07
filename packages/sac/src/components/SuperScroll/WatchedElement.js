@@ -56,10 +56,18 @@ class WatchedElement {
         this.offsetWindowBottom = null;
         this.inView = false;
 
+        // Collant io events variables
+        this.beforeCollantState = false;
+        this.enteredCollantState = false;
+        this.leftCollantState = false;
+
         // Curryied functions names sorted by events
         this.events = {
             'enter-view': 'handleEnterViewEvent',
             'leave-view': 'handleLeaveViewEvent',
+            'before-enter-collant': 'handleBeforeEnterCollantEvent',
+            'enter-collant': 'handleEnterCollantEvent',
+            'leave-collant': 'handleLeaveCollantEvent',
         };
     }
     // NOTE: Getters and setters section
@@ -251,6 +259,7 @@ class WatchedElement {
             this.element.style.bottom = '0px';
             this.element.style.position = 'absolute';
             this.element.classList.remove('collant');
+            this.dispatchCollantInOut('leave');
         } else if (scrollOffset >= this.collantTopDelimiter) {
             // Handle width when the position is fixed
             this.element.style.maxWidth = `${this.targetBoundings.width}px`;
@@ -264,9 +273,11 @@ class WatchedElement {
             }
             this.element.style.position = 'fixed';
             this.element.classList.add('collant');
+            this.dispatchCollantInOut('enter');
         } else {
             // Cleaning properties
             this.cleanCollant();
+            this.dispatchCollantInOut('before-enter');
         }
     }
     // Events
@@ -274,6 +285,38 @@ class WatchedElement {
         if (!this.stalk && this.alreadyInViewed) return;
 
         const eventName = `${this.namespace}-${type}-view`;
+        const inOutEvent = createCrossBrowserEvent(eventName);
+        window.dispatchEvent(inOutEvent);
+    }
+    dispatchCollantInOut(type) {
+        if (
+            (this.beforeCollantState && type === 'before-enter') ||
+            (this.enteredCollantState && type === 'enter') ||
+            (this.leftCollantState && type === 'leave')
+        )
+            return;
+
+        switch (type) {
+            case 'before-enter':
+                this.beforeCollantState = true;
+                this.enteredCollantState = false;
+                this.leftCollantState = false;
+                break;
+            case 'enter':
+                this.beforeCollantState = false;
+                this.enteredCollantState = true;
+                this.leftCollantState = false;
+                break;
+            case 'leave':
+                this.beforeCollantState = false;
+                this.enteredCollantState = false;
+                this.leftCollantState = true;
+                break;
+            default:
+                return;
+        }
+
+        const eventName = `${this.namespace}-${type}-collant`;
         const inOutEvent = createCrossBrowserEvent(eventName);
         window.dispatchEvent(inOutEvent);
     }
@@ -289,11 +332,32 @@ class WatchedElement {
             func();
         };
 
+        // Before enter collant event curried function
+        this[this.events['before-enter-collant']] = () => {
+            func();
+        };
+
+        // Enter collant event curried function
+        this[this.events['enter-collant']] = () => {
+            func();
+        };
+
+        // Leave collant event curried function
+        this[this.events['leave-collant']] = () => {
+            func();
+        };
+
         switch (event) {
             case 'enter-view':
                 return this[this.events['enter-view']];
             case 'leave-view':
                 return this[this.events['leave-view']];
+            case 'before-enter-collant':
+                return this[this.events['before-enter-collant']];
+            case 'enter-collant':
+                return this[this.events['enter-collant']];
+            case 'leave-collant':
+                return this[this.events['leave-collant']];
             default:
                 break;
         }
