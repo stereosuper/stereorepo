@@ -1,5 +1,9 @@
 import SuperError from '../SuperError';
 
+import { requestTimeout } from '../../core';
+
+let rtime = null, timeoutWindow = false, store = null;
+
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {
         throw new SuperError(
@@ -9,8 +13,16 @@ const checkStoreValue = ({ store, methodeName }) => {
 };
 
 const setWindowSize = store => {
+    rtime = new Date();
+
+    if (timeoutWindow === false) {
+        timeoutWindow = true;
+        requestTimeout(resizeEnd, store.state.superWindow.noTransitionDelta);
+    }
+
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
+    noTransition();
     store.commit('superWindow/setWindow', {
         width: windowWidth,
         height: windowHeight,
@@ -23,9 +35,31 @@ const launchWindow = store => {
     });
 };
 
-export const initializeWindow = store => {
-    checkStoreValue({ store, methodeName: 'initializeWindow' });
-    if (!store.state.superWindow) {
+const resizeEnd = () => {
+    if (new Date() - rtime < store.state.superWindow.noTransitionDelta) {
+        store.commit('superWindow/setResizing', true);
+        requestTimeout(resizeEnd, store.state.superWindow.noTransitionDelta);
+    } else {
+        store.commit('superWindow/setResizing', false);
+        timeoutWindow = false;
+        [...store.state.superWindow.noTransitionElements].map(el => {
+            el.classList.remove('no-transition');
+            return el;
+        })
+    }
+};
+
+const noTransition = () => {
+    [...store.state.superWindow.noTransitionElements].map(el => {
+        el.classList.add('no-transition');
+        return el;
+    })
+};
+
+export const initializeWindow = _store => {
+    checkStoreValue({ store: _store, methodeName: 'initializeWindow' });
+    if (!_store.state.superWindow) {
+        store = _store;
         store.registerModule(
             'superWindow',
             {
@@ -33,12 +67,24 @@ export const initializeWindow = store => {
                 state: {
                     width: Infinity,
                     height: 0,
+                    noTransitionElements: [],
+                    resizing: false,
+                    noTransitionDelta: 200
                 },
                 mutations: {
                     setWindow(state, { width, height }) {
                         state.width = width;
                         state.height = height;
                     },
+                    setNoTransitionElements(state, noTransitionElements) {
+                        state.noTransitionElements.push(noTransitionElements);
+                    },
+                    setResizing(state, resizing) {
+                        state.resizing = resizing;
+                    },
+                    setNoTransitionDelta(state, noTransitionDelta) {
+                        state.noTransitionDelta = noTransitionDelta;
+                    }
                 },
             },
             { preserveState: false },
