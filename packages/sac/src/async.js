@@ -18,7 +18,7 @@ export const runPromisesSequence = async (
 ) => {
     const arrayLength = array.length;
     for (let index = 0; index < arrayLength; index += 1) {
-        await handlerFunction(array[index]).then(() => {
+        await handlerFunction(array[index], index).then(() => {
             return wait(delay);
         });
     }
