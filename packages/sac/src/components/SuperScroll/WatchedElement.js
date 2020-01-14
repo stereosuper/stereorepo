@@ -72,11 +72,20 @@ class WatchedElement {
     }
     // NOTE: Getters and setters section
     get parsedTriggerOffset() {
-        if (!/%$/.test(this.triggerOffset)) return this.triggerOffset;
-        return (
-            parseInt(this.triggerOffset.replace('%', ''), 10) *
-            (this.boundings.height / 100)
-        );
+        switch (true) {
+            case /vh$/.test(this.triggerOffset):
+                return (
+                    parseFloat(this.triggerOffset.replace('vh', '')) *
+                    (window.innerHeight / 100)
+                );
+            case /%$/.test(this.triggerOffset):
+                return (
+                    parseInt(this.triggerOffset.replace('%', ''), 10) *
+                    (this.boundings.height / 100)
+                );
+            default:
+                return this.triggerOffset;
+        }
     }
     get parsedCollantOffset() {
         // Parsing vh or directly returning pixels
