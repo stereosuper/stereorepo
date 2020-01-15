@@ -433,13 +433,24 @@ const myCollant = window.$stereorepo.superScroll
 
 mounted() {
     // Watch an element
-    this.myWatcher = this.$stereorepo.superScroll
-    .watch({ element: this.$refs.item })
-    .on('enter-view', () => {
-        console.log('Is in view');
+    this.myCollant = this.$stereorepo.superScroll
+    .watch({
+        element: this.$refs.item,
+        options: {
+            collant: true,
+            collantOffset: 100,
+            target: sidebar,
+            position: 'top',
+        },
     })
-    .on('leave-view', () => {
-        console.log("Isn't in view");
+    .on('before-enter-collant', () => {
+        console.log("The element isn't collant.");
+    })
+    .on('enter-collant', () => {
+        console.log('The element is collant.');
+    })
+    .on('leave-collant', () => {
+        console.log('The element was collant.');
     });
 },
 
