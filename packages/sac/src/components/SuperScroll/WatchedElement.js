@@ -72,20 +72,31 @@ class WatchedElement {
     }
     // NOTE: Getters and setters section
     get parsedTriggerOffset() {
-        switch (true) {
-            case /vh$/.test(this.triggerOffset):
-                return (
-                    parseFloat(this.triggerOffset.replace('vh', '')) *
-                    (window.innerHeight / 100)
-                );
-            case /%$/.test(this.triggerOffset):
-                return (
-                    parseInt(this.triggerOffset.replace('%', ''), 10) *
-                    (this.boundings.height / 100)
-                );
-            default:
-                return this.triggerOffset;
-        }
+        const inputOffset = !Array.isArray(this.triggerOffset)
+            ? [this.triggerOffset, this.triggerOffset]
+            : this.triggerOffset;
+
+        return inputOffset.reduce((acc, offset, index) => {
+            let parsedOffset = null;
+            const key = index === 0 ? 'top' : 'bottom';
+
+            switch (true) {
+                case /vh$/.test(offset):
+                    parsedOffset =
+                        parseFloat(offset.replace('vh', '')) *
+                        (window.innerHeight / 100);
+                    break;
+                case /%$/.test(offset):
+                    parsedOffset =
+                        parseInt(offset.replace('%', ''), 10) *
+                        (this.boundings.height / 100);
+                    break;
+                default:
+                    parsedOffset = offset;
+            }
+
+            return { ...acc, [key]: parsedOffset };
+        }, {});
     }
     get parsedCollantOffset() {
         // Parsing vh or directly returning pixels
@@ -155,13 +166,13 @@ class WatchedElement {
         this.offsetWindowTop =
             elementTop +
             this.boundings.height -
-            this.parsedTriggerOffset -
+            this.parsedTriggerOffset.bottom -
             scrollTop;
 
         // If offsetWindowBottom is positive, the element is below the window's bottom
         this.offsetWindowBottom =
             elementTop +
-            this.parsedTriggerOffset -
+            this.parsedTriggerOffset.top -
             (scrollTop + window.innerHeight);
 
         // Displacing the in-view box from the transform value added later on
