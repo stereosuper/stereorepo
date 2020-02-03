@@ -1,6 +1,6 @@
 {
     "name": "@stereorepo/collant",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "description": "",
     "main": "src/index.js",
     "publishConfig": {
@@ -21,6 +21,6 @@
     "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
     "license": "ISC",
     "dependencies": {
-        "@stereorepo/sac": "^3.1.1"
+        "@stereorepo/sac": "^3.1.2"
     }
 }
