@@ -259,6 +259,7 @@ class WatchedElement {
         this.element.style.removeProperty('max-width');
 
         this.element.classList.remove('collant');
+        this.element.classList.remove('collant-stuck');
     }
     collant({ scrollTop }) {
         if (!this.isCollant || !this.position || !this.target) return;
@@ -279,6 +280,7 @@ class WatchedElement {
             this.element.style.bottom = '0px';
             this.element.style.position = 'absolute';
             this.element.classList.remove('collant');
+            this.element.classList.add('collant-stuck');
             this.dispatchCollantInOut('leave');
         } else if (scrollOffset >= this.collantTopDelimiter) {
             // Handle width when the position is fixed
@@ -292,6 +294,7 @@ class WatchedElement {
                 this.element.style.bottom = `${this.parsedCollantOffset}px`;
             }
             this.element.style.position = 'fixed';
+            this.element.classList.remove('collant-stuck');
             this.element.classList.add('collant');
             this.dispatchCollantInOut('enter');
         } else {
