@@ -419,6 +419,8 @@ class WatchedElement {
             );
         });
 
+        if (this.isCollant) this.cleanCollant();
+
         this.destroyMethod(this.id);
     }
 }
