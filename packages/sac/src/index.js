@@ -69,10 +69,12 @@ export { default as useSuperLoad } from './components/SuperLoad';
 // For vanilla use
 export { useSuperScroll } from './components/SuperScroll';
 export { useSuperWindow } from './components/SuperWindow';
+export { useSuperDOM } from './components/SuperDOM';
 
 // For Vue.js use
 export { default as useSuperScrollVue } from './components/SuperScroll';
 export { default as useSuperWindowVue } from './components/SuperWindowVue';
+export { default as useSuperDOMVue } from './components/SuperDOM';
 
 // 🔭 Scoping
 // NOTE: If used with Vue.use method
