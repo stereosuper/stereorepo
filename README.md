@@ -8,7 +8,7 @@ These packages are _"**npm scoped packages**"_ like _@babel/core_.
 
 Theses packages are written using the latest ECMAScript syntax. Thus, you'll need to transpile the packages (with babel for example).
 
-Example using webpack : 
+Example using webpack :
 
 ```js
 ... webpack.config.js
@@ -34,8 +34,6 @@ module.exports = {
 👉 [@stereorepo/accordion](https://github.com/stereosuper/stereorepo/tree/master/packages/accordion)
 
 👉 [@stereorepo/burger](https://github.com/stereosuper/stereorepo/tree/master/packages/burger)
-
-👉 [@stereorepo/collant](https://github.com/stereosuper/stereorepo/tree/master/packages/collant)
 
 👉 [@stereorepo/sac](https://github.com/stereosuper/stereorepo/tree/master/packages/sac)
 
