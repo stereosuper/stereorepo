@@ -3,10 +3,10 @@ import { query, useSuperWindow } from '@stereorepo/sac';
 class Burger {
     constructor({
         burgerSelector = '.js-burger',
-        mainNavigationSelector = '.js-main-navigation',
+        mainNavigationSelector = '.js-main-navigation'
     }) {
         this.state = {
-            burgerActivated: false,
+            burgerActivated: false
         };
 
         useSuperWindow();
@@ -25,7 +25,7 @@ class Burger {
             transitionElement.removeEventListener(
                 'transitionend',
                 removeScroll,
-                false,
+                false
             );
         };
 
@@ -35,7 +35,7 @@ class Burger {
                 this.transitionElementDuration === '0s'
             ) {
                 this.transitionElementDuration = getComputedStyle(
-                    transitionElement,
+                    transitionElement
                 ).getPropertyValue('transition-duration');
             }
 
@@ -43,7 +43,7 @@ class Burger {
                 transitionElement.addEventListener(
                     'transitionend',
                     removeScroll,
-                    false,
+                    false
                 );
             } else {
                 removeScroll();
@@ -52,8 +52,8 @@ class Burger {
             const scrollY = Math.abs(
                 parseInt(
                     document.documentElement.style.top.replace('px', ''),
-                    10,
-                ),
+                    10
+                )
             );
             document.documentElement.style.top = '';
             document.documentElement.classList.remove('no-scroll');
@@ -73,7 +73,7 @@ class Burger {
         mainNav.setAttribute('aria-expanded', this.state.burgerActivated);
         this.toggleNoScroll({
             transitionElement: mainNav,
-            noScroll: this.state.burgerActivated,
+            noScroll: this.state.burgerActivated
         });
     }
     thisBurgerIsTooFat() {
@@ -95,11 +95,11 @@ class Burger {
             () => {
                 this.makeTheDamnBurger();
             },
-            false,
+            false
         );
 
         window.$stereorepo.superWindow.addResizeFunction(
-            this.thisBurgerIsTooFat,
+            this.thisBurgerIsTooFat
         );
     }
 }

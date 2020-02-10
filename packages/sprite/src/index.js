@@ -5,6 +5,6 @@ export const Sprite = SpriteComponent;
 // export const SpriteVue = SpriteVueComponent;
 
 export default {
-    Sprite,
+    Sprite
     // SpriteVue,
 };

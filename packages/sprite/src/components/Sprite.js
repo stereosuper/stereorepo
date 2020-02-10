@@ -8,7 +8,7 @@ class Sprite {
         interval,
         parent,
         loop = false,
-        numberEmpty = 0,
+        numberEmpty = 0
     }) {
         this.parent = parent;
         this.image = image;
@@ -27,7 +27,7 @@ class Sprite {
             paused: true,
             repeat: this.looped ? -1 : 0,
             onRepeat: this.checkShouldStop,
-            onRepeatScope: this,
+            onRepeatScope: this
         });
 
         let count = 0;
@@ -44,7 +44,7 @@ class Sprite {
                 this.tl.set(
                     this.image,
                     { backgroundPosition: `${xpos}% ${ypos}%` },
-                    count * this.interval,
+                    count * this.interval
                 );
                 count += 1;
             }

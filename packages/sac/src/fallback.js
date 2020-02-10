@@ -5,7 +5,7 @@ import {
     isIOS,
     isMobile,
     isMS,
-    isSafari,
+    isSafari
 } from './snif';
 
 export const spotMobile = () => {

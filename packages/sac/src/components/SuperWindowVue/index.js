@@ -2,12 +2,14 @@ import SuperError from '../SuperError';
 
 import { requestTimeout } from '../../core';
 
-let rtime = null, timeoutWindow = false, store = null;
+let rtime = null;
+let timeoutWindow = false;
+let store = null;
 
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {
         throw new SuperError(
-            `No store found, try passing vuex store as an argument in ${methodeName} call`,
+            `No store found, try passing vuex store as an argument in ${methodeName} call`
         );
     }
 };
@@ -25,7 +27,7 @@ const setWindowSize = store => {
     noTransition();
     store.commit('superWindow/setWindow', {
         width: windowWidth,
-        height: windowHeight,
+        height: windowHeight
     });
 };
 
@@ -45,7 +47,7 @@ const resizeEnd = () => {
         [...store.state.superWindow.noTransitionElements].map(el => {
             el.classList.remove('no-transition');
             return el;
-        })
+        });
     }
 };
 
@@ -53,7 +55,7 @@ const noTransition = () => {
     [...store.state.superWindow.noTransitionElements].map(el => {
         el.classList.add('no-transition');
         return el;
-    })
+    });
 };
 
 export const initializeWindow = _store => {
@@ -85,9 +87,9 @@ export const initializeWindow = _store => {
                     setNoTransitionDelta(state, noTransitionDelta) {
                         state.noTransitionDelta = noTransitionDelta;
                     }
-                },
+                }
             },
-            { preserveState: false },
+            { preserveState: false }
         );
     }
 
@@ -110,7 +112,7 @@ export const toggleNoScroll = ({ noScroll, nextTick }) => {
         document.documentElement.classList.add('no-scroll');
     } else {
         const scrollY = Math.abs(
-            parseInt(document.documentElement.style.top.replace('px', ''), 10),
+            parseInt(document.documentElement.style.top.replace('px', ''), 10)
         );
         document.documentElement.style.top = '';
         document.documentElement.classList.remove('no-scroll');
@@ -125,10 +127,10 @@ const install = Vue => {
     Vue.prototype.$stereorepo.superWindow = {
         toggleNoScroll,
         initializeWindow,
-        destroyWindow,
+        destroyWindow
     };
 };
 
 export default {
-    install,
+    install
 };

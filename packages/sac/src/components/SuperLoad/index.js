@@ -6,7 +6,7 @@ class SuperLoad {
         this.state = {
             preloaded: false,
             loaded: false,
-            animationsLaunched: false,
+            animationsLaunched: false
         };
 
         useSuperWindow();
@@ -14,7 +14,7 @@ class SuperLoad {
         this.callbacks = {
             preloadCallback: false,
             loadCallback: false,
-            animationsCallback: false,
+            animationsCallback: false
         };
     }
     preload(callback) {
@@ -46,14 +46,14 @@ class SuperLoad {
         preloadCallback = null,
         loadCallback = null,
         animationsCallback = null,
-        noTransElementsClass = '.element-without-transition-on-resize',
+        noTransElementsClass = '.element-without-transition-on-resize'
     }) {
         this.callbacks.preloadCallback = preloadCallback;
         this.callbacks.loadCallback = loadCallback;
         this.callbacks.animationsCallback = animationsCallback;
 
         const noTransElem = query({
-            selector: noTransElementsClass,
+            selector: noTransElementsClass
         });
 
         window.$stereorepo.superWindow.setNoTransitionElts(noTransElem);
@@ -69,7 +69,7 @@ class SuperLoad {
                     this.preload(this.callbacks.preloadCallback);
                 if (!this.state.loaded) this.load(this.callbacks.loadCallback);
             },
-            false,
+            false
         );
     }
 }

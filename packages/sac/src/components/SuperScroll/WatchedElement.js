@@ -13,7 +13,7 @@ class WatchedElement {
         speed = 0,
         stalk = true,
         target = null,
-        triggerOffset = 0,
+        triggerOffset = 0
     }) {
         this.namespace = `super-scroll-watched-element-${id}`;
 
@@ -67,7 +67,7 @@ class WatchedElement {
             'leave-view': 'handleLeaveViewEvent',
             'before-enter-collant': 'handleBeforeEnterCollantEvent',
             'enter-collant': 'handleEnterCollantEvent',
-            'leave-collant': 'handleLeaveCollantEvent',
+            'leave-collant': 'handleLeaveCollantEvent'
         };
     }
     // NOTE: Getters and setters section
@@ -245,7 +245,7 @@ class WatchedElement {
             this.element,
             0,
             this.transformValue,
-            this.lerpAmount,
+            this.lerpAmount
         );
         this.lerpNotDone =
             this.lerpAmount &&
@@ -389,14 +389,14 @@ class WatchedElement {
         // Events name check (ensuring that every functions will have a reference in order to use removeEventListener).
         if (!Object.keys(this.events).includes(event))
             throw new Error(
-                `The event "${event}" passed to <WatchedElement>.on() is not handled by the element.`,
+                `The event "${event}" passed to <WatchedElement>.on() is not handled by the element.`
             );
 
         // Calling listenToEvents as a currying function
         window.addEventListener(
             `${this.namespace}-${event}`,
             this.listenToEvents(event, func),
-            false,
+            false
         );
         return this;
     }
@@ -415,7 +415,7 @@ class WatchedElement {
             window.removeEventListener(
                 `${this.namespace}-${event}`,
                 this[this.events[event]],
-                false,
+                false
             );
         });
 

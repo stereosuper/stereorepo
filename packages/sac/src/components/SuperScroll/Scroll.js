@@ -4,7 +4,7 @@ import {
     createCrossBrowserEvent,
     forEach,
     requestTimeout,
-    requestAnimFrame,
+    requestAnimFrame
 } from '../../core';
 
 class SuperScroll {
@@ -22,7 +22,7 @@ class SuperScroll {
         // Curryied functions names sorted by events
         this.events = {
             scroll: 'handleScrollEvent',
-            'scroll-end': 'handleScrollEndEvent',
+            'scroll-end': 'handleScrollEndEvent'
         };
 
         // Watched elements
@@ -49,12 +49,12 @@ class SuperScroll {
                         resolve();
                     }
                 },
-                false,
+                false
             );
         });
     }
     async initializeScroll() {
-        // Checking if the DOM is loaded (in order to computed objects sizes)
+        // Checking if the DOM is loaded (in order to compute objects sizes)
         await this.checkDomState();
         this.initializeContext();
         window.addEventListener('scroll', this.scrollHandler, false);
@@ -101,7 +101,7 @@ class SuperScroll {
     }
     scrollForWatchedElements() {
         const lerpNotDone = this.watchedElements.some(
-            element => element && element.inView && element.lerpNotDone,
+            element => element && element.inView && element.lerpNotDone
         );
 
         if (lerpNotDone || this.isScrolling) {
@@ -133,7 +133,7 @@ class SuperScroll {
             if (!element) return;
             element.clean();
             element.compute({
-                firstScrollTopOffset: this.firstScrollTopOffset,
+                firstScrollTopOffset: this.firstScrollTopOffset
             });
         });
     }
@@ -141,11 +141,11 @@ class SuperScroll {
         forEach(this.watchedElements, element => {
             if (!element) return;
             element.amIInView({
-                scrollTop: this.scrollTop,
+                scrollTop: this.scrollTop
             });
             element.parallax();
             element.collant({
-                scrollTop: this.scrollTop,
+                scrollTop: this.scrollTop
             });
         });
     }
@@ -156,7 +156,7 @@ class SuperScroll {
     }
     dispatchScrollEnd() {
         const scrollEvent = createCrossBrowserEvent(
-            `${this.namespace}-scroll-end`,
+            `${this.namespace}-scroll-end`
         );
         window.dispatchEvent(scrollEvent);
     }
@@ -184,14 +184,14 @@ class SuperScroll {
         // Events name check (ensuring that every functions will have a reference in order to use removeEventListener).
         if (!Object.keys(this.events).includes(event))
             throw new Error(
-                `The event "${event}" passed to superScroll.on() is not handled by superScroll.`,
+                `The event "${event}" passed to superScroll.on() is not handled by superScroll.`
             );
 
         // Calling listenToEvents as a currying function
         window.addEventListener(
             `${this.namespace}-${event}`,
             this.listenToEvents(event, func),
-            false,
+            false
         );
     }
     // Watching elements
@@ -205,11 +205,11 @@ class SuperScroll {
             ...options,
             element,
             id: watchedElementsLength,
-            destroyMethod: this.removeWatchedElement,
+            destroyMethod: this.removeWatchedElement
         });
         if (this.DOMisLoaded) {
             watched.compute({
-                firstScrollTopOffset: this.firstScrollTopOffset,
+                firstScrollTopOffset: this.firstScrollTopOffset
             });
         }
         this.watchedElements[watchedElementsLength] = watched;
@@ -240,7 +240,7 @@ class SuperScroll {
             window.removeEventListener(
                 `${this.namespace}-${event}`,
                 this[this.events[event]],
-                false,
+                false
             );
         });
 

@@ -154,7 +154,7 @@ export const clearRequestTimeout = function(handle) {
         ? window.webkitCancelAnimationFrame(handle.value)
         : window.webkitCancelRequestAnimationFrame
         ? window.webkitCancelRequestAnimationFrame(
-              handle.value,
+              handle.value
           ) /* Support for legacy API */
         : window.mozCancelRequestAnimationFrame
         ? window.mozCancelRequestAnimationFrame(handle.value)

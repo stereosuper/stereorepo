@@ -20,7 +20,7 @@ export function getTranslate(el) {
 
 export const transform = (element, xFloat, yFloat, lerpAmount) => {
     const [roundedX, roundedY] = [xFloat, yFloat].map(float =>
-        roundNumbers({ number: float, decimalOffset: 2 }),
+        roundNumbers({ number: float, decimalOffset: 2 })
     );
 
     let x = roundedX;

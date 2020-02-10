@@ -5,7 +5,7 @@ class SuperWindow {
         this.currentBreakpoint = '';
         this.breakpoints = {
             horizontal: null,
-            vertical: null,
+            vertical: null
         };
         this.windowWidth = null;
         this.windowHeight = null;
@@ -39,7 +39,7 @@ class SuperWindow {
             });
             this.currentBreakpoint = currentBreakpoint;
             document.documentElement.classList.add(
-                `breakpoint-${this.currentBreakpoint}`,
+                `breakpoint-${this.currentBreakpoint}`
             );
         }
     }
