@@ -29,9 +29,10 @@ This function will initialize the _superWindow_ component. Then it will call _pr
 Example:
 
 ```js
-import { useSuperLoad } from '@stereorepo/sac';
+import { useSacVanilla, useSuperLoad } from '@stereorepo/sac';
 
 // Initialize the SuperComponent
+useSacVanilla();
 useSuperLoad();
 
 // The SuperWindow component was instanciated by useSuperLoad
