@@ -44,7 +44,7 @@ const loadCallback = () => {};
 
 const animationsCallback = () => {};
 
-superLoad.initializeLoadingShit({
+window.$stereorepo.superLoad.initializeLoadingShit({
     preloadCallback,
     loadCallback,
     animationsCallback,
