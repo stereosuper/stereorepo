@@ -1,6 +1,6 @@
 import SuperError from '../SuperError';
 
-import { requestTimeout } from '../../core';
+import { requestTimeout, forEach } from '../../core';
 
 let rtime = null;
 let timeoutWindow = false;
@@ -79,13 +79,24 @@ export const initializeWindow = _store => {
                         state.height = height;
                     },
                     setNoTransitionElements(state, noTransitionElements) {
-                        state.noTransitionElements.push(noTransitionElements);
+                        if (!Array.isArray(noTransitionElements)) {
+                            throw new Error(
+                                'The value passed to setNoTransitionElements is not handled by superWindow. You need to pass an Array to the setNoTransitionElements method.'
+                            );
+                        }
+                        forEach(noTransitionElements, el => {
+                            if (!el) return;
+                            state.noTransitionElements.push(el);
+                        });
                     },
                     setResizing(state, resizing) {
                         state.resizing = resizing;
                     },
                     setNoTransitionDelta(state, noTransitionDelta) {
                         state.noTransitionDelta = noTransitionDelta;
+                    },
+                    clearNoTransitionElements(state) {
+                        state.noTransitionElements = [];
                     }
                 }
             },
