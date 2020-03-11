@@ -1,5 +1,5 @@
 import { transform } from './utils/transform';
-import { forEach, createCrossBrowserEvent } from '../../core';
+import { forEach, createCrossBrowserEvent, requestTimeout } from '../../core';
 
 class WatchedElement {
     constructor({
@@ -82,14 +82,10 @@ class WatchedElement {
 
             switch (true) {
                 case /vh$/.test(offset):
-                    parsedOffset =
-                        parseFloat(offset.replace('vh', '')) *
-                        (window.innerHeight / 100);
+                    parsedOffset = parseFloat(offset.replace('vh', '')) * (window.innerHeight / 100);
                     break;
                 case /%$/.test(offset):
-                    parsedOffset =
-                        parseInt(offset.replace('%', ''), 10) *
-                        (this.boundings.height / 100);
+                    parsedOffset = parseInt(offset.replace('%', ''), 10) * (this.boundings.height / 100);
                     break;
                 default:
                     parsedOffset = offset;
@@ -101,11 +97,7 @@ class WatchedElement {
     get parsedCollantOffset() {
         // Parsing vh or directly returning pixels
         if (!/vh$/.test(this.collantOffset)) return this.collantOffset;
-        return (
-            (parseInt(this.collantOffset.replace('vh', ''), 10) *
-                window.innerHeight) /
-            100
-        );
+        return (parseInt(this.collantOffset.replace('vh', ''), 10) * window.innerHeight) / 100;
     }
     // Setting the in view state and preparing in view events calls
     set isInView(state) {
@@ -128,24 +120,17 @@ class WatchedElement {
         if (!this.isCollant) return;
 
         // Computing the top delimiter
-        this.collantTopDelimiter =
-            this.targetBoundings.top + this.firstScrollTopOffset;
+        this.collantTopDelimiter = this.targetBoundings.top + this.firstScrollTopOffset;
 
         // Computing the bottom delimiter
         this.collantBottomDelimiter =
-            this.targetBoundings.top +
-            this.firstScrollTopOffset +
-            this.targetBoundings.height -
-            this.boundings.height;
+            this.targetBoundings.top + this.firstScrollTopOffset + this.targetBoundings.height - this.boundings.height;
 
         // Computing the offset for any position
         if (this.position === 'top') {
             this.computedCollantOffset = this.parsedCollantOffset;
         } else if (this.position === 'bottom') {
-            this.computedCollantOffset =
-                window.innerHeight -
-                this.boundings.height -
-                this.parsedCollantOffset;
+            this.computedCollantOffset = window.innerHeight - this.boundings.height - this.parsedCollantOffset;
         }
     }
     inViewStateChanged() {
@@ -159,21 +144,13 @@ class WatchedElement {
         }
     }
     amIInView({ scrollTop }) {
-        const elementTop =
-            this.boundings.top + this.firstScrollTopOffset + this.transform.y;
+        const elementTop = this.boundings.top + this.firstScrollTopOffset + this.transform.y;
 
         // If offsetWindowTop is positive, the element is below the window's top
-        this.offsetWindowTop =
-            elementTop +
-            this.boundings.height -
-            this.parsedTriggerOffset.bottom -
-            scrollTop;
+        this.offsetWindowTop = elementTop + this.boundings.height - this.parsedTriggerOffset.bottom - scrollTop;
 
         // If offsetWindowBottom is positive, the element is below the window's bottom
-        this.offsetWindowBottom =
-            elementTop +
-            this.parsedTriggerOffset.top -
-            (scrollTop + window.innerHeight);
+        this.offsetWindowBottom = elementTop + this.parsedTriggerOffset.top - (scrollTop + window.innerHeight);
 
         // Displacing the in-view box from the transform value added later on
         if (this.speed) {
@@ -182,16 +159,11 @@ class WatchedElement {
 
             this.transformValue = this.parallaxValue + this.targetRelativity;
 
-            this.offsetWindowTop +=
-                this.transformValue + this.boundings.height / 2;
-            this.offsetWindowBottom +=
-                this.transformValue - this.boundings.height / 2;
+            this.offsetWindowTop += this.transformValue + this.boundings.height / 2;
+            this.offsetWindowBottom += this.transformValue - this.boundings.height / 2;
         }
 
-        if (
-            Math.sign(this.offsetWindowTop) > 0 &&
-            Math.sign(this.offsetWindowBottom) < 0
-        ) {
+        if (Math.sign(this.offsetWindowTop) > 0 && Math.sign(this.offsetWindowBottom) < 0) {
             this.isInView = true;
         } else {
             this.isInView = false;
@@ -208,8 +180,7 @@ class WatchedElement {
 
         const relativeToWindowAndElement = relativeToElement - windowPosition;
 
-        this.parallaxValue =
-            (relativeToWindowAndElement - scrollTop) * this.speed * 0.1;
+        this.parallaxValue = (relativeToWindowAndElement - scrollTop) * this.speed * 0.1;
     }
     computeTargetRelativity() {
         if (!this.position) return;
@@ -233,23 +204,12 @@ class WatchedElement {
         if (!this.speed || (this.initialized && !this.inView)) return;
 
         // Limiting the first effective transform value to a window half's height (since the elements' positions are computed based on the window's center)
-        if (
-            !this.initialized &&
-            Math.abs(this.transformValue) > window.innerHeight
-        ) {
-            this.transformValue =
-                (window.innerHeight / 2) * Math.sign(this.transformValue);
+        if (!this.initialized && Math.abs(this.transformValue) > window.innerHeight) {
+            this.transformValue = (window.innerHeight / 2) * Math.sign(this.transformValue);
         }
 
-        this.transform = transform(
-            this.element,
-            0,
-            this.transformValue,
-            this.lerpAmount
-        );
-        this.lerpNotDone =
-            this.lerpAmount &&
-            Math.abs(this.transformValue - this.transform.y) > 1;
+        this.transform = transform(this.element, 0, this.transformValue, this.lerpAmount);
+        this.lerpNotDone = this.lerpAmount && Math.abs(this.transformValue - this.transform.y) > 1;
     }
     // Relative to collant
     cleanCollant() {
@@ -388,16 +348,10 @@ class WatchedElement {
     on(event, func) {
         // Events name check (ensuring that every functions will have a reference in order to use removeEventListener).
         if (!Object.keys(this.events).includes(event))
-            throw new Error(
-                `The event "${event}" passed to <WatchedElement>.on() is not handled by the element.`
-            );
+            throw new Error(`The event "${event}" passed to <WatchedElement>.on() is not handled by the element.`);
 
         // Calling listenToEvents as a currying function
-        window.addEventListener(
-            `${this.namespace}-${event}`,
-            this.listenToEvents(event, func),
-            false
-        );
+        window.addEventListener(`${this.namespace}-${event}`, this.listenToEvents(event, func), false);
         return this;
     }
     clean() {
@@ -412,14 +366,14 @@ class WatchedElement {
         this.isDestroyed = true;
         // Curryied functions destruction
         forEach(Object.keys(this.events), event => {
-            window.removeEventListener(
-                `${this.namespace}-${event}`,
-                this[this.events[event]],
-                false
-            );
+            window.removeEventListener(`${this.namespace}-${event}`, this[this.events[event]], false);
         });
 
-        if (this.isCollant) this.cleanCollant();
+        if (this.isCollant) {
+            this.cleanCollant();
+        } else {
+            this.clean();
+        }
 
         this.destroyMethod(this.id);
     }
