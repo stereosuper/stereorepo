@@ -1,4 +1,4 @@
-55 error Error: Command failed: git add -- packages/sac/package.json packages/sprite/package.json packages/nuxt-journey/package.json packages/burger/package.json packages/accordion/package.json lerna.json
+55 error Error: Command failed: git add -- packages/sac/package.json packages/sprite/package.json packages/nuxt-journey/package.json packages/accordion/package.json packages/burger/package.json lerna.json
 55 error Les chemins suivants sont ignorés par un de vos fichiers .gitignore :
 55 error packages/nuxt-journey
 55 error Utilisez -f si vous voulez réellement les ajouter.
