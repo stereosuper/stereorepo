@@ -22,8 +22,7 @@ export const forEach = (arr, callback) => {
 /**
  * @description get display state of one element
  */
-export const isDisplayed = element =>
-    getComputedStyle(element).display !== 'none';
+export const isDisplayed = element => getComputedStyle(element).display !== 'none';
 
 export const nodeIndex = node => [...node.parentNode.children].indexOf(node);
 
@@ -119,10 +118,7 @@ export const requestTimeout = (fn, delay) => {
     if (
         !window.requestAnimationFrame &&
         !window.webkitRequestAnimationFrame &&
-        !(
-            window.mozRequestAnimationFrame &&
-            window.mozCancelRequestAnimationFrame
-        ) && // Firefox 5 ships without cancel support
+        !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
         !window.oRequestAnimationFrame &&
         !window.msRequestAnimationFrame
     )
@@ -153,9 +149,7 @@ export const clearRequestTimeout = function(handle) {
         : window.webkitCancelAnimationFrame
         ? window.webkitCancelAnimationFrame(handle.value)
         : window.webkitCancelRequestAnimationFrame
-        ? window.webkitCancelRequestAnimationFrame(
-              handle.value
-          ) /* Support for legacy API */
+        ? window.webkitCancelRequestAnimationFrame(handle.value) /* Support for legacy API */
         : window.mozCancelRequestAnimationFrame
         ? window.mozCancelRequestAnimationFrame(handle.value)
         : window.oCancelRequestAnimationFrame

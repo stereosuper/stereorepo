@@ -1,5 +1,5 @@
 import { transform } from './utils/transform';
-import { forEach, createCrossBrowserEvent, requestTimeout } from '../../core';
+import { forEach, createCrossBrowserEvent } from '../../core';
 
 class WatchedElement {
     constructor({

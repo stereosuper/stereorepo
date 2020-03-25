@@ -18,18 +18,14 @@ export const isChromeAndroid = () =>
     // is mobile android && is chrome
     /android.*mobile/.test(uA()) && isChrome();
 
-export const isSafari = () =>
-    !!uA().match(/version\/[\d\.]+.*safari/) && !isAndroid();
+export const isSafari = () => !!uA().match(/version\/[\d\.]+.*safari/) && !isAndroid();
 
 export const isFF = () => 'MozAppearance' in document.documentElement.style;
 
 export const isMS = () =>
-    '-ms-scroll-limit' in document.documentElement.style &&
-    '-ms-ime-align' in document.documentElement.style;
+    '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
 
 export const isIe11 = () => document.body.style.msTouchAction !== undefined;
 
 export const mixBlendModeSupport = () =>
-    'CSS' in window &&
-    'supports' in window.CSS &&
-    window.CSS.supports('mix-blend-mode', 'multiply');
+    'CSS' in window && 'supports' in window.CSS && window.CSS.supports('mix-blend-mode', 'multiply');

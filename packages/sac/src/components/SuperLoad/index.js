@@ -65,8 +65,7 @@ class SuperLoad {
         document.addEventListener(
             'readystatechange',
             () => {
-                if (!this.state.preloaded)
-                    this.preload(this.callbacks.preloadCallback);
+                if (!this.state.preloaded) this.preload(this.callbacks.preloadCallback);
                 if (!this.state.loaded) this.load(this.callbacks.loadCallback);
             },
             false

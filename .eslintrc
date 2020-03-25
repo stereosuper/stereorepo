@@ -5,18 +5,12 @@
         "node": true,
         "es6": true
     },
+    "parser": "babel-eslint",
     "parserOptions": {
-        "parser": "babel-eslint",
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "extends": [
-        "eslint:recommended",
-        "prettier",
-        "prettier/vue",
-        "plugin:vue/recommended",
-        "plugin:prettier/recommended"
-    ],
+    "extends": ["eslint:recommended", "prettier", "plugin:prettier/recommended"],
     "plugins": ["prettier"],
     // add your custom rules here
     "rules": {
@@ -27,17 +21,5 @@
         "object-curly-spacing": ["error", "always"],
         "array-bracket-spacing": ["error", "never"],
         "arrow-parens": ["error", "as-needed"],
-        "vue/component-name-in-template-casing": ["error", "PascalCase"],
-        "vue/max-attributes-per-line": "off",
-        "vue/html-indent": "off",
-        "vue/html-self-closing": [
-            "error",
-            {
-                "html": {
-                    "void": "always",
-                    "normal": "always"
-                }
-            }
-        ]
     }
 }

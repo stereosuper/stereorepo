@@ -1,9 +1,4 @@
-import {
-    createCrossBrowserEvent,
-    query,
-    forEach,
-    useSuperWindow
-} from '@stereorepo/sac';
+import { createCrossBrowserEvent, query, forEach, useSuperWindow } from '@stereorepo/sac';
 import { Accordion } from '@stereorepo/accordion';
 import { Burger } from '@stereorepo/burger';
 

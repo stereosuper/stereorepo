@@ -1,11 +1,5 @@
 import WatchedElement from './WatchedElement';
-import {
-    clearRequestTimeout,
-    createCrossBrowserEvent,
-    forEach,
-    requestTimeout,
-    requestAnimFrame
-} from '../../core';
+import { clearRequestTimeout, createCrossBrowserEvent, forEach, requestTimeout, requestAnimFrame } from '../../core';
 
 class SuperScroll {
     constructor() {
@@ -100,9 +94,7 @@ class SuperScroll {
         }
     }
     scrollForWatchedElements() {
-        const lerpNotDone = this.watchedElements.some(
-            element => element && element.inView && element.lerpNotDone
-        );
+        const lerpNotDone = this.watchedElements.some(element => element && element.inView && element.lerpNotDone);
 
         if (lerpNotDone || this.isScrolling) {
             requestAnimFrame(() => this.scrollForWatchedElements());
@@ -155,9 +147,7 @@ class SuperScroll {
         window.dispatchEvent(scrollEvent);
     }
     dispatchScrollEnd() {
-        const scrollEvent = createCrossBrowserEvent(
-            `${this.namespace}-scroll-end`
-        );
+        const scrollEvent = createCrossBrowserEvent(`${this.namespace}-scroll-end`);
         window.dispatchEvent(scrollEvent);
     }
     listenToEvents(event, func) {
@@ -183,22 +173,15 @@ class SuperScroll {
     on(event, func) {
         // Events name check (ensuring that every functions will have a reference in order to use removeEventListener).
         if (!Object.keys(this.events).includes(event))
-            throw new Error(
-                `The event "${event}" passed to superScroll.on() is not handled by superScroll.`
-            );
+            throw new Error(`The event "${event}" passed to superScroll.on() is not handled by superScroll.`);
 
         // Calling listenToEvents as a currying function
-        window.addEventListener(
-            `${this.namespace}-${event}`,
-            this.listenToEvents(event, func),
-            false
-        );
+        window.addEventListener(`${this.namespace}-${event}`, this.listenToEvents(event, func), false);
     }
     // Watching elements
     watch({ element, options }) {
         // Ensuring that the function will have an element to watch.
-        if (!element)
-            throw new Error('No element passed to superScroll.watch().');
+        if (!element) throw new Error('No element passed to superScroll.watch().');
 
         const watchedElementsLength = this.watchedElements.length;
         const watched = new WatchedElement({
@@ -237,11 +220,7 @@ class SuperScroll {
 
         // Curryied functions destruction
         forEach(Object.keys(this.events), event => {
-            window.removeEventListener(
-                `${this.namespace}-${event}`,
-                this[this.events[event]],
-                false
-            );
+            window.removeEventListener(`${this.namespace}-${event}`, this[this.events[event]], false);
         });
 
         // Removing scroll event listener

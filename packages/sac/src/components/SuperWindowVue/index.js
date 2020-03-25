@@ -8,9 +8,7 @@ let store = null;
 
 const checkStoreValue = ({ store, methodeName }) => {
     if (!store) {
-        throw new SuperError(
-            `No store found, try passing vuex store as an argument in ${methodeName} call`
-        );
+        throw new SuperError(`No store found, try passing vuex store as an argument in ${methodeName} call`);
     }
 };
 
@@ -122,9 +120,7 @@ export const toggleNoScroll = ({ noScroll, nextTick }) => {
         document.documentElement.style.top = `${-window.scrollY}px`;
         document.documentElement.classList.add('no-scroll');
     } else {
-        const scrollY = Math.abs(
-            parseInt(document.documentElement.style.top.replace('px', ''), 10)
-        );
+        const scrollY = Math.abs(parseInt(document.documentElement.style.top.replace('px', ''), 10));
         document.documentElement.style.top = '';
         document.documentElement.classList.remove('no-scroll');
 

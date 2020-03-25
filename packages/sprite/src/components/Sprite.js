@@ -1,15 +1,7 @@
 import { TimelineMax } from 'gsap';
 
 class Sprite {
-    constructor({
-        image,
-        columns,
-        rows,
-        interval,
-        parent,
-        loop = false,
-        numberEmpty = 0
-    }) {
+    constructor({ image, columns, rows, interval, parent, loop = false, numberEmpty = 0 }) {
         this.parent = parent;
         this.image = image;
         this.looped = loop;
@@ -35,17 +27,12 @@ class Sprite {
         let ypos;
 
         for (let r = 0; r < this.rows; r += 1) {
-            const cols =
-                r === this.rows - 1 ? this.cols - this.numberEmpty : this.cols;
+            const cols = r === this.rows - 1 ? this.cols - this.numberEmpty : this.cols;
 
             for (let c = 0; c < cols; c += 1) {
                 xpos = c * this.gridWidth;
                 ypos = r * this.gridHeight;
-                this.tl.set(
-                    this.image,
-                    { backgroundPosition: `${xpos}% ${ypos}%` },
-                    count * this.interval
-                );
+                this.tl.set(this.image, { backgroundPosition: `${xpos}% ${ypos}%` }, count * this.interval);
                 count += 1;
             }
         }

@@ -1,10 +1,7 @@
 import { query, useSuperWindow } from '@stereorepo/sac';
 
 class Burger {
-    constructor({
-        burgerSelector = '.js-burger',
-        mainNavigationSelector = '.js-main-navigation'
-    }) {
+    constructor({ burgerSelector = '.js-burger', mainNavigationSelector = '.js-main-navigation' }) {
         this.state = {
             burgerActivated: false
         };
@@ -22,39 +19,23 @@ class Burger {
             document.documentElement.style.top = `${-scrollY}px`;
             document.documentElement.classList.add('no-scroll');
 
-            transitionElement.removeEventListener(
-                'transitionend',
-                removeScroll,
-                false
-            );
+            transitionElement.removeEventListener('transitionend', removeScroll, false);
         };
 
         if (noScroll) {
-            if (
-                !this.transitionElementDuration ||
-                this.transitionElementDuration === '0s'
-            ) {
-                this.transitionElementDuration = getComputedStyle(
-                    transitionElement
-                ).getPropertyValue('transition-duration');
+            if (!this.transitionElementDuration || this.transitionElementDuration === '0s') {
+                this.transitionElementDuration = getComputedStyle(transitionElement).getPropertyValue(
+                    'transition-duration'
+                );
             }
 
             if (this.transitionElementDuration !== '0s') {
-                transitionElement.addEventListener(
-                    'transitionend',
-                    removeScroll,
-                    false
-                );
+                transitionElement.addEventListener('transitionend', removeScroll, false);
             } else {
                 removeScroll();
             }
         } else {
-            const scrollY = Math.abs(
-                parseInt(
-                    document.documentElement.style.top.replace('px', ''),
-                    10
-                )
-            );
+            const scrollY = Math.abs(parseInt(document.documentElement.style.top.replace('px', ''), 10));
             document.documentElement.style.top = '';
             document.documentElement.classList.remove('no-scroll');
 
@@ -77,10 +58,7 @@ class Burger {
         });
     }
     thisBurgerIsTooFat() {
-        if (
-            window.$stereorepo.superWindow.currentBreakpoint === 'xl' &&
-            this.state.burgerActivated
-        ) {
+        if (window.$stereorepo.superWindow.currentBreakpoint === 'xl' && this.state.burgerActivated) {
             this.makeTheDamnBurger();
         }
     }
@@ -98,9 +76,7 @@ class Burger {
             false
         );
 
-        window.$stereorepo.superWindow.addResizeFunction(
-            this.thisBurgerIsTooFat
-        );
+        window.$stereorepo.superWindow.addResizeFunction(this.thisBurgerIsTooFat);
     }
 }
 

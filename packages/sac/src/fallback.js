@@ -1,12 +1,4 @@
-import {
-    isChromeAndroid,
-    isFF,
-    isIe11,
-    isIOS,
-    isMobile,
-    isMS,
-    isSafari
-} from './snif';
+import { isChromeAndroid, isFF, isIe11, isIOS, isMobile, isMS, isSafari } from './snif';
 
 export const spotMobile = () => {
     const html = document.documentElement;
@@ -51,8 +43,7 @@ export const spotIE = () => {
 export async function supportsWebp() {
     if (!self.createImageBitmap) return false;
 
-    const webpData =
-        'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+    const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
     const blob = await fetch(webpData).then(r => r.blob());
     return createImageBitmap(blob).then(() => true, () => false);
 }

@@ -41,9 +41,7 @@ class Accordion {
             selector: this.contentWrapperSelector,
             ctx: clickedElementParent
         });
-        const alreadyActivated = clickedElementParent.classList.contains(
-            'activated'
-        );
+        const alreadyActivated = clickedElementParent.classList.contains('activated');
         const [content] = query({
             selector: this.contentSelector,
             ctx: this.clickedSelector.parentElement
@@ -105,8 +103,7 @@ class Accordion {
         if (!this.noScroll) {
             setTimeout(() => {
                 const scrollY = window.scrollY || window.pageYOffset;
-                const offset =
-                    clickedElement.getBoundingClientRect().top + scrollY;
+                const offset = clickedElement.getBoundingClientRect().top + scrollY;
                 TweenMax.to(window, 0.5, {
                     scrollTo: {
                         y: offset,
@@ -138,15 +135,8 @@ class Accordion {
                 const clickHandlerBuffer = () => {
                     this.clickHandler(clickedElement);
                 };
-                clickedElement.addEventListener(
-                    'click',
-                    clickHandlerBuffer,
-                    false
-                );
-                this.clickedElementsList = [
-                    ...this.clickedElementsList,
-                    { clickedElement, clickHandlerBuffer }
-                ];
+                clickedElement.addEventListener('click', clickHandlerBuffer, false);
+                this.clickedElementsList = [...this.clickedElementsList, { clickedElement, clickHandlerBuffer }];
             } else if (!this.silent) {
                 throw new AccordionError(
                     'No element to click on found, try changing the clickedSelector value in the Accordion declaration'
@@ -155,21 +145,18 @@ class Accordion {
         });
     }
     destroyAccordions() {
-        forEach(
-            this.clickedElementsList,
-            ({ clickedElement, clickHandlerBuffer }) => {
-                const clickedElementParent = clickedElement.parentElement;
-                const [contentWrapper] = query({
-                    selector: this.contentWrapperSelector,
-                    ctx: clickedElementParent
-                });
+        forEach(this.clickedElementsList, ({ clickedElement, clickHandlerBuffer }) => {
+            const clickedElementParent = clickedElement.parentElement;
+            const [contentWrapper] = query({
+                selector: this.contentWrapperSelector,
+                ctx: clickedElementParent
+            });
 
-                clickedElementParent.classList.remove('activated');
+            clickedElementParent.classList.remove('activated');
 
-                clickedElement.removeEventListener('click', clickHandlerBuffer);
-                TweenMax.set(contentWrapper, { clearProps: 'all' });
-            }
-        );
+            clickedElement.removeEventListener('click', clickHandlerBuffer);
+            TweenMax.set(contentWrapper, { clearProps: 'all' });
+        });
 
         this.accordions = [];
     }

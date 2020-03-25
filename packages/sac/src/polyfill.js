@@ -2,18 +2,13 @@
 const importSmoothScrollPolyfill = () => import('smoothscroll-polyfill');
 
 export const audioContextPolyfill = () => {
-    window.AudioContext =
-        window.webkitAudioContext ||
-        window.AudioContext ||
-        window.mozAudioContext;
+    window.AudioContext = window.webkitAudioContext || window.AudioContext || window.mozAudioContext;
 };
 
 // IE11 polyfills
 export const ie11Polyfills = () => {
     if (!Element.prototype.matches) {
-        Element.prototype.matches =
-            Element.prototype.msMatchesSelector ||
-            Element.prototype.webkitMatchesSelector;
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
     }
 
     if (!Element.prototype.closest) {

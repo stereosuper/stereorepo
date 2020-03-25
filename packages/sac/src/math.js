@@ -9,8 +9,5 @@ export const roundNumbers = ({ number, decimalOffset }) => {
 
 export const average = array => {
     if (!array.length) return null;
-    return (
-        array.reduce((accumulator, current) => accumulator + current) /
-        array.length
-    );
+    return array.reduce((accumulator, current) => accumulator + current) / array.length;
 };

@@ -5,8 +5,7 @@ export function getTranslate(el) {
     if (!window.getComputedStyle) return;
 
     const style = getComputedStyle(el);
-    const transform =
-        style.transform || style.webkitTransform || style.mozTransform;
+    const transform = style.transform || style.webkitTransform || style.mozTransform;
 
     let mat = transform.match(/^matrix3d\((.+)\)$/);
     if (mat) return parseFloat(mat[1].split(', ')[13]);
@@ -19,9 +18,7 @@ export function getTranslate(el) {
 }
 
 export const transform = (element, xFloat, yFloat, lerpAmount) => {
-    const [roundedX, roundedY] = [xFloat, yFloat].map(float =>
-        roundNumbers({ number: float, decimalOffset: 2 })
-    );
+    const [roundedX, roundedY] = [xFloat, yFloat].map(float => roundNumbers({ number: float, decimalOffset: 2 }));
 
     let x = roundedX;
     let y = roundedY;

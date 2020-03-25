@@ -38,9 +38,7 @@ class SuperWindow {
                 document.documentElement.classList.remove(`breakpoint-${name}`);
             });
             this.currentBreakpoint = currentBreakpoint;
-            document.documentElement.classList.add(
-                `breakpoint-${this.currentBreakpoint}`
-            );
+            document.documentElement.classList.add(`breakpoint-${this.currentBreakpoint}`);
         }
     }
     setBreakpoints({ horizontal, vertical }) {
