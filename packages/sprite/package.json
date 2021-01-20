@@ -20,6 +20,6 @@
     "author": "Alphability <albanmezino@gmail.com> (https://albanmezino.fr)",
     "license": "ISC",
     "dependencies": {
-        "gsap": "^2.1.3"
+        "gsap": "^3.6.0"
     }
 }
